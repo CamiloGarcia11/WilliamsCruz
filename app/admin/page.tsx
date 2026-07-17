@@ -157,14 +157,59 @@ export default function AdminPage() {
     }
   }, [expandedLead, leads]);
 
-  // Autenticación inicial
+  // Autenticación inicial y validación de expiración
   useEffect(() => {
-    const token = localStorage.getItem('sf_admin_token');
-    if (token === 'authed_2026') {
+    const token = sessionStorage.getItem('sf_admin_token');
+    const expiry = sessionStorage.getItem('sf_admin_expiry');
+    
+    if (token === 'authed_2026' && expiry && Date.now() < parseInt(expiry, 10)) {
       setIsAuthed(true);
       fetchData();
+    } else {
+      // Limpiar datos huérfanos o expirados
+      sessionStorage.removeItem('sf_admin_token');
+      sessionStorage.removeItem('sf_admin_expiry');
     }
   }, []);
+
+  // Control de expiración de sesión por inactividad (15 minutos)
+  useEffect(() => {
+    if (!isAuthed) return;
+
+    const EXPIRY_TIME = 15 * 60 * 1000; // 15 minutos
+
+    const resetTimer = () => {
+      const now = Date.now();
+      sessionStorage.setItem('sf_admin_expiry', (now + EXPIRY_TIME).toString());
+    };
+
+    // Inicializar el tiempo de expiración
+    resetTimer();
+
+    // Verificar expiración cada 10 segundos
+    const checkInterval = setInterval(() => {
+      const expiry = sessionStorage.getItem('sf_admin_expiry');
+      if (expiry && Date.now() > parseInt(expiry, 10)) {
+        handleLogout();
+        alert('Tu sesión de administrador ha expirado por inactividad. Por seguridad, debes ingresar la contraseña de nuevo.');
+      }
+    }, 10000);
+
+    // Escuchar interacciones para resetear el temporizador
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+    const handleActivity = () => resetTimer();
+    
+    events.forEach(event => {
+      window.addEventListener(event, handleActivity);
+    });
+
+    return () => {
+      clearInterval(checkInterval);
+      events.forEach(event => {
+        window.removeEventListener(event, handleActivity);
+      });
+    };
+  }, [isAuthed]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -181,7 +226,9 @@ export default function AdminPage() {
       if (response.ok && data.success) {
         setIsAuthed(true);
         setAuthError('');
-        localStorage.setItem('sf_admin_token', data.token || 'authed_2026');
+        sessionStorage.setItem('sf_admin_token', data.token || 'authed_2026');
+        // Inicializar expiración
+        sessionStorage.setItem('sf_admin_expiry', (Date.now() + 15 * 60 * 1000).toString());
         fetchData();
       } else {
         setAuthError(data.error || 'Contraseña incorrecta. Inténtalo nuevamente.');
@@ -193,7 +240,8 @@ export default function AdminPage() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('sf_admin_token');
+    sessionStorage.removeItem('sf_admin_token');
+    sessionStorage.removeItem('sf_admin_expiry');
     setIsAuthed(false);
     setLeads([]);
     setAgendas([]);

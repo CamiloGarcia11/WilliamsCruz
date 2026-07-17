@@ -33,6 +33,7 @@ export default function QuizFinanciero() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [aceptaTerminos, setAceptaTerminos] = useState(false);
 
   const handleSelectOption = (field: keyof QuizAnswers, value: string) => {
     setAnswers({ ...answers, [field]: value });
@@ -353,11 +354,30 @@ export default function QuizFinanciero() {
                 />
               </div>
 
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'start', marginTop: '10px', marginBottom: '16px' }}>
+                <input
+                  type="checkbox"
+                  id="acepta-terminos-quiz"
+                  checked={aceptaTerminos}
+                  onChange={(e) => setAceptaTerminos(e.target.checked)}
+                  required
+                  style={{ width: '20px', height: '20px', marginTop: '2px', accentColor: 'var(--accent-blue)', cursor: 'pointer' }}
+                />
+                <label htmlFor="acepta-terminos-quiz" style={{ fontSize: '11px', color: 'var(--text-medium)', lineHeight: '1.4', cursor: 'pointer' }}>
+                  Acepto el <strong>Tratamiento de Datos Personales</strong> conforme a la Ley 1581 de 2012 de Colombia y autorizo el análisis de mi información financiera para evaluar la viabilidad de mi estudio gratuito.
+                </label>
+              </div>
+
               <ButtonPulse
                 type="submit"
                 variant="primary"
                 className="w-full"
-                pulse={true}
+                pulse={aceptaTerminos && !isSubmitting}
+                style={{
+                  opacity: aceptaTerminos ? 1 : 0.6,
+                  cursor: aceptaTerminos ? 'pointer' : 'not-allowed',
+                  pointerEvents: aceptaTerminos ? 'auto' : 'none',
+                }}
               >
                 {isSubmitting ? 'Procesando...' : 'Calcular mi Reducción Ahora'}
               </ButtonPulse>

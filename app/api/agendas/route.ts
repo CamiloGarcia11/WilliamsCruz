@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { saveAgendaToDb, getAgendasFromDb, DbAgenda } from '../../../lib/db/neon';
+import { createCalendarEvent, isCalendarConfigured } from '../../../lib/google/calendar';
 
 export async function POST(request: Request) {
   try {
@@ -15,6 +16,22 @@ export async function POST(request: Request) {
     };
     
     const result = await saveAgendaToDb(dbAgenda);
+
+    // Intentar crear evento en Google Calendar si está configurado
+    if (isCalendarConfigured()) {
+      try {
+        await createCalendarEvent({
+          nombre: body.cliente.nombre,
+          correo: body.cliente.correo,
+          celular: body.cliente.celular,
+          fecha: body.fecha,
+          hora: body.hora
+        });
+      } catch (calErr) {
+        console.error('Error al registrar evento en Google Calendar (Ignorado):', calErr);
+      }
+    }
+    
     return NextResponse.json({ success: true, id: result.id });
   } catch (error: any) {
     console.error('Error en API POST /api/agendas:', error);

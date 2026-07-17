@@ -17,15 +17,6 @@ export default function FloatingWhatsapp() {
   const whatsappNumber = '573155030333'; // Celular de Williams Cruz
 
   const handleOpen = () => {
-    // Intentar precargar el nombre si ya llenaron el quiz o agenda
-    try {
-      const storedLeads = JSON.parse(localStorage.getItem('susfinanzas_leads') || '[]');
-      if (storedLeads.length > 0) {
-        const lastLead = storedLeads[storedLeads.length - 1];
-        setNombre(lastLead.nombre || '');
-        setCelular(lastLead.celular || '');
-      }
-    } catch (e) {}
     setIsOpen(true);
   };
 
@@ -112,11 +103,11 @@ export default function FloatingWhatsapp() {
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.95 }}
           animate={{
-            y: [0, -10, 0],
+            y: [0, -4, 0],
           }}
           transition={{
             y: {
-              duration: 3,
+              duration: 4,
               repeat: Infinity,
               ease: 'easeInOut',
             },

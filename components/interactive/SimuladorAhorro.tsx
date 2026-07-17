@@ -101,6 +101,7 @@ export default function SimuladorAhorro() {
   const [nombre, setNombre] = useState('');
   const [celular, setCelular] = useState('');
   const [email, setEmail] = useState('');
+  const [aceptaTerminos, setAceptaTerminos] = useState(false);
 
   // ── UI STATE ──────────────────────────────────────────
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -802,8 +803,18 @@ export default function SimuladorAhorro() {
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ej: sandra@correo.com" style={inputStyle} required />
                   </div>
 
-                  <div style={{ fontSize: '11px', color: 'var(--text-light)', lineHeight: '1.4', background: 'var(--bg-light)', padding: '12px', borderRadius: '8px' }}>
-                    🔒 <strong>Tratamiento de Datos:</strong> Al enviar este formulario, autorizas de forma exclusiva a Williams Cruz a tratar tu información para realizar la asesoría de tu reestructuración de crédito, en cumplimiento con la Ley 1581 de 2012 de Colombia.
+                  <div style={{ display: 'flex', gap: '10px', alignItems: 'start', marginTop: '10px', marginBottom: '16px' }}>
+                    <input
+                      type="checkbox"
+                      id="acepta-terminos-simulador"
+                      checked={aceptaTerminos}
+                      onChange={(e) => setAceptaTerminos(e.target.checked)}
+                      required
+                      style={{ width: '20px', height: '20px', marginTop: '2px', accentColor: 'var(--accent-blue)', cursor: 'pointer' }}
+                    />
+                    <label htmlFor="acepta-terminos-simulador" style={{ fontSize: '11px', color: 'var(--text-medium)', lineHeight: '1.4', cursor: 'pointer' }}>
+                      Acepto el <strong>Tratamiento de Datos Personales</strong> (Ley 1581 de 2012) y autorizo voluntariamente el análisis seguro de mi extracto bancario PDF con el único fin de evaluar las opciones de reducción de mi crédito de vivienda.
+                    </label>
                   </div>
 
                   <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
@@ -815,19 +826,19 @@ export default function SimuladorAhorro() {
                       type="submit"
                       variant="primary"
                       className="w-full"
-                      pulse={!isSubmitting}
+                      pulse={aceptaTerminos && !isSubmitting}
                       style={{
-                        background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-                        color: '#ffffff',
+                        background: aceptaTerminos ? 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)' : '#e2e8f0',
+                        color: aceptaTerminos ? '#ffffff' : 'var(--text-light)',
                         fontWeight: 'bold',
-                        boxShadow: '0 4px 14px rgba(34, 197, 94, 0.4)',
+                        boxShadow: aceptaTerminos ? '0 4px 14px rgba(34, 197, 94, 0.4)' : 'none',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         gap: '6px',
-                        cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                        cursor: (!aceptaTerminos || isSubmitting) ? 'not-allowed' : 'pointer',
                         opacity: isSubmitting ? 0.8 : 1,
-                        pointerEvents: isSubmitting ? 'none' : 'auto'
+                        pointerEvents: (!aceptaTerminos || isSubmitting) ? 'none' : 'auto'
                       }}
                     >
                       {isSubmitting ? 'Subiendo y Enviando...' : 'Subir Extracto y Chatear con Williams'} <MessageCircle size={18} />

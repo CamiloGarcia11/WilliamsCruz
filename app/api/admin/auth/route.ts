@@ -5,9 +5,12 @@ export async function POST(request: Request) {
   try {
     const { password } = await request.json();
     
-    // 1. Obtener la contraseña desde la base de datos Neon (PostgreSQL)
-    // 2. Si no está configurada la BD, cae a la variable de entorno o al default hardcoded seguro
-    const dbPassword = await getAdminPassword() || process.env.ADMIN_PASSWORD || 'susfinanzas2026';
+    // Obtener la contraseña estrictamente desde la base de datos Neon (PostgreSQL)
+    const dbPassword = await getAdminPassword();
+    
+    if (!dbPassword) {
+      return NextResponse.json({ success: false, error: 'Configuración de seguridad de administrador no inicializada en base de datos' }, { status: 500 });
+    }
     
     if (password === dbPassword) {
       return NextResponse.json({ success: true, token: 'authed_2026' });

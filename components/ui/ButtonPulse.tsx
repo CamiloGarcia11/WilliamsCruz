@@ -82,11 +82,11 @@ export default function ButtonPulse({
       {pulse && (variant === 'primary' || variant === 'secondary') && (
         <motion.div
           animate={{
-            scale: [1, 1.25, 1.4],
-            opacity: [0.6, 0.2, 0],
+            scale: [1, 1.06, 1.12],
+            opacity: [0.3, 0.1, 0],
           }}
           transition={{
-            duration: 2,
+            duration: 2.4,
             repeat: Infinity,
             ease: 'easeOut',
           }}
@@ -97,7 +97,11 @@ export default function ButtonPulse({
             right: 0,
             bottom: 0,
             borderRadius: '30px',
-            background: style.background || (variant === 'primary' ? 'var(--accent-yellow)' : 'var(--accent-blue)'),
+            background: variant === 'primary' 
+              ? 'var(--accent-yellow)' 
+              : (variant === 'secondary' 
+                ? 'var(--accent-blue)' 
+                : (style.background && typeof style.background === 'string' && style.background.includes('#22c55e') ? '#22c55e' : 'var(--accent-yellow)')),
             zIndex: 0,
             pointerEvents: 'none',
           }}

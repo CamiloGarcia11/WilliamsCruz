@@ -51,13 +51,16 @@ export default function AgendarPage() {
     const weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
     const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
+    const pad = (n: number) => String(n).padStart(2, '0');
+
     while (nextDays.length < 5) {
       const dayOfWeek = current.getDay();
       
       // Solo agregamos Lunes a Viernes
       if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+        const dateStr = `${current.getFullYear()}-${pad(current.getMonth() + 1)}-${pad(current.getDate())}`;
         nextDays.push({
-          dateStr: current.toISOString().split('T')[0],
+          dateStr,
           dayName: weekdays[dayOfWeek],
           dayNum: current.getDate(),
           monthName: months[current.getMonth()],
@@ -70,37 +73,38 @@ export default function AgendarPage() {
 
     setDays(nextDays);
     setSelectedDate(nextDays[0]);
-
-    // 2. Precargar datos si el lead completó el quiz antes
-    try {
-      const storedLeads = JSON.parse(localStorage.getItem('susfinanzas_leads') || '[]');
-      if (storedLeads.length > 0) {
-        const lastLead = storedLeads[storedLeads.length - 1];
-        setClientData({
-          nombre: lastLead.nombre || '',
-          celular: lastLead.celular || '',
-          correo: lastLead.correo || '',
-        });
-      }
-    } catch (e) {
-      console.error(e);
-    }
   }, []);
 
-  // Cargar horas de citas cuando se cambia de día
+  // Cargar horas de citas desde el servidor (Neon DB + Google Calendar) cuando se cambia de día
   useEffect(() => {
-    if (selectedDate) {
-      // Simular horas disponibles para el día seleccionado
+    async function fetchSlots() {
+      if (!selectedDate) return;
+      
+      // Mostrar indicador temporal desactivando slots
       setTimeSlots([
-        { time: '09:00 AM', available: true },
-        { time: '10:00 AM', available: true },
-        { time: '11:00 AM', available: false }, // Ocupado
-        { time: '02:00 PM', available: true },
-        { time: '03:00 PM', available: true },
-        { time: '04:00 PM', available: true },
+        { time: '09:00 AM', available: false },
+        { time: '10:00 AM', available: false },
+        { time: '11:00 AM', available: false },
+        { time: '02:00 PM', available: false },
+        { time: '03:00 PM', available: false },
+        { time: '04:00 PM', available: false },
       ]);
+
+      try {
+        const response = await fetch(`/api/agendas/check-slots?date=${selectedDate.dateStr}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.slots) {
+            setTimeSlots(data.slots);
+          }
+        }
+      } catch (err) {
+        console.error('Error al cargar disponibilidad de horas:', err);
+      }
       setSelectedTime(null);
     }
+
+    fetchSlots();
   }, [selectedDate]);
 
   const handleBooking = async (e: React.FormEvent) => {

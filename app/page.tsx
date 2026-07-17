@@ -521,32 +521,64 @@ export default function Home() {
               </div>
             </Card3D>
 
-            {/* Video 2: Local Video Opinión (Vertical - Estilo Reel/Shorts) */}
-            <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', maxWidth: '300px', border: '1px solid var(--border-light)' }}>
-              <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
-                <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--text-medium)', marginLeft: '8px' }}>
-                  Opinión del Cliente (Estudio Hipoteca)
-                </span>
-              </div>
-              <div 
-                style={{ 
-                  position: 'relative', 
-                  width: '100%', 
-                  aspectRatio: '9/16',
-                  background: '#000000',
-                }}
-              >
-                <video 
-                  src="/opinion.mp4" 
-                  controls 
-                  playsInline
-                  style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
-                />
-              </div>
-            </Card3D>
+            {/* Contenedor de Videos Verticales para responsividad y alineación simétrica */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '32px', maxWidth: '632px', width: '100%' }}>
+              
+              {/* Video 2: Local Video Opinión (Vertical - Estilo Reel/Shorts) */}
+              <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', maxWidth: '300px', border: '1px solid var(--border-light)' }}>
+                <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                  <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--text-medium)', marginLeft: '8px' }}>
+                    Opinión del Cliente (Estudio Hipoteca)
+                  </span>
+                </div>
+                <div 
+                  style={{ 
+                    position: 'relative', 
+                    width: '100%', 
+                    aspectRatio: '9/16',
+                    background: '#000000',
+                  }}
+                >
+                  <video 
+                    src="/opinion.mp4" 
+                    controls 
+                    playsInline
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
+                  />
+                </div>
+              </Card3D>
+
+              {/* Video 3: Local Video Opinión 2 (Vertical - Estilo Reel/Shorts) */}
+              <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', width: '100%', maxWidth: '300px', border: '1px solid var(--border-light)' }}>
+                <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                  <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--text-medium)', marginLeft: '8px' }}>
+                    Opinión del Cliente (Ahorro Logrado)
+                  </span>
+                </div>
+                <div 
+                  style={{ 
+                    position: 'relative', 
+                    width: '100%', 
+                    aspectRatio: '9/16',
+                    background: '#000000',
+                  }}
+                >
+                  <video 
+                    src="/opinion_2.mp4" 
+                    controls 
+                    playsInline
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
+                  />
+                </div>
+              </Card3D>
+
+            </div>
 
           </div>
 
