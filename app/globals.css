@@ -1,0 +1,303 @@
+/* Custom design system for Susfinanzas */
+:root {
+  /* Colors */
+  --primary-dark: #0f172a;       /* Deep Navy Blue for primary text/background */
+  --primary-navy: #0b1528;       /* Darker Navy for sections */
+  --primary-blue: #1e40af;       /* Classic trustworthy Blue */
+  --accent-blue: #3b82f6;        /* Electric Blue accent */
+  --accent-blue-rgb: 59, 130, 246;
+  --accent-yellow: #f59e0b;      /* Warm Gold Yellow for CTAs and highlights */
+  --accent-yellow-hover: #d97706;/* Darker Yellow for hover */
+  --accent-yellow-bright: #fbbf24;/* Bright gold highlight */
+  
+  --bg-white: #ffffff;
+  --bg-light: #f8fafc;           /* Slate light gray for secondary backgrounds */
+  --bg-card: #ffffff;
+  
+  --text-dark: #0f172a;          /* Slate-900 */
+  --text-medium: #334155;        /* Slate-700 */
+  --text-light: #64748b;         /* Slate-500 */
+  --text-white: #ffffff;
+  
+  --border-light: #e2e8f0;       /* Slate-200 */
+  --border-dark: #1e293b;        /* Slate-800 */
+  
+  /* Layout & Shadows */
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.12);
+  --shadow-glow-blue: 0 0 20px rgba(59, 130, 246, 0.45);
+  --shadow-glow-yellow: 0 0 20px rgba(245, 158, 11, 0.45);
+  
+  /* Fonts */
+  --font-sans: 'Outfit', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Base resets */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-dark);
+  background-color: var(--bg-white);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* Global scrollbar style */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Common Layout Components */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Typography Utilities */
+.text-gradient-blue {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-yellow {
+  background: linear-gradient(135deg, var(--accent-yellow-bright) 0%, var(--accent-yellow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-white-yellow {
+  background: linear-gradient(135deg, #ffffff 60%, var(--accent-yellow-bright) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Interactive 3D CSS utilities */
+.glow-card-blue {
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-smooth);
+}
+.glow-card-blue:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: var(--shadow-glow-blue), var(--shadow-lg);
+}
+
+.glow-card-yellow {
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-smooth);
+}
+.glow-card-yellow:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: var(--shadow-glow-yellow), var(--shadow-lg);
+}
+
+/* Premium 3D depth effect class */
+.depth-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Custom premium slider styling */
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.custom-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--border-light);
+  outline: none;
+  transition: background 0.3s;
+}
+
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-yellow);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4), 0 3px 6px rgba(0, 0, 0, 0.16);
+  transition: var(--transition-smooth);
+}
+
+.custom-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: var(--accent-yellow-bright);
+}
+
+.custom-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent-yellow);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.4), 0 3px 6px rgba(0, 0, 0, 0.16);
+  transition: var(--transition-smooth);
+}
+
+.custom-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  background: var(--accent-yellow-bright);
+}
+
+/* Floating animation for 3D elements */
+@keyframes float3D {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-float-3d {
+  animation: float3D 6s ease-in-out infinite;
+}
+
+/* Responsive grid layouts without Tailwind */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .container {
+    padding: 0 16px !important;
+  }
+
+  /* Responsive Mobile Typography Overrides */
+  h1 {
+    font-size: 32px !important;
+    line-height: 1.2 !important;
+  }
+  h2 {
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+  }
+  h3 {
+    font-size: 20px !important;
+  }
+  p {
+    font-size: 14.5px !important;
+  }
+
+  /* Mobile Navigation Styles */
+  .mobile-toggle {
+    display: block !important;
+  }
+  
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 16px !important;
+    padding: 24px;
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-120%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 90;
+  }
+  
+  .nav-menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.mobile-toggle {
+  display: none;
+}
+
+.step-label {
+  display: inline-block;
+}
+
+@media (max-width: 580px) {
+  .step-label {
+    display: none !important;
+  }
+}
