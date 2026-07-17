@@ -24,12 +24,11 @@ export async function GET() {
       )
     `;
 
-    // 2. Insertar contraseña por defecto si no existe
-    // NOTA: Puedes cambiar 'admin123' por la contraseña que desees usar para tu panel
+    // 2. Insertar/actualizar la contraseña del panel de administración
     await sql`
       INSERT INTO admin_config (key, value)
-      VALUES ('admin_password', 'admin123')
-      ON CONFLICT (key) DO NOTHING
+      VALUES ('admin_password', 'susfinanzas2026')
+      ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value
     `;
 
     // 3. Crear tabla leads
@@ -83,7 +82,7 @@ export async function GET() {
       message: 'Tablas inicializadas correctamente en Neon.',
       tablesCreated: ['admin_config', 'leads', 'agendas'],
       adminPasswordInitialized: currentPasswordCheck.length > 0,
-      note: 'La contraseña por defecto configurada es: admin123 (puedes cambiarla en la tabla admin_config si lo deseas)'
+      note: 'La contraseña configurada es: susfinanzas2026'
     });
 
   } catch (error: any) {
