@@ -14,6 +14,7 @@ import FinancialEcosystem3D from '../components/interactive/FinancialEcosystem3D
 import FloatingNetwork3D from '../components/interactive/FloatingNetwork3D';
 import Floating3DGeometries from '../components/interactive/Floating3DGeometries';
 import SubtleGridBg from '../components/animations/SubtleGridBg';
+import NewsModal from '../components/ui/NewsModal';
 
 export default function Home() {
   const scrollToSection = (id: string) => {
@@ -23,6 +24,8 @@ export default function Home() {
 
   return (
     <div style={{ position: 'relative', overflowX: 'hidden' }}>
+      {/* Panel de Notificaciones Pop-up al cargar la página */}
+      <NewsModal />
       
       {/* 1. HERO SECTION */}
       <section
@@ -56,7 +59,7 @@ export default function Home() {
                   color: 'var(--accent-blue)',
                 }}
               >
-                <Sparkles size={16} /> Williams Cruz | Asesor Financiero Independiente
+                <Sparkles size={16} /> Williams Cruz | Asesor Financiero
               </div>
 
               <AnimatedTitle
