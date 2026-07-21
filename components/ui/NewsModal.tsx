@@ -1,8 +1,16 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Calendar, Clock, Tv, Video, MessageCircle, Sparkles, Megaphone } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Calendar, Clock, Tv, Video, MessageCircle, Sparkles, Megaphone, ExternalLink, PlayCircle } from 'lucide-react';
+
+interface SocialLink {
+  name: string;
+  url: string;
+  color: string;
+  bg: string;
+  iconType: 'instagram' | 'facebook' | 'youtube';
+}
 
 interface NewsItem {
   id: number;
@@ -18,6 +26,7 @@ interface NewsItem {
   hostsOrGuest: string;
   description: string;
   whatsappMessage: string;
+  directLinks?: SocialLink[];
 }
 
 const NEWS_DATA: NewsItem[] = [
@@ -34,7 +43,30 @@ const NEWS_DATA: NewsItem[] = [
     platform: 'LIVE en Instagram, Facebook y YouTube',
     hostsOrGuest: 'Dennys Daza (Gerente Comercial) & Adriana Peña (Agente Financiera)',
     description: 'Aprende a optimizar tu crédito hipotecario o leasing habitacional, reducir intereses y tomar las mejores decisiones financieras en un espacio de diálogo claro, directo y transparente.',
-    whatsappMessage: 'Hola! Vi el anuncio del Live sobre Ley de Vivienda (22 de Julio) y me gustaría reservar mi cupo para recibir el enlace y asesoría.'
+    whatsappMessage: 'Hola! Vi el anuncio del Live sobre Ley de Vivienda (22 de Julio) y me gustaría reservar mi cupo para recibir el enlace y asesoría.',
+    directLinks: [
+      {
+        name: 'Instagram LIVE',
+        url: 'https://www.instagram.com/susfinanzas.co/',
+        color: '#ffffff',
+        bg: 'linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)',
+        iconType: 'instagram'
+      },
+      {
+        name: 'Facebook LIVE',
+        url: 'https://www.facebook.com/susfinanzas.co',
+        color: '#ffffff',
+        bg: '#1877f2',
+        iconType: 'facebook'
+      },
+      {
+        name: 'YouTube LIVE',
+        url: 'https://www.youtube.com/@susfinanzas',
+        color: '#ffffff',
+        bg: '#ff0000',
+        iconType: 'youtube'
+      }
+    ]
   },
   {
     id: 2,
@@ -56,6 +88,8 @@ const NEWS_DATA: NewsItem[] = [
 export default function NewsModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const SLIDE_DURATION = 7500; // 7.5 segundos por noticia para lectura cómoda
 
   useEffect(() => {
     // Abre automáticamente al cargar la página
@@ -64,6 +98,17 @@ export default function NewsModal() {
     }, 400);
     return () => clearTimeout(timer);
   }, []);
+
+  // Transición automática prudente de noticias
+  useEffect(() => {
+    if (!isOpen || isPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % NEWS_DATA.length);
+    }, SLIDE_DURATION);
+
+    return () => clearInterval(interval);
+  }, [isOpen, isPaused]);
 
   const currentNews = NEWS_DATA[currentIndex];
 
@@ -88,7 +133,7 @@ export default function NewsModal() {
           alignItems: 'center',
           justifyContent: 'center',
           padding: '16px',
-          backgroundColor: 'rgba(15, 23, 42, 0.78)',
+          backgroundColor: 'rgba(15, 23, 42, 0.8)',
           backdropFilter: 'blur(8px)',
           overflowY: 'auto'
         }}
@@ -102,19 +147,36 @@ export default function NewsModal() {
           style={{
             position: 'relative',
             width: '100%',
-            maxWidth: '860px',
+            maxWidth: '880px',
             backgroundColor: '#ffffff',
             borderRadius: '24px',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.2)',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2)',
             overflow: 'hidden',
             margin: 'auto'
           }}
           onClick={(e) => e.stopPropagation()}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
+          {/* Barra de Progreso del Temporizador de Cambio Automático */}
+          <div style={{ width: '100%', height: '4px', background: 'rgba(255, 255, 255, 0.1)', position: 'relative' }}>
+            <motion.div
+              key={currentIndex + (isPaused ? '-paused' : '-active')}
+              initial={{ width: '0%' }}
+              animate={{ width: isPaused ? '100%' : '100%' }}
+              transition={{ duration: isPaused ? 0 : SLIDE_DURATION / 1000, ease: 'linear' }}
+              style={{
+                height: '100%',
+                background: isPaused ? '#eab308' : 'linear-gradient(90deg, #2563eb, #3b82f6)',
+                borderRadius: '0 2px 2px 0'
+              }}
+            />
+          </div>
+
           {/* Header Superior del Modal */}
           <div
             style={{
-              padding: '16px 24px',
+              padding: '14px 24px',
               background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
               color: '#ffffff',
               display: 'flex',
@@ -151,19 +213,33 @@ export default function NewsModal() {
                 >
                   Noticias & Novedades Destacadas
                 </span>
-                <span style={{ fontSize: '14px', fontWeight: '700', color: '#f8fafc' }}>
+                <span style={{ fontSize: '13.5px', fontWeight: '700', color: '#f8fafc' }}>
                   Susfinanzas | Especial Crédito de Vivienda
                 </span>
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              {isPaused && (
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: '700',
+                    color: '#fef08a',
+                    background: 'rgba(234, 179, 8, 0.2)',
+                    padding: '3px 8px',
+                    borderRadius: '12px'
+                  }}
+                >
+                  ⏸️ Pausado para lectura
+                </span>
+              )}
               <span
                 style={{
                   fontSize: '12px',
                   fontWeight: '700',
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  background: 'rgba(255, 255, 255, 0.1)',
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  background: 'rgba(255, 255, 255, 0.12)',
                   padding: '4px 10px',
                   borderRadius: '20px'
                 }}
@@ -205,7 +281,7 @@ export default function NewsModal() {
                     padding: '10px 14px',
                     borderRadius: '12px',
                     border: idx === currentIndex ? '2px solid #2563eb' : '1px solid #e2e8f0',
-                    background: idx === currentIndex ? 'rgba(37, 99, 235, 0.06)' : '#f8fafc',
+                    background: idx === currentIndex ? 'rgba(37, 99, 235, 0.08)' : '#f8fafc',
                     color: idx === currentIndex ? '#1e40af' : '#64748b',
                     fontWeight: idx === currentIndex ? '800' : '600',
                     fontSize: '13px',
@@ -227,10 +303,10 @@ export default function NewsModal() {
             {/* Tarjeta Principal de Noticia */}
             <motion.div
               key={currentNews.id}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 25 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, x: -25 }}
+              transition={{ duration: 0.35 }}
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'minmax(0, 1fr)',
@@ -300,7 +376,7 @@ export default function NewsModal() {
                   </p>
                 </div>
 
-                {/* Detalles Clave (Fecha, Hora, Canal/Plataforma) */}
+                {/* Detalles Clave (Fecha, Hora, Transmisión) */}
                 <div
                   style={{
                     display: 'grid',
@@ -352,6 +428,44 @@ export default function NewsModal() {
                   <span style={{ fontWeight: '600' }}>{currentNews.hostsOrGuest}</span>
                 </div>
 
+                {/* Enlaces Directos de Redes Sociales (Noticia 1) */}
+                {currentNews.directLinks && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <span style={{ fontSize: '12px', fontWeight: '800', color: '#475569', letterSpacing: '0.5px' }}>
+                      🌐 INGRESAR DIRECTO A LA TRANSMISIÓN:
+                    </span>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                      {currentNews.directLinks.map((link, lIdx) => (
+                        <a
+                          key={lIdx}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '6px',
+                            padding: '9px 6px',
+                            borderRadius: '10px',
+                            background: link.bg,
+                            color: link.color,
+                            fontSize: '12px',
+                            fontWeight: '800',
+                            textDecoration: 'none',
+                            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                            transition: 'transform 0.2s ease'
+                          }}
+                        >
+                          <PlayCircle size={14} />
+                          {link.name}
+                          <ExternalLink size={12} style={{ opacity: 0.8 }} />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Texto descriptivo completo */}
                 <p style={{ fontSize: '13.5px', color: '#475569', lineHeight: '1.55' }}>
                   {currentNews.description}
@@ -376,7 +490,7 @@ export default function NewsModal() {
                     textDecoration: 'none',
                     boxShadow: '0 4px 14px rgba(34, 197, 94, 0.35)',
                     transition: 'transform 0.2s ease, boxShadow 0.2s ease',
-                    marginTop: '4px'
+                    marginTop: '2px'
                   }}
                 >
                   <MessageCircle size={20} />
