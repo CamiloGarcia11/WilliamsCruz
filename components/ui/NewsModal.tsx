@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Calendar, Clock, Tv, Video, MessageCircle, Sparkles, Megaphone, ExternalLink, PlayCircle } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Calendar, Clock, Tv, Video, MessageCircle, Sparkles, Megaphone, ExternalLink, PlayCircle, ZoomIn } from 'lucide-react';
 
 interface SocialLink {
   name: string;
@@ -26,6 +26,7 @@ interface NewsItem {
   hostsOrGuest: string;
   description: string;
   whatsappMessage: string;
+  isVertical?: boolean;
   directLinks?: SocialLink[];
 }
 
@@ -44,6 +45,7 @@ const NEWS_DATA: NewsItem[] = [
     hostsOrGuest: 'Dennys Daza (Gerente Comercial) & Adriana Peña (Agente Financiera)',
     description: 'Aprende a optimizar tu crédito hipotecario o leasing habitacional, reducir intereses y tomar las mejores decisiones financieras en un espacio de diálogo claro, directo y transparente.',
     whatsappMessage: 'Hola! Vi el anuncio del Live sobre Ley de Vivienda (22 de Julio) y me gustaría reservar mi cupo para recibir el enlace y asesoría.',
+    isVertical: false,
     directLinks: [
       {
         name: 'Instagram',
@@ -81,7 +83,8 @@ const NEWS_DATA: NewsItem[] = [
     platform: 'Canal Citytv / Programa Bravíssimo',
     hostsOrGuest: 'Carlos Puyo (Presidente de Sus Finanzas)',
     description: '¡No te pierdas esta oportunidad única! Si tienes un crédito de vivienda, sintoniza nuestro programa y descubre cómo reducir el tiempo de tu crédito con un ahorro significativo en intereses usando las mejores estrategias financieras.',
-    whatsappMessage: 'Hola! Vi la noticia de la entrevista en Citytv Bravíssimo con Carlos Puyo y deseo información para reducir los intereses de mi crédito.'
+    whatsappMessage: 'Hola! Vi la noticia de la entrevista en Citytv Bravíssimo con Carlos Puyo y deseo información para reducir los intereses de mi crédito.',
+    isVertical: true
   }
 ];
 
@@ -89,6 +92,7 @@ export default function NewsModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [expandedImage, setExpandedImage] = useState<string | null>(null);
   const SLIDE_DURATION = 7500; // 7.5 segundos por noticia
 
   useEffect(() => {
@@ -101,14 +105,14 @@ export default function NewsModal() {
 
   // Transición automática de noticias
   useEffect(() => {
-    if (!isOpen || isPaused) return;
+    if (!isOpen || isPaused || expandedImage !== null) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % NEWS_DATA.length);
     }, SLIDE_DURATION);
 
     return () => clearInterval(interval);
-  }, [isOpen, isPaused]);
+  }, [isOpen, isPaused, expandedImage]);
 
   const currentNews = NEWS_DATA[currentIndex];
 
@@ -155,8 +159,8 @@ export default function NewsModal() {
               style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '880px',
-                maxHeight: '92vh',
+                maxWidth: '920px',
+                maxHeight: '94vh',
                 backgroundColor: '#ffffff',
                 borderRadius: '24px',
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2)',
@@ -342,30 +346,35 @@ export default function NewsModal() {
                       alignItems: 'start'
                     }}
                   >
-                    {/* Imagen Promocional */}
+                    {/* Contenedor de Imagen Promocional */}
                     <div
-                      className="news-modal-image-wrapper"
+                      className={`news-modal-image-wrapper ${currentNews.isVertical ? 'is-vertical-wrapper' : ''}`}
                       style={{
                         position: 'relative',
                         borderRadius: '16px',
                         overflow: 'hidden',
                         boxShadow: '0 8px 20px -4px rgba(0, 0, 0, 0.15)',
                         backgroundColor: '#0f172a',
-                        border: '1px solid #e2e8f0'
+                        border: '1px solid #e2e8f0',
+                        cursor: 'pointer'
                       }}
+                      onClick={() => setExpandedImage(currentNews.image)}
+                      title="Haz clic o toca para ver en pantalla completa"
                     >
                       <img
                         src={currentNews.image}
                         alt={currentNews.title}
-                        className="news-modal-img"
+                        className={`news-modal-img ${currentNews.isVertical ? 'is-vertical-img' : ''}`}
                         style={{
                           width: '100%',
-                          maxHeight: '340px',
+                          maxHeight: currentNews.isVertical ? '460px' : '340px',
                           objectFit: 'contain',
                           display: 'block',
                           backgroundColor: '#0b1329'
                         }}
                       />
+
+                      {/* Badge Categoria */}
                       <div
                         style={{
                           position: 'absolute',
@@ -379,10 +388,34 @@ export default function NewsModal() {
                           fontWeight: '900',
                           letterSpacing: '0.5px',
                           backdropFilter: 'blur(6px)',
-                          border: `1px solid ${currentNews.badgeColor}33`
+                          border: `1px solid ${currentNews.badgeColor}33`,
+                          zIndex: 2
                         }}
                       >
                         {currentNews.categoryBadge}
+                      </div>
+
+                      {/* Botón Flotante de Ampliación */}
+                      <div
+                        style={{
+                          position: 'absolute',
+                          bottom: '10px',
+                          right: '10px',
+                          padding: '6px 12px',
+                          borderRadius: '20px',
+                          backgroundColor: 'rgba(15, 23, 42, 0.85)',
+                          color: '#ffffff',
+                          fontSize: '11px',
+                          fontWeight: '700',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '5px',
+                          backdropFilter: 'blur(6px)',
+                          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                          zIndex: 2
+                        }}
+                      >
+                        <ZoomIn size={13} color="#60a5fa" /> Ampliar flyer
                       </div>
                     </div>
 
@@ -605,6 +638,62 @@ export default function NewsModal() {
         )}
       </AnimatePresence>
 
+      {/* Lightbox / Visor de Imagen en Pantalla Completa */}
+      <AnimatePresence>
+        {expandedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 999999,
+              backgroundColor: 'rgba(0, 0, 0, 0.92)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '12px'
+            }}
+            onClick={() => setExpandedImage(null)}
+          >
+            <button
+              onClick={() => setExpandedImage(null)}
+              style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                width: '42px',
+                height: '42px',
+                borderRadius: '50%',
+                background: 'rgba(255, 255, 255, 0.25)',
+                color: '#ffffff',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                zIndex: 1000000
+              }}
+            >
+              <X size={24} />
+            </button>
+            <img
+              src={expandedImage}
+              alt="Flyer ampliado"
+              style={{
+                maxWidth: '98%',
+                maxHeight: '94vh',
+                objectFit: 'contain',
+                borderRadius: '12px',
+                boxShadow: '0 20px 50px rgba(0,0,0,0.9)'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <style jsx global>{`
         /* Estilos Adaptativos para Escritorio */
         @media (min-width: 768px) {
@@ -618,6 +707,9 @@ export default function NewsModal() {
             display: grid !important;
             grid-template-columns: repeat(3, 1fr) !important;
             gap: 8px !important;
+          }
+          .is-vertical-img {
+            max-height: 480px !important;
           }
         }
 
@@ -641,7 +733,16 @@ export default function NewsModal() {
             gap: 12px !important;
           }
           .news-modal-img {
-            max-height: 200px !important;
+            max-height: 240px !important;
+          }
+          /* En celulares, permitimos mayor altura para volantes verticales como la Noticia 2 */
+          .is-vertical-img {
+            max-height: 380px !important;
+            object-fit: contain !important;
+            width: 100% !important;
+          }
+          .is-vertical-wrapper {
+            max-height: 385px !important;
           }
           .news-title-heading {
             font-size: 16px !important;
