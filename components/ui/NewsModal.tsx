@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Calendar, Clock, Tv, Video, MessageCircle, Sparkles, Megaphone, ExternalLink, PlayCircle, ZoomIn } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Calendar, Clock, Tv, Video, MessageCircle, Sparkles, Megaphone, ExternalLink, PlayCircle, ZoomIn, Film } from 'lucide-react';
 
 interface SocialLink {
   name: string;
@@ -19,7 +19,10 @@ interface NewsItem {
   badgeColor: string;
   title: string;
   subtitle: string;
-  image: string;
+  tabLabel: string;
+  image?: string;
+  isVideo?: boolean;
+  videoUrl?: string;
   date: string;
   time: string;
   platform: string;
@@ -38,6 +41,7 @@ const NEWS_DATA: NewsItem[] = [
     badgeColor: '#ef4444',
     title: 'Te explicamos tu crédito de vivienda en palabras claras',
     subtitle: 'Preguntas y Respuestas: Ley de Vivienda',
+    tabLabel: '1. Evento En Vivo (22 Jul)',
     image: '/noticia1.png',
     date: 'Miércoles 22 de Julio',
     time: '8:00 P.M. (Hora Colombia)',
@@ -77,6 +81,7 @@ const NEWS_DATA: NewsItem[] = [
     badgeColor: '#2563eb',
     title: '¡Paga tu crédito de vivienda más rápido y ahorra en intereses!',
     subtitle: 'Entrevista Exclusiva en Citytv - Bravíssimo',
+    tabLabel: '2. Entrevista Citytv (25 Jul)',
     image: '/noticia2.jpg',
     date: 'Sábado 25 de Julio',
     time: '7:30 A.M.',
@@ -85,6 +90,23 @@ const NEWS_DATA: NewsItem[] = [
     description: '¡No te pierdas esta oportunidad única! Si tienes un crédito de vivienda, sintoniza nuestro programa y descubre cómo reducir el tiempo de tu crédito con un ahorro significativo en intereses usando las mejores estrategias financieras.',
     whatsappMessage: 'Hola! Vi la noticia de la entrevista en Citytv Bravíssimo con Carlos Puyo y deseo información para reducir los intereses de mi crédito.',
     isVertical: true
+  },
+  {
+    id: 3,
+    categoryBadge: '🎬 VIDEO ENTREVISTA',
+    badgeBg: 'rgba(16, 185, 129, 0.12)',
+    badgeColor: '#10b981',
+    title: 'Ley de Vivienda en CityTV: Reduce Años e Intereses',
+    subtitle: 'Entrevista Especial con Carlos Puyo (Fundador)',
+    tabLabel: '3. Video Entrevista Ley de Vivienda',
+    isVideo: true,
+    videoUrl: '/video_whatsapp.mp4',
+    date: 'Especial Televisión',
+    time: 'Disponible en Video',
+    platform: 'CityTV Colombia',
+    hostsOrGuest: 'Carlos Puyo (Gerente & Fundador)',
+    description: `📺 Te invito a ver la entrevista de nuestro gerente y fundador, Carlos Puyo, en CityTV, donde hablamos sobre cómo la Ley de Vivienda puede ayudar a miles de familias a reducir el tiempo de su crédito hipotecario o leasing habitacional.\n\n🏡 Si estás pagando tu casa o apartamento a un banco, podrías terminar de pagarlo entre 3, 5, 7, 10 o más años antes, ahorrando además millones de pesos en intereses, según las condiciones de tu crédito.\n\n📲 Escríbeme y con gusto revisaré tu caso sin compromiso. Te ayudaré a identificar si puedes acceder a los beneficios de la Ley de Vivienda y cuáles son las mejores opciones para tu crédito.`,
+    whatsappMessage: 'Hola! Vi el video de la entrevista en CityTV con Carlos Puyo y me gustaría revisar mi caso para acceder a los beneficios de la Ley de Vivienda.'
   }
 ];
 
@@ -93,7 +115,8 @@ export default function NewsModal() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [expandedImage, setExpandedImage] = useState<string | null>(null);
-  const SLIDE_DURATION = 7500; // 7.5 segundos por noticia
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const SLIDE_DURATION = 8500; // 8.5 segundos por noticia
 
   useEffect(() => {
     // Abre automáticamente al cargar la página
@@ -103,18 +126,33 @@ export default function NewsModal() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Transición automática de noticias
+  const currentNews = NEWS_DATA[currentIndex];
+
+  // 1. Efecto exclusivo para cambio automático de noticias en imágenes
   useEffect(() => {
-    if (!isOpen || isPaused || expandedImage !== null) return;
+    if (!isOpen || isPaused || expandedImage !== null || currentNews.isVideo) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % NEWS_DATA.length);
     }, SLIDE_DURATION);
 
     return () => clearInterval(interval);
-  }, [isOpen, isPaused, expandedImage]);
+  }, [isOpen, isPaused, expandedImage, currentIndex, currentNews.isVideo]);
 
-  const currentNews = NEWS_DATA[currentIndex];
+  // 2. Efecto exclusivo para reproducir el video únicamente cuando se selecciona la noticia de video
+  useEffect(() => {
+    if (currentNews.isVideo) {
+      setIsPaused(true);
+      if (videoRef.current) {
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((err) => {
+            console.log('Autoplay intencional:', err);
+          });
+        }
+      }
+    }
+  }, [currentIndex]);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % NEWS_DATA.length);
@@ -142,36 +180,40 @@ export default function NewsModal() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '12px',
+              padding: '16px',
               backgroundColor: 'rgba(15, 23, 42, 0.82)',
               backdropFilter: 'blur(8px)',
-              overflowY: 'auto'
+              overflowY: 'auto',
+              minHeight: '100vh'
             }}
             onClick={() => setIsOpen(false)}
           >
             <motion.div
               key="news-modal-content-card"
-              initial={{ opacity: 0, scale: 0.94, y: 15 }}
+              initial={{ opacity: 0, scale: 0.94, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.94, y: 15 }}
+              exit={{ opacity: 0, scale: 0.94, y: 10 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               className="news-modal-container"
               style={{
                 position: 'relative',
                 width: '100%',
                 maxWidth: '920px',
-                maxHeight: '94vh',
+                maxHeight: '90vh',
                 backgroundColor: '#ffffff',
                 borderRadius: '24px',
                 boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2)',
                 overflow: 'hidden',
-                margin: 'auto',
                 display: 'flex',
                 flexDirection: 'column'
               }}
               onClick={(e) => e.stopPropagation()}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
+              onMouseEnter={() => {
+                if (!currentNews.isVideo) setIsPaused(true);
+              }}
+              onMouseLeave={() => {
+                if (!currentNews.isVideo) setIsPaused(false);
+              }}
             >
               {/* Barra de Progreso del Temporizador de Cambio Automático */}
               <div style={{ width: '100%', height: '4px', background: 'rgba(255, 255, 255, 0.1)', position: 'relative', flexShrink: 0 }}>
@@ -250,7 +292,7 @@ export default function NewsModal() {
                         borderRadius: '12px'
                       }}
                     >
-                      ⏸️ Pausado
+                      {currentNews.isVideo ? '▶️ Reproduciendo Video' : '⏸️ Pausado'}
                     </span>
                   )}
                   <span
@@ -268,8 +310,8 @@ export default function NewsModal() {
                   <button
                     onClick={() => setIsOpen(false)}
                     style={{
-                      width: '32px',
-                      height: '32px',
+                      width: '34px',
+                      height: '34px',
                       borderRadius: '50%',
                       background: 'rgba(255, 255, 255, 0.15)',
                       color: '#ffffff',
@@ -324,8 +366,12 @@ export default function NewsModal() {
                         whiteSpace: 'nowrap'
                       }}
                     >
-                      <Sparkles size={13} color={idx === currentIndex ? '#2563eb' : '#94a3b8'} />
-                      {idx === 0 ? '1. Evento En Vivo (22 Jul)' : '2. Entrevista Citytv (25 Jul)'}
+                      {item.isVideo ? (
+                        <Film size={13} color={idx === currentIndex ? '#10b981' : '#94a3b8'} />
+                      ) : (
+                        <Sparkles size={13} color={idx === currentIndex ? '#2563eb' : '#94a3b8'} />
+                      )}
+                      {item.tabLabel}
                     </button>
                   ))}
                 </div>
@@ -343,81 +389,135 @@ export default function NewsModal() {
                       display: 'grid',
                       gridTemplateColumns: 'minmax(0, 1fr)',
                       gap: '16px',
-                      alignItems: 'start'
+                      alignItems: 'center'
                     }}
                   >
-                    {/* Contenedor de Imagen Promocional */}
-                    <div
-                      className={`news-modal-image-wrapper ${currentNews.isVertical ? 'is-vertical-wrapper' : ''}`}
-                      style={{
-                        position: 'relative',
-                        borderRadius: '16px',
-                        overflow: 'hidden',
-                        boxShadow: '0 8px 20px -4px rgba(0, 0, 0, 0.15)',
-                        backgroundColor: '#0f172a',
-                        border: '1px solid #e2e8f0',
-                        cursor: 'pointer'
-                      }}
-                      onClick={() => setExpandedImage(currentNews.image)}
-                      title="Haz clic o toca para ver en pantalla completa"
-                    >
-                      <img
-                        src={currentNews.image}
-                        alt={currentNews.title}
-                        className={`news-modal-img ${currentNews.isVertical ? 'is-vertical-img' : ''}`}
-                        style={{
-                          width: '100%',
-                          maxHeight: currentNews.isVertical ? '460px' : '340px',
-                          objectFit: 'contain',
-                          display: 'block',
-                          backgroundColor: '#0b1329'
-                        }}
-                      />
-
-                      {/* Badge Categoria */}
+                    {/* Contenedor de Multimedia (Imagen o Video) */}
+                    {currentNews.isVideo ? (
                       <div
+                        className="news-modal-video-wrapper"
                         style={{
-                          position: 'absolute',
-                          top: '10px',
-                          left: '10px',
-                          padding: '4px 10px',
-                          borderRadius: '20px',
-                          backgroundColor: currentNews.badgeBg,
-                          color: currentNews.badgeColor,
-                          fontSize: '10.5px',
-                          fontWeight: '900',
-                          letterSpacing: '0.5px',
-                          backdropFilter: 'blur(6px)',
-                          border: `1px solid ${currentNews.badgeColor}33`,
-                          zIndex: 2
+                          position: 'relative',
+                          borderRadius: '16px',
+                          overflow: 'hidden',
+                          boxShadow: '0 8px 20px -4px rgba(0, 0, 0, 0.25)',
+                          backgroundColor: '#000000',
+                          border: '1px solid #1e293b',
+                          alignSelf: 'center'
                         }}
                       >
-                        {currentNews.categoryBadge}
+                        <video
+                          ref={videoRef}
+                          src={currentNews.videoUrl}
+                          autoPlay
+                          controls
+                          playsInline
+                          preload="auto"
+                          className="news-modal-video"
+                          style={{
+                            width: '100%',
+                            maxHeight: '420px',
+                            objectFit: 'contain',
+                            display: 'block',
+                            backgroundColor: '#000000'
+                          }}
+                        />
+                        {/* Badge Categoria Video */}
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: '10px',
+                            left: '10px',
+                            padding: '4px 10px',
+                            borderRadius: '20px',
+                            backgroundColor: currentNews.badgeBg,
+                            color: currentNews.badgeColor,
+                            fontSize: '10.5px',
+                            fontWeight: '900',
+                            letterSpacing: '0.5px',
+                            backdropFilter: 'blur(6px)',
+                            border: `1px solid ${currentNews.badgeColor}33`,
+                            zIndex: 2,
+                            pointerEvents: 'none'
+                          }}
+                        >
+                          {currentNews.categoryBadge}
+                        </div>
                       </div>
-
-                      {/* Botón Flotante de Ampliación */}
+                    ) : (
                       <div
+                        className={`news-modal-image-wrapper ${currentNews.isVertical ? 'is-vertical-wrapper' : ''}`}
                         style={{
-                          position: 'absolute',
-                          bottom: '10px',
-                          right: '10px',
-                          padding: '6px 12px',
-                          borderRadius: '20px',
-                          backgroundColor: 'rgba(15, 23, 42, 0.85)',
-                          color: '#ffffff',
-                          fontSize: '11px',
-                          fontWeight: '700',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '5px',
-                          backdropFilter: 'blur(6px)',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                          zIndex: 2
+                          position: 'relative',
+                          borderRadius: '16px',
+                          overflow: 'hidden',
+                          boxShadow: '0 8px 20px -4px rgba(0, 0, 0, 0.15)',
+                          backgroundColor: '#0f172a',
+                          border: '1px solid #e2e8f0',
+                          cursor: 'pointer',
+                          alignSelf: 'center'
                         }}
+                        onClick={() => currentNews.image && setExpandedImage(currentNews.image)}
+                        title="Haz clic o toca para ver en pantalla completa"
                       >
-                        <ZoomIn size={13} color="#60a5fa" /> Ampliar flyer
+                        <img
+                          src={currentNews.image}
+                          alt={currentNews.title}
+                          className={`news-modal-img ${currentNews.isVertical ? 'is-vertical-img' : ''}`}
+                          style={{
+                            width: '100%',
+                            maxHeight: currentNews.isVertical ? '460px' : '340px',
+                            objectFit: 'contain',
+                            display: 'block',
+                            backgroundColor: '#0b1329'
+                          }}
+                        />
+
+                        {/* Badge Categoria */}
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: '10px',
+                            left: '10px',
+                            padding: '4px 10px',
+                            borderRadius: '20px',
+                            backgroundColor: currentNews.badgeBg,
+                            color: currentNews.badgeColor,
+                            fontSize: '10.5px',
+                            fontWeight: '900',
+                            letterSpacing: '0.5px',
+                            backdropFilter: 'blur(6px)',
+                            border: `1px solid ${currentNews.badgeColor}33`,
+                            zIndex: 2
+                          }}
+                        >
+                          {currentNews.categoryBadge}
+                        </div>
+
+                        {/* Botón Flotante de Ampliación */}
+                        <div
+                          style={{
+                            position: 'absolute',
+                            bottom: '10px',
+                            right: '10px',
+                            padding: '6px 12px',
+                            borderRadius: '20px',
+                            backgroundColor: 'rgba(15, 23, 42, 0.85)',
+                            color: '#ffffff',
+                            fontSize: '11px',
+                            fontWeight: '700',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '5px',
+                            backdropFilter: 'blur(6px)',
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                            zIndex: 2
+                          }}
+                        >
+                          <ZoomIn size={13} color="#60a5fa" /> Ampliar flyer
+                        </div>
                       </div>
-                    </div>
+                    )}
 
                     {/* Información y Texto de la Noticia */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -455,7 +555,7 @@ export default function NewsModal() {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#334155' }}>
                           <Calendar size={15} color="#2563eb" style={{ flexShrink: 0 }} />
                           <div>
-                            <strong style={{ display: 'block', fontSize: '10px', color: '#64748b' }}>FECHA</strong>
+                            <strong style={{ display: 'block', fontSize: '10px', color: '#64748b' }}>FECHA / EMISIÓN</strong>
                             <span style={{ fontWeight: '700' }}>{currentNews.date}</span>
                           </div>
                         </div>
@@ -463,15 +563,15 @@ export default function NewsModal() {
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#334155' }}>
                           <Clock size={15} color="#d97706" style={{ flexShrink: 0 }} />
                           <div>
-                            <strong style={{ display: 'block', fontSize: '10px', color: '#64748b' }}>HORA</strong>
+                            <strong style={{ display: 'block', fontSize: '10px', color: '#64748b' }}>HORA / ESTADO</strong>
                             <span style={{ fontWeight: '700' }}>{currentNews.time}</span>
                           </div>
                         </div>
 
                         <div className="news-platform-col" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#334155' }}>
-                          {currentNews.id === 1 ? <Video size={15} color="#ef4444" style={{ flexShrink: 0 }} /> : <Tv size={15} color="#2563eb" style={{ flexShrink: 0 }} />}
+                          {currentNews.isVideo ? <Film size={15} color="#10b981" style={{ flexShrink: 0 }} /> : currentNews.id === 1 ? <Video size={15} color="#ef4444" style={{ flexShrink: 0 }} /> : <Tv size={15} color="#2563eb" style={{ flexShrink: 0 }} />}
                           <div>
-                            <strong style={{ display: 'block', fontSize: '10px', color: '#64748b' }}>TRANSMISIÓN</strong>
+                            <strong style={{ display: 'block', fontSize: '10px', color: '#64748b' }}>CANAL / MEDIO</strong>
                             <span style={{ fontWeight: '700' }}>{currentNews.platform}</span>
                           </div>
                         </div>
@@ -488,7 +588,7 @@ export default function NewsModal() {
                           color: '#1e293b'
                         }}
                       >
-                        <strong>🎙️ {currentNews.id === 1 ? 'Presentan' : 'Invitado Especial'}:</strong>{' '}
+                        <strong>🎙️ {currentNews.id === 1 ? 'Presentan' : 'Invitado / Vocero'}:</strong>{' '}
                         <span style={{ fontWeight: '600' }}>{currentNews.hostsOrGuest}</span>
                       </div>
 
@@ -531,8 +631,8 @@ export default function NewsModal() {
                         </div>
                       )}
 
-                      {/* Texto descriptivo completo */}
-                      <p style={{ fontSize: '12.5px', color: '#475569', lineHeight: '1.5' }}>
+                      {/* Texto descriptivo completo con saltos de línea legibles */}
+                      <p style={{ fontSize: '12.5px', color: '#475569', lineHeight: '1.6', whiteSpace: 'pre-line' }}>
                         {currentNews.description}
                       </p>
 
@@ -559,7 +659,7 @@ export default function NewsModal() {
                         }}
                       >
                         <MessageCircle size={18} />
-                        {currentNews.id === 1 ? 'Solicitar Recordatorio por WhatsApp' : 'Más Información por WhatsApp'}
+                        {currentNews.isVideo ? 'Revisar Mi Caso por WhatsApp' : currentNews.id === 1 ? 'Solicitar Recordatorio por WhatsApp' : 'Más Información por WhatsApp'}
                       </a>
                     </div>
                   </motion.div>
@@ -699,6 +799,7 @@ export default function NewsModal() {
         @media (min-width: 768px) {
           .news-modal-grid {
             grid-template-columns: 1fr 1fr !important;
+            align-items: center !important;
           }
           .news-platform-col {
             grid-column: span 2 !important;
@@ -710,6 +811,9 @@ export default function NewsModal() {
           }
           .is-vertical-img {
             max-height: 480px !important;
+          }
+          .news-modal-video {
+            max-height: 420px !important;
           }
         }
 
@@ -735,7 +839,9 @@ export default function NewsModal() {
           .news-modal-img {
             max-height: 240px !important;
           }
-          /* En celulares, permitimos mayor altura para volantes verticales como la Noticia 2 */
+          .news-modal-video {
+            max-height: 260px !important;
+          }
           .is-vertical-img {
             max-height: 380px !important;
             object-fit: contain !important;

@@ -304,7 +304,7 @@ export default function Home() {
                   }}
                 >
                   <img
-                    src="/equipo-aliado.png"
+                    src="/aliado.png"
                     alt="Nuestro Equipo, Tu Aliado Financiero"
                     style={{ 
                       width: '100%', 
