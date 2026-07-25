@@ -23,16 +23,16 @@ export default function ComoFuncionaPage() {
             style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}
           >
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(59, 130, 246, 0.08)', padding: '8px 16px', borderRadius: '20px', fontSize: '13px', fontWeight: '700', color: 'var(--accent-blue)' }}>
-              <BookOpen size={16} /> Guía Interactiva Educativa
+              <BookOpen size={16} /> Susfinanzas SAS | Respaldo Oficial desde 2012
             </div>
             <AnimatedTitle
               tag="h1"
               style={{ fontSize: '38px', fontWeight: '900', color: 'var(--primary-dark)', maxWidth: '800px', lineHeight: '1.2' }}
             >
-              ¿Cómo funciona la <span className="text-gradient-blue">Reducción de Crédito</span> por Ley de Vivienda?
+              ¿Cómo gestiona <span className="text-gradient-blue">Susfinanzas SAS</span> la Reducción por Ley de Vivienda?
             </AnimatedTitle>
-            <p style={{ color: 'var(--text-medium)', fontSize: '16px', maxWidth: '600px' }}>
-              La Ley 546 de 1999 ampara a todos los deudores hipotecarios en Colombia, permitiendo abonar directamente al capital para ahorrar intereses y reducir tiempo.
+            <p style={{ color: 'var(--text-medium)', fontSize: '16px', maxWidth: '680px', lineHeight: '1.6' }}>
+              Susfinanzas SAS (empresa supervisada por <strong>Supersociedades</strong>, marca registrada y fundada en 2012) negocia ante tu banco actual amparada en la Ley 546 de 1999 para lograr reducciones de plazo e intereses o cambio de UVR a pesos, <strong>sin anticipos</strong>.
             </p>
           </motion.div>
         </div>

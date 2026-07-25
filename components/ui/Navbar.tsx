@@ -77,6 +77,10 @@ export default function Navbar() {
             Asesoría Hipotecaria
           </Link>
 
+          <Link onClick={() => setMobileMenuOpen(false)} href="/empresa" style={{ color: 'var(--text-medium)', fontWeight: '600', fontSize: '15px', transition: 'var(--transition-smooth)' }}>
+            Sobre Susfinanzas
+          </Link>
+
           <Link onClick={() => setMobileMenuOpen(false)} href="/simulador" style={{ color: 'var(--text-medium)', fontWeight: '600', fontSize: '15px', transition: 'var(--transition-smooth)' }}>
             Simulador
           </Link>

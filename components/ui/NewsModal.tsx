@@ -31,75 +31,37 @@ interface NewsItem {
   description: string;
   whatsappMessage: string;
   isVertical?: boolean;
+  buttonText?: string;
   directLinks?: SocialLink[];
 }
 
 const NEWS_DATA: NewsItem[] = [
   {
     id: 1,
-    categoryBadge: '🔴 EVENTO EN VIVO',
-    badgeBg: 'rgba(239, 68, 68, 0.12)',
-    badgeColor: '#ef4444',
-    title: 'Te explicamos tu crédito de vivienda en palabras claras',
-    subtitle: 'Preguntas y Respuestas: Ley de Vivienda',
-    tabLabel: '1. Evento En Vivo (22 Jul)',
-    image: '/noticia1.png',
-    date: 'Miércoles 22 de Julio',
-    time: '8:00 P.M. (Hora Colombia)',
-    platform: 'LIVE en Instagram, Facebook y YouTube',
-    hostsOrGuest: 'Dennys Daza (Gerente Comercial) & Adriana Peña (Agente Financiera)',
-    description: 'Aprende a optimizar tu crédito hipotecario o leasing habitacional, reducir intereses y tomar las mejores decisiones financieras en un espacio de diálogo claro, directo y transparente.',
-    whatsappMessage: 'Hola! Vi el anuncio del Live sobre Ley de Vivienda (22 de Julio) y me gustaría reservar mi cupo para recibir el enlace y asesoría.',
-    isVertical: false,
-    directLinks: [
-      {
-        name: 'Instagram',
-        url: 'https://www.instagram.com/susfinanzas.co/',
-        color: '#ffffff',
-        bg: 'linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)',
-        iconType: 'instagram'
-      },
-      {
-        name: 'Facebook',
-        url: 'https://www.facebook.com/susfinanzas.co',
-        color: '#ffffff',
-        bg: '#1877f2',
-        iconType: 'facebook'
-      },
-      {
-        name: 'YouTube',
-        url: 'https://www.youtube.com/@susfinanzas',
-        color: '#ffffff',
-        bg: '#ff0000',
-        iconType: 'youtube'
-      }
-    ]
+    categoryBadge: '🚀 CONVOCATORIA COMERCIAL',
+    badgeBg: 'rgba(245, 158, 11, 0.15)',
+    badgeColor: '#d97706',
+    title: '¡Únete al Equipo Comercial de Susfinanzas SAS!',
+    subtitle: 'Convocatoria Abierta para Asesores Financieros',
+    tabLabel: '1. Convocatoria Comercial',
+    image: '/comercial.jpeg',
+    date: 'Convocatoria Abierta',
+    time: 'Horario Flexible / Cobertura Nacional',
+    platform: 'Susfinanzas SAS - Red Nacional de Asesores',
+    hostsOrGuest: 'Dirección Comercial & Selección de Talento',
+    description: `💼 ¿Quieres generar excelentes ingresos ayudando a miles de familias colombianas a reducir su crédito de vivienda o leasing habitacional?\n\nEn Susfinanzas SAS estamos en búsqueda de personas emprendedoras, líderes y comerciales para sumarse a nuestro equipo en todo el país.\n\n✨ ¿De qué se trata el trabajo?\n- Asesorar a deudores hipotecarios sobre los beneficios de la Ley de Vivienda (Ley 546 de 1999).\n- Presentar estudios financieros de reducción de plazo e intereses o cambio de UVR a Pesos.\n- Contarás con un sistema comercial 100% estandarizado, capacitaciones constantes y el respaldo de una empresa con más de 12 años de trayectoria, marca registrada y supervisada por Supersociedades.\n- Prestamos un servicio sin anticipos para los clientes, lo que garantiza una altísima efectividad y confianza en las gestiones.\n\n📲 ¡Haz clic en el botón a continuación para ponerte en contacto con nuestro equipo y comenzar tu proceso de selección!`,
+    whatsappMessage: 'Hola! Vi la convocatoria comercial en la sección de noticias de Susfinanzas SAS y deseo más información para unirme al equipo de asesores. ¡Quiero empezar ya!',
+    buttonText: 'Quiero empezar ya',
+    isVertical: false
   },
   {
     id: 2,
-    categoryBadge: '📺 ENTREVISTA EXCLUSIVA',
-    badgeBg: 'rgba(59, 130, 246, 0.12)',
-    badgeColor: '#2563eb',
-    title: '¡Paga tu crédito de vivienda más rápido y ahorra en intereses!',
-    subtitle: 'Entrevista Exclusiva en Citytv - Bravíssimo',
-    tabLabel: '2. Entrevista Citytv (25 Jul)',
-    image: '/noticia2.jpg',
-    date: 'Sábado 25 de Julio',
-    time: '7:30 A.M.',
-    platform: 'Canal Citytv / Programa Bravíssimo',
-    hostsOrGuest: 'Carlos Puyo (Presidente de Sus Finanzas)',
-    description: '¡No te pierdas esta oportunidad única! Si tienes un crédito de vivienda, sintoniza nuestro programa y descubre cómo reducir el tiempo de tu crédito con un ahorro significativo en intereses usando las mejores estrategias financieras.',
-    whatsappMessage: 'Hola! Vi la noticia de la entrevista en Citytv Bravíssimo con Carlos Puyo y deseo información para reducir los intereses de mi crédito.',
-    isVertical: true
-  },
-  {
-    id: 3,
     categoryBadge: '🎬 VIDEO ENTREVISTA',
     badgeBg: 'rgba(16, 185, 129, 0.12)',
     badgeColor: '#10b981',
     title: 'Ley de Vivienda en CityTV: Reduce Años e Intereses',
     subtitle: 'Entrevista Especial con Carlos Puyo (Fundador)',
-    tabLabel: '3. Video Entrevista Ley de Vivienda',
+    tabLabel: '2. Video Entrevista Ley de Vivienda',
     isVideo: true,
     videoUrl: '/video_whatsapp.mp4',
     youtubeUrl: 'https://www.youtube.com/live/Cu5ORyvPuJU?si=XkmL6ewlJqI7ciz-',
@@ -699,7 +661,7 @@ export default function NewsModal() {
                         >
                           <MessageCircle size={18} />
                           <span>
-                            {currentNews.isVideo ? 'Revisar Mi Caso por WhatsApp' : currentNews.id === 1 ? 'Solicitar Recordatorio' : 'Más Información'}
+                            {currentNews.buttonText ? currentNews.buttonText : (currentNews.isVideo ? 'Revisar Mi Caso por WhatsApp' : 'Más Información')}
                           </span>
                         </a>
                       </div>

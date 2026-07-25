@@ -147,30 +147,30 @@ export default function Home() {
               Portafolio de Asesoría
             </span>
             <AnimatedTitle style={{ fontSize: '32px', fontWeight: '900', color: 'var(--primary-dark)', marginTop: '8px' }}>
-              División de Servicios y Soluciones
+              Los 2 Servicios Oficiales de Susfinanzas SAS
             </AnimatedTitle>
-            <p style={{ color: 'var(--text-light)', marginTop: '8px', maxWidth: '600px', margin: '8px auto 0 auto' }}>
-              Encuentra la solución ideal para optimizar o asegurar tu financiación de vivienda, explicada de forma clara y sin presiones.
+            <p style={{ color: 'var(--text-light)', marginTop: '8px', maxWidth: '650px', margin: '8px auto 0 auto' }}>
+              Asesoramos y gestionamos ante el banco para mejorar las condiciones de tu crédito hipotecario o leasing habitacional.
             </p>
           </div>
 
           <div className="grid-2">
-            {/* Categoría 1: Reducción Hipotecaria */}
+            {/* Categoría 1: Reducción del Tiempo */}
             <Card3D variant="light" glowColor="blue">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', height: '100%', padding: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ padding: '4px 10px', background: 'rgba(59, 130, 246, 0.08)', borderRadius: '20px', color: 'var(--accent-blue)', fontSize: '12px', fontWeight: '700' }}>
-                    SERVICIO PRINCIPAL (FUERTE)
+                    SERVICIO 1 (PRINCIPAL)
                   </span>
                   <Shield color="var(--accent-blue)" size={24} />
                 </div>
                 
                 <div>
                   <h3 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--primary-dark)', marginBottom: '8px' }}>
-                    📉 Reducción de Crédito Hipotecario
+                    📉 Reducción del Tiempo e Intereses
                   </h3>
                   <p style={{ fontSize: '14px', color: 'var(--text-medium)', lineHeight: '1.6' }}>
-                    Optimizamos la estructura de tu deuda hipotecaria o leasing habitacional actual bajo la <strong>Ley 546 de 1999</strong>. Reducimos el tiempo de tu crédito (ej. de 15 a 8 años) y te ahorramos hasta el 40% en intereses totales sin cambiarte de banco ni aumentar significativamente tu cuota.
+                    Negociamos ante tu banco actual aplicando la <strong>Ley 546 de 1999</strong> para recalcular la cuota y pagar la deuda de manera inteligente. Recortamos años de plazo y ahorramos intereses significativos sin cambiar de entidad ni hacer anticipos.
                   </p>
                 </div>
 
@@ -179,10 +179,10 @@ export default function Home() {
                     <CheckCircle size={16} color="var(--accent-blue)" /> Tu crédito permanece en tu banco actual.
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <CheckCircle size={16} color="var(--accent-blue)" /> Honorarios cobrados únicamente al finalizar con éxito.
+                    <CheckCircle size={16} color="var(--accent-blue)" /> Sin anticipos: cobro únicamente contra resultados positivos.
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <CheckCircle size={16} color="var(--accent-blue)" /> Estudio y análisis de viabilidad financiera 100% gratis.
+                    <CheckCircle size={16} color="var(--accent-blue)" /> Cambio reflejado formalmente en el extracto oficial del banco.
                   </li>
                 </ul>
 
@@ -192,39 +192,39 @@ export default function Home() {
               </div>
             </Card3D>
 
-            {/* Categoría 2: Asesoría de Créditos Inmobiliarios */}
+            {/* Categoría 2: Cambio de UVR a Pesos */}
             <Card3D variant="light" glowColor="yellow">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', height: '100%', padding: '10px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ padding: '4px 10px', background: 'rgba(245, 158, 11, 0.08)', borderRadius: '20px', color: 'var(--accent-yellow)', fontSize: '12px', fontWeight: '700' }}>
-                    NUEVA FINANCIACIÓN e INMOBILIARIO
+                    SERVICIO 2 (ESTABILIDAD)
                   </span>
                   <PiggyBank color="var(--accent-yellow)" size={24} />
                 </div>
                 
                 <div>
                   <h3 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--primary-dark)', marginBottom: '8px' }}>
-                    🏠 Asesoría de Créditos Inmobiliarios
+                    💵 Cambio de UVR a Pesos
                   </h3>
                   <p style={{ fontSize: '14px', color: 'var(--text-medium)', lineHeight: '1.6' }}>
-                    Te acompaño en el proceso de conseguir las mejores condiciones de financiación para la compra de tu vivienda nueva o usada. Analizamos las tasas de interés de múltiples entidades financieras y te ayudamos a radicar y preaprobar tu crédito de manera ágil.
+                    Gestionamos la conversión de créditos hipotecarios o leasing habitacionales pactados en Unidades de Valor Real (UVR) a Pesos colombianos, fijando una cuota constante y eliminando la incertidumbre por la inflación acumulada.
                   </p>
                 </div>
 
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: 'var(--text-medium)', flex: 1 }}>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <CheckCircle size={16} color="var(--accent-yellow)" /> Comparativo objetivo de tasas efectivas y costos de seguros.
+                    <CheckCircle size={16} color="var(--accent-yellow)" /> Blindaje frente al incremento futuro de la inflación (UVR).
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <CheckCircle size={16} color="var(--accent-yellow)" /> Estructuración de perfil para compra de cartera hipotecaria.
+                    <CheckCircle size={16} color="var(--accent-yellow)" /> Cuota mensual fija y predecible durante toda la deuda.
                   </li>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <CheckCircle size={16} color="var(--accent-yellow)" /> Acompañamiento personalizado desde el preaprobado hasta el desembolso.
+                    <CheckCircle size={16} color="var(--accent-yellow)" /> Trámite directo con la documentación oficial de tu banco.
                   </li>
                 </ul>
 
                 <ButtonPulse variant="outline" onClick={() => scrollToSection('quiz-lead')} style={{ marginTop: '12px' }} pulse={false}>
-                  Consultar Preaprobado
+                  Consultar Cambio a Pesos
                 </ButtonPulse>
               </div>
             </Card3D>
@@ -238,13 +238,13 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
             <span style={{ fontSize: '13px', fontWeight: 'bold', color: 'var(--accent-yellow-bright)', letterSpacing: '1px', textTransform: 'uppercase' }}>
-              Experiencia y Respaldo
+              Experiencia y Respaldo Institucional
             </span>
             <AnimatedTitle style={{ fontSize: '32px', fontWeight: '900', color: '#ffffff', marginTop: '8px' }}>
-              Nuestra Experiencia es tu Respaldo
+              Susfinanzas SAS: Trayectoria y Confianza desde 2012
             </AnimatedTitle>
-            <p style={{ color: 'rgba(255, 255, 255, 0.65)', marginTop: '8px', maxWidth: '600px', margin: '8px auto 0 auto' }}>
-              Con el amparo de la Ley 546 de 1999 y una red de más de 1.000 profesionales financieros aliados a nivel nacional.
+            <p style={{ color: 'rgba(255, 255, 255, 0.75)', marginTop: '8px', maxWidth: '650px', margin: '8px auto 0 auto', lineHeight: '1.6' }}>
+              Fundada en 2012 por <strong>Carlos Ernesto Puyo</strong> y <strong>Jorge Salazar</strong>. Somos una compañía privada amparada en la Ley 546 de 1999, supervisada por <strong>Supersociedades</strong> y con <strong>marca registrada</strong> de uso exclusivo.
             </p>
           </div>
 

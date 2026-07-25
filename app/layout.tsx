@@ -132,13 +132,14 @@ export default function RootLayout({
 
               <div>
                 <h5 style={{ fontSize: '16px', fontWeight: 'bold', color: '#ffffff', marginBottom: '16px' }}>
-                  Servicios y Categorías
+                  Susfinanzas SAS
                 </h5>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>
-                  <li>📋 Reducción de Crédito Hipotecario</li>
-                  <li>🏠 Reducción de Leasing Habitacional</li>
-                  <li>📈 Asesoría en Crédito Inmobiliario Nuevo</li>
-                  <li>💳 Optimización y Compra de Cartera</li>
+                  <li><a href="/empresa" style={{ color: 'var(--accent-yellow-bright)', textDecoration: 'none', fontWeight: '600' }}>🏛️ Sobre Susfinanzas SAS (Fundada 2012)</a></li>
+                  <li>📋 1. Reducción de Tiempo e Intereses</li>
+                  <li>💵 2. Cambio de UVR a Pesos</li>
+                  <li>⚖️ Supervisados por Supersociedades</li>
+                  <li>®️ Marca Registrada de Uso Exclusivo</li>
                 </ul>
               </div>
 
@@ -150,7 +151,8 @@ export default function RootLayout({
                   <li>📞 Celular: +57 (315) 503-0333</li>
                   <li>✉️ Correo: williams.pyme@gmail.com</li>
                   <li>⏰ Horario: Lun a Vie 7:30 AM - 5:30 PM</li>
-                  <li>🛡️ Amparado por la Ley 546 de 1999</li>
+                  <li>🛡️ Amparados por la Ley 546 de 1999</li>
+                  <li>🔒 Servicio Sin Anticipos</li>
                 </ul>
               </div>
             </div>
@@ -167,8 +169,8 @@ export default function RootLayout({
                 color: 'rgba(255,255,255,0.4)',
               }}
             >
-              <span>© {new Date().getFullYear()} Williams Cruz. Todos los derechos reservados.</span>
-              <span>Desarrollado con ingeniería financiera 100% segura.</span>
+              <span>© {new Date().getFullYear()} Susfinanzas SAS | Williams Cruz. Todos los derechos reservados.</span>
+              <span>Supervisados por Supersociedades. Marca Registrada. Sin Anticipos.</span>
             </div>
           </div>
         </footer>
