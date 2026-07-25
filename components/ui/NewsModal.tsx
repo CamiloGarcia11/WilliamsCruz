@@ -23,6 +23,7 @@ interface NewsItem {
   image?: string;
   isVideo?: boolean;
   videoUrl?: string;
+  youtubeUrl?: string;
   date: string;
   time: string;
   platform: string;
@@ -101,6 +102,7 @@ const NEWS_DATA: NewsItem[] = [
     tabLabel: '3. Video Entrevista Ley de Vivienda',
     isVideo: true,
     videoUrl: '/video_whatsapp.mp4',
+    youtubeUrl: 'https://www.youtube.com/live/Cu5ORyvPuJU?si=XkmL6ewlJqI7ciz-',
     date: 'Especial Televisión',
     time: 'Disponible en Video',
     platform: 'CityTV Colombia',
@@ -636,31 +638,71 @@ export default function NewsModal() {
                         {currentNews.description}
                       </p>
 
-                      {/* Botón de Acción WhatsApp */}
-                      <a
-                        href={`https://wa.me/573155030333?text=${encodeURIComponent(currentNews.whatsappMessage)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      {/* Botones de Acción (YouTube y WhatsApp) */}
+                      <div
+                        className="news-actions-grid"
                         style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '8px',
-                          padding: '12px 16px',
-                          borderRadius: '12px',
-                          background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-                          color: '#ffffff',
-                          fontWeight: '800',
-                          fontSize: '14px',
-                          textDecoration: 'none',
-                          boxShadow: '0 4px 12px rgba(34, 197, 94, 0.3)',
-                          transition: 'transform 0.2s ease, boxShadow 0.2s ease',
+                          display: 'grid',
+                          gridTemplateColumns: currentNews.youtubeUrl ? 'repeat(auto-fit, minmax(180px, 1fr))' : '1fr',
+                          gap: '10px',
                           marginTop: '2px'
                         }}
                       >
-                        <MessageCircle size={18} />
-                        {currentNews.isVideo ? 'Revisar Mi Caso por WhatsApp' : currentNews.id === 1 ? 'Solicitar Recordatorio por WhatsApp' : 'Más Información por WhatsApp'}
-                      </a>
+                        {currentNews.youtubeUrl && (
+                          <a
+                            href={currentNews.youtubeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              gap: '8px',
+                              padding: '12px 14px',
+                              borderRadius: '12px',
+                              background: 'linear-gradient(135deg, #ff0000 0%, #dc2626 100%)',
+                              color: '#ffffff',
+                              fontWeight: '800',
+                              fontSize: '13.5px',
+                              textDecoration: 'none',
+                              boxShadow: '0 4px 12px rgba(220, 38, 38, 0.35)',
+                              transition: 'transform 0.2s ease, boxShadow 0.2s ease',
+                              textAlign: 'center'
+                            }}
+                          >
+                            <PlayCircle size={18} />
+                            <span>Ver Entrevista Completa</span>
+                            <ExternalLink size={13} style={{ opacity: 0.8 }} />
+                          </a>
+                        )}
+
+                        <a
+                          href={`https://wa.me/573155030333?text=${encodeURIComponent(currentNews.whatsappMessage)}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            gap: '8px',
+                            padding: '12px 14px',
+                            borderRadius: '12px',
+                            background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
+                            color: '#ffffff',
+                            fontWeight: '800',
+                            fontSize: '13.5px',
+                            textDecoration: 'none',
+                            boxShadow: '0 4px 12px rgba(34, 197, 94, 0.3)',
+                            transition: 'transform 0.2s ease, boxShadow 0.2s ease',
+                            textAlign: 'center'
+                          }}
+                        >
+                          <MessageCircle size={18} />
+                          <span>
+                            {currentNews.isVideo ? 'Revisar Mi Caso por WhatsApp' : currentNews.id === 1 ? 'Solicitar Recordatorio' : 'Más Información'}
+                          </span>
+                        </a>
+                      </div>
                     </div>
                   </motion.div>
                 </AnimatePresence>
