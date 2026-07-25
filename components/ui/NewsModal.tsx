@@ -52,7 +52,7 @@ const NEWS_DATA: NewsItem[] = [
     description: `💼 ¿Quieres generar excelentes ingresos ayudando a miles de familias colombianas a reducir su crédito de vivienda o leasing habitacional?\n\nEn Susfinanzas SAS estamos en búsqueda de personas emprendedoras, líderes y comerciales para sumarse a nuestro equipo en todo el país.\n\n✨ ¿De qué se trata el trabajo?\n- Asesorar a deudores hipotecarios sobre los beneficios de la Ley de Vivienda (Ley 546 de 1999).\n- Presentar estudios financieros de reducción de plazo e intereses o cambio de UVR a Pesos.\n- Contarás con un sistema comercial 100% estandarizado, capacitaciones constantes y el respaldo de una empresa con más de 12 años de trayectoria, marca registrada y supervisada por Supersociedades.\n- Prestamos un servicio sin anticipos para los clientes, lo que garantiza una altísima efectividad y confianza en las gestiones.\n\n📲 ¡Haz clic en el botón a continuación para ponerte en contacto con nuestro equipo y comenzar tu proceso de selección!`,
     whatsappMessage: 'Hola! Vi la convocatoria comercial en la sección de noticias de Susfinanzas SAS y deseo más información para unirme al equipo de asesores. ¡Quiero empezar ya!',
     buttonText: 'Quiero empezar ya',
-    isVertical: false
+    isVertical: true
   },
   {
     id: 2,
@@ -386,27 +386,6 @@ export default function NewsModal() {
                             backgroundColor: '#000000'
                           }}
                         />
-                        {/* Badge Categoria Video */}
-                        <div
-                          style={{
-                            position: 'absolute',
-                            top: '10px',
-                            left: '10px',
-                            padding: '4px 10px',
-                            borderRadius: '20px',
-                            backgroundColor: currentNews.badgeBg,
-                            color: currentNews.badgeColor,
-                            fontSize: '10.5px',
-                            fontWeight: '900',
-                            letterSpacing: '0.5px',
-                            backdropFilter: 'blur(6px)',
-                            border: `1px solid ${currentNews.badgeColor}33`,
-                            zIndex: 2,
-                            pointerEvents: 'none'
-                          }}
-                        >
-                          {currentNews.categoryBadge}
-                        </div>
                       </div>
                     ) : (
                       <div
@@ -415,11 +394,17 @@ export default function NewsModal() {
                           position: 'relative',
                           borderRadius: '16px',
                           overflow: 'hidden',
-                          boxShadow: '0 8px 20px -4px rgba(0, 0, 0, 0.15)',
-                          backgroundColor: '#0f172a',
+                          boxShadow: currentNews.isVertical ? '0 10px 25px -5px rgba(0, 0, 0, 0.12)' : '0 8px 20px -4px rgba(0, 0, 0, 0.15)',
+                          backgroundColor: '#ffffff',
                           border: '1px solid #e2e8f0',
                           cursor: 'pointer',
-                          alignSelf: 'center'
+                          alignSelf: 'center',
+                          width: '100%',
+                          maxWidth: currentNews.isVertical ? '350px' : '100%',
+                          margin: '0 auto',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center'
                         }}
                         onClick={() => currentNews.image && setExpandedImage(currentNews.image)}
                         title="Haz clic o toca para ver en pantalla completa"
@@ -430,33 +415,13 @@ export default function NewsModal() {
                           className={`news-modal-img ${currentNews.isVertical ? 'is-vertical-img' : ''}`}
                           style={{
                             width: '100%',
-                            maxHeight: currentNews.isVertical ? '460px' : '340px',
+                            height: 'auto',
+                            maxHeight: currentNews.isVertical ? '480px' : '340px',
                             objectFit: 'contain',
                             display: 'block',
-                            backgroundColor: '#0b1329'
+                            backgroundColor: '#ffffff'
                           }}
                         />
-
-                        {/* Badge Categoria */}
-                        <div
-                          style={{
-                            position: 'absolute',
-                            top: '10px',
-                            left: '10px',
-                            padding: '4px 10px',
-                            borderRadius: '20px',
-                            backgroundColor: currentNews.badgeBg,
-                            color: currentNews.badgeColor,
-                            fontSize: '10.5px',
-                            fontWeight: '900',
-                            letterSpacing: '0.5px',
-                            backdropFilter: 'blur(6px)',
-                            border: `1px solid ${currentNews.badgeColor}33`,
-                            zIndex: 2
-                          }}
-                        >
-                          {currentNews.categoryBadge}
-                        </div>
 
                         {/* Botón Flotante de Ampliación */}
                         <div
@@ -486,6 +451,26 @@ export default function NewsModal() {
                     {/* Información y Texto de la Noticia */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                       <div>
+                        {/* Badge de Categoría */}
+                        <div
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            padding: '4px 12px',
+                            borderRadius: '20px',
+                            backgroundColor: currentNews.badgeBg,
+                            color: currentNews.badgeColor,
+                            fontSize: '11px',
+                            fontWeight: '900',
+                            letterSpacing: '0.5px',
+                            marginBottom: '10px',
+                            border: `1px solid ${currentNews.badgeColor}33`
+                          }}
+                        >
+                          {currentNews.categoryBadge}
+                        </div>
+
                         <h3
                           className="news-title-heading"
                           style={{
