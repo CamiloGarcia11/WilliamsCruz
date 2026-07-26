@@ -349,7 +349,7 @@ export default function SimuladorAhorro() {
                   <div style={fieldGroup}>
                     <label style={labelStyle}><Building size={15} /> Banco</label>
                     <select value={banco} onChange={(e) => setBanco(e.target.value)} style={{ ...inputStyle, background: '#fff' }} required>
-                      {['Bancolombia', 'Davivienda', 'BBVA', 'Banco de Bogotá', 'Banco Colpatria', 'Caja Social', 'FNA', 'Banco Popular', 'Scotiabank', 'Otro'].map((b) => (
+                      {['Bancolombia', 'Davivienda', 'Banco de Bogotá', 'Banco Caja Social', 'Colpatria', 'FNA', 'Banco AV Villas', 'Banco de Occidente', 'Banco Popular', 'Bancoomeva', 'La Hipotecaria', 'Otro'].map((b) => (
                         <option key={b} value={b}>{b}</option>
                       ))}
                     </select>

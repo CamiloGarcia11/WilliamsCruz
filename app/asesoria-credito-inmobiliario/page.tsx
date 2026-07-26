@@ -250,7 +250,7 @@ export default function AsesoriaCredito() {
             </ButtonPulse>
 
             <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '13px', fontWeight: '600' }}>
-              Sin costo de estudio • Sin compromiso • Respuesta en menos de 24 horas
+              Sin costo de estudio • Sin compromiso • Respuesta en menos de 48 horas hábiles
             </p>
           </motion.div>
         </div>

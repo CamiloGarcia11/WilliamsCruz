@@ -69,7 +69,7 @@ export default function RootLayout({
                       Williams <span style={{ color: 'var(--accent-yellow-bright)' }}>Cruz</span>
                     </span>
                     <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      Asesor Financiero
+                      Asesor Financiero en Reducción Hipotecaria
                     </span>
                   </div>
                 </div>

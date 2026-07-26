@@ -167,20 +167,35 @@ export default function QuizFinanciero() {
               <h4 style={{ fontSize: '18px', fontWeight: 'bold' }}>¿Con qué banco tienes el crédito hipotecario?</h4>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-              {['Bancolombia', 'Davivienda', 'Banco de Bogotá', 'Caja Social', 'BBVA', 'Colpatria', 'FNA', 'Otro'].map((banco) => (
+              {[
+                'Bancolombia',
+                'Davivienda',
+                'Banco de Bogotá',
+                'Banco Caja Social',
+                'Colpatria',
+                'FNA',
+                'Banco AV Villas',
+                'Banco de Occidente',
+                'Banco Popular',
+                'Bancoomeva',
+                'La Hipotecaria',
+                'Otro',
+              ].map((banco) => (
                 <button
                   key={banco}
                   type="button"
                   onClick={() => handleSelectOption('banco', banco)}
                   style={{
-                    padding: '14px',
+                    padding: '12px 8px',
                     borderRadius: '12px',
                     border: answers.banco === banco ? '2px solid var(--accent-blue)' : '1px solid var(--border-light)',
                     background: answers.banco === banco ? 'rgba(59, 130, 246, 0.05)' : '#ffffff',
                     fontWeight: '600',
+                    fontSize: '13px',
                     color: 'var(--primary-dark)',
                     cursor: 'pointer',
                     transition: 'var(--transition-smooth)',
+                    textAlign: 'center',
                   }}
                 >
                   {banco}
@@ -408,7 +423,7 @@ export default function QuizFinanciero() {
           ¡Estudio Solicitado con Éxito!
         </h3>
         <p style={{ color: 'var(--text-medium)', maxWidth: '400px' }}>
-          Hemos recibido tu solicitud de reducción. Williams Cruz y su equipo de analistas financieros revisarán tu caso y te contactarán por WhatsApp en menos de 24 horas hábiles.
+          Hemos recibido tu solicitud de reducción. Williams Cruz y su equipo de analistas financieros revisarán tu caso y te contactarán por WhatsApp en menos de 48 horas hábiles.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px', width: '100%' }}>
           <ButtonPulse variant="secondary" onClick={() => window.location.href = '/agendar'}>
