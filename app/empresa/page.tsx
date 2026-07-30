@@ -19,7 +19,8 @@ import {
   Banknote,
   FileCheck,
   XCircle,
-  AlertTriangle
+  AlertTriangle,
+  Phone
 } from 'lucide-react';
 import Card3D from '../../components/ui/Card3D';
 import ButtonPulse from '../../components/ui/ButtonPulse';
@@ -117,6 +118,94 @@ export default function EmpresaPage() {
             </div>
 
           </div>
+        </div>
+      </section>
+
+      {/* SECCIÓN VIDEO DE PRESENTACIÓN INSTITUCIONAL */}
+      <section style={{ padding: '60px 0', backgroundColor: 'var(--bg-light)', borderBottom: '1px solid var(--border-light)' }}>
+        <div className="container" style={{ maxWidth: '840px' }}>
+          <motion.div {...fadeUp} style={{ textAlign: 'center', marginBottom: '32px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 'bold', color: 'var(--accent-blue)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+              Conoce Más Sobre Nosotros
+            </span>
+            <AnimatedTitle style={{ fontSize: '32px', fontWeight: '900', color: 'var(--primary-dark)', marginTop: '8px' }}>
+              Video de Presentación y Procedimiento
+            </AnimatedTitle>
+            <p style={{ color: 'var(--text-medium)', marginTop: '8px', fontSize: '15px' }}>
+              Descubre en este video cómo funciona Susfinanzas SAS y nuestro procedimiento legal amparado en la Ley 546 de 1999.
+            </p>
+          </motion.div>
+
+          <motion.div {...fadeUp} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', border: '1px solid var(--border-light)', maxWidth: '320px', width: '100%' }}>
+              <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px' }}>
+                  🏢 Presentación y Procedimiento
+                </span>
+              </div>
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '9/16', background: '#000000' }}>
+                <video 
+                  src="/Video_presenta.mp4" 
+                  controls 
+                  playsInline
+                  preload="metadata"
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
+                />
+              </div>
+
+              {/* Botones de Teléfono / WhatsApp debajo del video */}
+              <div style={{ padding: '16px 12px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+                <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  📞 Asesórate Ahora por WhatsApp:
+                </span>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+                  <a
+                    href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      background: '#25D366',
+                      color: '#ffffff',
+                      padding: '6px 12px',
+                      borderRadius: '20px',
+                      fontSize: '12px',
+                      fontWeight: '700',
+                      textDecoration: 'none',
+                      boxShadow: 'var(--shadow-sm)',
+                    }}
+                  >
+                    <Phone size={13} /> 315 503 0333
+                  </a>
+                  <a
+                    href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      background: '#25D366',
+                      color: '#ffffff',
+                      padding: '6px 12px',
+                      borderRadius: '20px',
+                      fontSize: '12px',
+                      fontWeight: '700',
+                      textDecoration: 'none',
+                      boxShadow: 'var(--shadow-sm)',
+                    }}
+                  >
+                    <Phone size={13} /> 316 977 3057
+                  </a>
+                </div>
+              </div>
+            </Card3D>
+          </motion.div>
         </div>
       </section>
 

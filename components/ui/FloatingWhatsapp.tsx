@@ -34,7 +34,7 @@ export default function FloatingWhatsapp() {
       await saveLeadToFirebase({
         nombre,
         celular,
-        correo: 'williamscruzsusfinanzss@gmail.com',
+        correo: 'williamscruzsusfinanzs@gmail.com',
         tipoSociedad: 'Contacto Directo WhatsApp',
         banco: 'No especificado',
         modalidad: 'No especificado',

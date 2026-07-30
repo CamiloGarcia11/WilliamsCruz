@@ -149,7 +149,7 @@ export default function RootLayout({
                 </h5>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>
                   <li>📞 Celulares: +57 (315) 503-0333 | +57 (316) 977-3057</li>
-                  <li>✉️ Correo: williamscruzsusfinanzss@gmail.com</li>
+                  <li>✉️ Correo: williamscruzsusfinanzs@gmail.com</li>
                   <li>⏰ Horario: Lun a Vie 7:30 AM - 5:30 PM</li>
                   <li>🛡️ Amparados por la Ley 546 de 1999</li>
                   <li>🔒 Servicio Sin Anticipos</li>
