@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Sparkles, PiggyBank, ArrowRight, Star, CheckCircle, Phone } from 'lucide-react';
+import { Shield, Sparkles, PiggyBank, ArrowRight, Star, CheckCircle, Phone, Presentation } from 'lucide-react';
 import SimuladorAhorro from '../components/interactive/SimuladorAhorro';
 import QuizFinanciero from '../components/interactive/QuizFinanciero';
 import Card3D from '../components/ui/Card3D';
@@ -429,6 +429,61 @@ export default function Home() {
               </div>
             </Card3D>
           </div>
+        </div>
+      </section>
+
+      {/* 5.5 SECCIÓN DE DIAPOSITIVAS INTERACTIVAS (GOOGLE SLIDES) */}
+      <section style={{ position: 'relative', overflow: 'hidden', padding: '80px 0', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', borderBottom: '1px solid var(--border-light)' }}>
+        <SubtleGridBg />
+        <div className="container" style={{ position: 'relative', zIndex: 1, maxWidth: '980px' }}>
+          
+          <div style={{ textAlign: 'center', marginBottom: '36px' }}>
+            <span style={{ fontSize: '13px', fontWeight: 'bold', color: 'var(--accent-blue)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+              Presentación Interactiva
+            </span>
+            <AnimatedTitle style={{ fontSize: '32px', fontWeight: '900', color: 'var(--primary-dark)', marginTop: '8px' }}>
+              Guía de Reducción Hipotecaria y Ley de Vivienda
+            </AnimatedTitle>
+            <p style={{ color: 'var(--text-medium)', maxWidth: '680px', margin: '10px auto 0 auto', fontSize: '15px', lineHeight: '1.6' }}>
+              Explora nuestras diapositivas oficiales para conocer a fondo cómo aplicar la Ley 546 de 1999, recalcular tu crédito y ahorrar millones en intereses.
+            </p>
+          </div>
+
+          <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', width: '100%', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-xl)' }}>
+            <div style={{ padding: '14px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#ffffff' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <Presentation size={16} color="var(--accent-blue)" /> Presentación Oficial Susfinanzas SAS
+                </span>
+              </div>
+              <span style={{ fontSize: '12px', fontWeight: '600', color: 'var(--text-light)', background: 'var(--bg-light)', padding: '4px 12px', borderRadius: '12px' }}>
+                Diapositivas Interactivas
+              </span>
+            </div>
+
+            <div 
+              style={{ 
+                position: 'relative', 
+                width: '100%', 
+                aspectRatio: '16/9',
+                background: '#000000',
+              }}
+            >
+              <iframe
+                src="https://docs.google.com/presentation/d/e/2PACX-1vQv2ATzZjdmbjljfIDFaOybnS3oCAdCW81FZER6D6ZHid4P_aSwXfUM5YVilNzWzQ/embed?start=false&loop=true&delayms=5000"
+                title="Presentación Susfinanzas SAS - Ley de Vivienda"
+                frameBorder="0"
+                width="100%"
+                height="100%"
+                allowFullScreen={true}
+                style={{ border: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+              />
+            </div>
+          </Card3D>
+
         </div>
       </section>
 
