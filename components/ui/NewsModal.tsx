@@ -49,28 +49,44 @@ const NEWS_DATA: NewsItem[] = [
     time: 'Horario Flexible / Cobertura Nacional',
     platform: 'Susfinanzas SAS - Red Nacional de Asesores',
     hostsOrGuest: 'Dirección Comercial & Selección de Talento',
-    description: `💼 ¿Quieres generar excelentes ingresos ayudando a miles de familias colombianas a reducir su crédito de vivienda o leasing habitacional?\n\nEn Susfinanzas SAS estamos en búsqueda de personas emprendedoras, líderes y comerciales para sumarse a nuestro equipo en todo el país.\n\n✨ ¿De qué se trata el trabajo?\n- Asesorar a deudores hipotecarios sobre los beneficios de la Ley de Vivienda (Ley 546 de 1999).\n- Presentar estudios financieros de reducción de plazo e intereses o cambio de UVR a Pesos.\n- Contarás con un sistema comercial 100% estandarizado, capacitaciones constantes y el respaldo de una empresa con más de 12 años de trayectoria, marca registrada y supervisada por Supersociedades.\n- Prestamos un servicio sin anticipos para los clientes, lo que garantiza una altísima efectividad y confianza en las gestiones.\n\n📲 ¡Haz clic en el botón a continuación para ponerte en contacto con nuestro equipo y comenzar tu proceso de selección!`,
+    description: `💼 Únete a nuestro equipo comercial de Susfinanzas SAS y genera excelentes ingresos ayudando a familias colombianas a reducir su deuda de vivienda bajo la Ley 546 de 1999.\n\n✨ Te ofrecemos capacitaciones, sistema comercial estandarizado y el respaldo de una empresa con más de 12 años de trayectoria.`,
     whatsappMessage: 'Hola! Vi la convocatoria comercial en la sección de noticias de Susfinanzas SAS y deseo más información para unirme al equipo de asesores. ¡Quiero empezar ya!',
     buttonText: 'Quiero empezar ya',
     isVertical: true
   },
   {
     id: 2,
-    categoryBadge: '🎬 VIDEO ENTREVISTA',
-    badgeBg: 'rgba(16, 185, 129, 0.12)',
-    badgeColor: '#10b981',
-    title: 'Ley de Vivienda en CityTV: Reduce Años e Intereses',
-    subtitle: 'Entrevista Especial con Carlos Puyo (Fundador)',
-    tabLabel: '2. Video Entrevista Ley de Vivienda',
+    categoryBadge: '🎬 CASO DE ÉXITO',
+    badgeBg: 'rgba(59, 130, 246, 0.12)',
+    badgeColor: '#2563eb',
+    title: 'Estudio de Caso: Reducción Hipotecaria Real',
+    subtitle: 'Presentación de un caso de éxito con ahorros reales',
+    tabLabel: '2. Caso de Éxito',
     isVideo: true,
-    videoUrl: '/video_whatsapp.mp4',
-    youtubeUrl: 'https://www.youtube.com/live/Cu5ORyvPuJU?si=XkmL6ewlJqI7ciz-',
-    date: 'Especial Televisión',
+    videoUrl: '/Presentacion__1.mp4',
+    date: 'Caso de Éxito',
     time: 'Disponible en Video',
-    platform: 'CityTV Colombia',
-    hostsOrGuest: 'Carlos Puyo (Gerente & Fundador)',
-    description: `📺 Te invito a ver la entrevista de nuestro gerente y fundador, Carlos Puyo, en CityTV, donde hablamos sobre cómo la Ley de Vivienda puede ayudar a miles de familias a reducir el tiempo de su crédito hipotecario o leasing habitacional.\n\n🏡 Si estás pagando tu casa o apartamento a un banco, podrías terminar de pagarlo entre 3, 5, 7, 10 o más años antes, ahorrando además millones de pesos en intereses, según las condiciones de tu crédito.\n\n📲 Escríbeme y con gusto revisaré tu caso sin compromiso. Te ayudaré a identificar si puedes acceder a los beneficios de la Ley de Vivienda y cuáles son las mejores opciones para tu crédito.`,
-    whatsappMessage: 'Hola! Vi el video de la entrevista en CityTV con Carlos Puyo y me gustaría revisar mi caso para acceder a los beneficios de la Ley de Vivienda.'
+    platform: 'Susfinanzas SAS',
+    hostsOrGuest: 'Williams Cruz (Asesor)',
+    description: `🎬 Analizamos cómo logramos aplicar la Ley de Vivienda para reducir los años de deuda y ahorrar millones de intereses a una familia colombiana.\n\n🏡 Descubre cómo el proceso es transparente, legal y directo con el banco actual.`,
+    whatsappMessage: 'Hola! Vi el video del Caso de Éxito (Presentacion 1) en la sección de noticias y me gustaría recibir asesoría.'
+  },
+  {
+    id: 3,
+    categoryBadge: '⚠️ ERROR COMÚN',
+    badgeBg: 'rgba(239, 68, 68, 0.12)',
+    badgeColor: '#ef4444',
+    title: 'El Error que Cometen al Pagar una Hipoteca',
+    subtitle: 'Evita cometer este costoso error en tu crédito',
+    tabLabel: '3. El Error Más Común',
+    isVideo: true,
+    videoUrl: '/Presentacion__2.mp4',
+    date: 'Educación Financiera',
+    time: 'Disponible en Video',
+    platform: 'Susfinanzas SAS',
+    hostsOrGuest: 'Williams Cruz (Asesor)',
+    description: `⚠️ En este video te explico el error más común que cometen las personas al realizar abonos o pagar su crédito de vivienda sin una planeación estratégica.\n\n💡 Aprende a proteger tu dinero y a pagar tu crédito de forma inteligente y legal.`,
+    whatsappMessage: 'Hola! Vi el video sobre el error más común (Presentacion 2) en la sección de noticias y me gustaría saber cómo evitarlo en mi crédito.'
   }
 ];
 
@@ -180,19 +196,21 @@ export default function NewsModal() {
               }}
             >
               {/* Barra de Progreso del Temporizador de Cambio Automático */}
-              <div style={{ width: '100%', height: '4px', background: 'rgba(255, 255, 255, 0.1)', position: 'relative', flexShrink: 0 }}>
-                <motion.div
-                  key={`progress-${currentIndex}-${isPaused ? 'paused' : 'running'}`}
-                  initial={{ width: '0%' }}
-                  animate={{ width: isPaused ? '100%' : '100%' }}
-                  transition={{ duration: isPaused ? 0 : SLIDE_DURATION / 1000, ease: 'linear' }}
-                  style={{
-                    height: '100%',
-                    background: isPaused ? '#eab308' : 'linear-gradient(90deg, #2563eb, #3b82f6)',
-                    borderRadius: '0 2px 2px 0'
-                  }}
-                />
-              </div>
+              {NEWS_DATA.length > 1 && (
+                <div style={{ width: '100%', height: '4px', background: 'rgba(255, 255, 255, 0.1)', position: 'relative', flexShrink: 0 }}>
+                  <motion.div
+                    key={`progress-${currentIndex}-${isPaused ? 'paused' : 'running'}`}
+                    initial={{ width: '0%' }}
+                    animate={{ width: isPaused ? '100%' : '100%' }}
+                    transition={{ duration: isPaused ? 0 : SLIDE_DURATION / 1000, ease: 'linear' }}
+                    style={{
+                      height: '100%',
+                      background: isPaused ? '#eab308' : 'linear-gradient(90deg, #2563eb, #3b82f6)',
+                      borderRadius: '0 2px 2px 0'
+                    }}
+                  />
+                </div>
+              )}
 
               {/* Header Superior del Modal */}
               <div
@@ -244,7 +262,7 @@ export default function NewsModal() {
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  {isPaused && (
+                  {NEWS_DATA.length > 1 && isPaused && (
                     <span
                       className="news-paused-tag"
                       style={{
@@ -259,18 +277,20 @@ export default function NewsModal() {
                       {currentNews.isVideo ? '▶️ Reproduciendo Video' : '⏸️ Pausado'}
                     </span>
                   )}
-                  <span
-                    style={{
-                      fontSize: '11.5px',
-                      fontWeight: '700',
-                      color: 'rgba(255, 255, 255, 0.85)',
-                      background: 'rgba(255, 255, 255, 0.12)',
-                      padding: '3px 9px',
-                      borderRadius: '20px'
-                    }}
-                  >
-                    {currentIndex + 1} / {NEWS_DATA.length}
-                  </span>
+                  {NEWS_DATA.length > 1 && (
+                    <span
+                      style={{
+                        fontSize: '11.5px',
+                        fontWeight: '700',
+                        color: 'rgba(255, 255, 255, 0.85)',
+                        background: 'rgba(255, 255, 255, 0.12)',
+                        padding: '3px 9px',
+                        borderRadius: '20px'
+                      }}
+                    >
+                      {currentIndex + 1} / {NEWS_DATA.length}
+                    </span>
+                  )}
                   <button
                     onClick={() => setIsOpen(false)}
                     style={{
@@ -298,47 +318,49 @@ export default function NewsModal() {
               <div
                 className="news-modal-body"
                 style={{
-                  padding: '20px',
+                  padding: '12px 16px',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '16px',
+                  gap: '10px',
                   overflowY: 'auto',
                   flex: 1
                 }}
               >
                 {/* Pestañas de Selección Rápida */}
-                <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '2px', flexShrink: 0 }}>
-                  {NEWS_DATA.map((item, idx) => (
-                    <button
-                      key={`news-tab-item-${item.id}`}
-                      onClick={() => setCurrentIndex(idx)}
-                      style={{
-                        flex: 1,
-                        padding: '8px 12px',
-                        borderRadius: '12px',
-                        border: idx === currentIndex ? '2px solid #2563eb' : '1px solid #e2e8f0',
-                        background: idx === currentIndex ? 'rgba(37, 99, 235, 0.08)' : '#f8fafc',
-                        color: idx === currentIndex ? '#1e40af' : '#64748b',
-                        fontWeight: idx === currentIndex ? '800' : '600',
-                        fontSize: '12px',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px',
-                        transition: 'all 0.2s ease',
-                        whiteSpace: 'nowrap'
-                      }}
-                    >
-                      {item.isVideo ? (
-                        <Film size={13} color={idx === currentIndex ? '#10b981' : '#94a3b8'} />
-                      ) : (
-                        <Sparkles size={13} color={idx === currentIndex ? '#2563eb' : '#94a3b8'} />
-                      )}
-                      {item.tabLabel}
-                    </button>
-                  ))}
-                </div>
+                {NEWS_DATA.length > 1 && (
+                  <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '2px', flexShrink: 0 }}>
+                    {NEWS_DATA.map((item, idx) => (
+                      <button
+                        key={`news-tab-item-${item.id}`}
+                        onClick={() => setCurrentIndex(idx)}
+                        style={{
+                          flex: 1,
+                          padding: '8px 12px',
+                          borderRadius: '12px',
+                          border: idx === currentIndex ? '2px solid #2563eb' : '1px solid #e2e8f0',
+                          background: idx === currentIndex ? 'rgba(37, 99, 235, 0.08)' : '#f8fafc',
+                          color: idx === currentIndex ? '#1e40af' : '#64748b',
+                          fontWeight: idx === currentIndex ? '800' : '600',
+                          fontSize: '12px',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '6px',
+                          transition: 'all 0.2s ease',
+                          whiteSpace: 'nowrap'
+                        }}
+                      >
+                        {item.isVideo ? (
+                          <Film size={13} color={idx === currentIndex ? '#10b981' : '#94a3b8'} />
+                        ) : (
+                          <Sparkles size={13} color={idx === currentIndex ? '#2563eb' : '#94a3b8'} />
+                        )}
+                        {item.tabLabel}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
                 {/* Tarjeta Principal de Noticia */}
                 <AnimatePresence mode="wait">
@@ -380,7 +402,7 @@ export default function NewsModal() {
                           className="news-modal-video"
                           style={{
                             width: '100%',
-                            maxHeight: '420px',
+                            maxHeight: '310px',
                             objectFit: 'contain',
                             display: 'block',
                             backgroundColor: '#000000'
@@ -416,7 +438,7 @@ export default function NewsModal() {
                           style={{
                             width: '100%',
                             height: 'auto',
-                            maxHeight: currentNews.isVertical ? '480px' : '340px',
+                            maxHeight: currentNews.isVertical ? '370px' : '290px',
                             objectFit: 'contain',
                             display: 'block',
                             backgroundColor: '#ffffff'
@@ -449,7 +471,7 @@ export default function NewsModal() {
                     )}
 
                     {/* Información y Texto de la Noticia */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                       <div>
                         {/* Badge de Categoría */}
                         <div
@@ -457,14 +479,14 @@ export default function NewsModal() {
                             display: 'inline-flex',
                             alignItems: 'center',
                             gap: '6px',
-                            padding: '4px 12px',
+                            padding: '3px 10px',
                             borderRadius: '20px',
                             backgroundColor: currentNews.badgeBg,
                             color: currentNews.badgeColor,
-                            fontSize: '11px',
+                            fontSize: '10.5px',
                             fontWeight: '900',
                             letterSpacing: '0.5px',
-                            marginBottom: '10px',
+                            marginBottom: '6px',
                             border: `1px solid ${currentNews.badgeColor}33`
                           }}
                         >
@@ -474,16 +496,16 @@ export default function NewsModal() {
                         <h3
                           className="news-title-heading"
                           style={{
-                            fontSize: '18px',
+                            fontSize: '16px',
                             fontWeight: '900',
                             color: '#0f172a',
                             lineHeight: '1.3',
-                            marginBottom: '4px'
+                            marginBottom: '2px'
                           }}
                         >
                           {currentNews.title}
                         </h3>
-                        <p style={{ fontSize: '13px', fontWeight: '700', color: '#2563eb' }}>
+                        <p style={{ fontSize: '12px', fontWeight: '700', color: '#2563eb' }}>
                           {currentNews.subtitle}
                         </p>
                       </div>
@@ -493,34 +515,34 @@ export default function NewsModal() {
                         className="news-details-box"
                         style={{
                           display: 'grid',
-                          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-                          gap: '8px',
+                          gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+                          gap: '6px',
                           background: '#f8fafc',
-                          padding: '10px 12px',
-                          borderRadius: '12px',
+                          padding: '6px 10px',
+                          borderRadius: '10px',
                           border: '1px solid #e2e8f0'
                         }}
                       >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#334155' }}>
-                          <Calendar size={15} color="#2563eb" style={{ flexShrink: 0 }} />
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#334155' }}>
+                          <Calendar size={14} color="#2563eb" style={{ flexShrink: 0 }} />
                           <div>
-                            <strong style={{ display: 'block', fontSize: '10px', color: '#64748b' }}>FECHA / EMISIÓN</strong>
+                            <strong style={{ display: 'block', fontSize: '9px', color: '#64748b' }}>FECHA / EMISIÓN</strong>
                             <span style={{ fontWeight: '700' }}>{currentNews.date}</span>
                           </div>
                         </div>
 
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#334155' }}>
-                          <Clock size={15} color="#d97706" style={{ flexShrink: 0 }} />
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#334155' }}>
+                          <Clock size={14} color="#d97706" style={{ flexShrink: 0 }} />
                           <div>
-                            <strong style={{ display: 'block', fontSize: '10px', color: '#64748b' }}>HORA / ESTADO</strong>
+                            <strong style={{ display: 'block', fontSize: '9px', color: '#64748b' }}>HORA / ESTADO</strong>
                             <span style={{ fontWeight: '700' }}>{currentNews.time}</span>
                           </div>
                         </div>
 
-                        <div className="news-platform-col" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', color: '#334155' }}>
-                          {currentNews.isVideo ? <Film size={15} color="#10b981" style={{ flexShrink: 0 }} /> : currentNews.id === 1 ? <Video size={15} color="#ef4444" style={{ flexShrink: 0 }} /> : <Tv size={15} color="#2563eb" style={{ flexShrink: 0 }} />}
+                        <div className="news-platform-col" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#334155' }}>
+                          {currentNews.isVideo ? <Film size={14} color="#10b981" style={{ flexShrink: 0 }} /> : currentNews.id === 1 ? <Video size={14} color="#ef4444" style={{ flexShrink: 0 }} /> : <Tv size={14} color="#2563eb" style={{ flexShrink: 0 }} />}
                           <div>
-                            <strong style={{ display: 'block', fontSize: '10px', color: '#64748b' }}>CANAL / MEDIO</strong>
+                            <strong style={{ display: 'block', fontSize: '9px', color: '#64748b' }}>CANAL / MEDIO</strong>
                             <span style={{ fontWeight: '700' }}>{currentNews.platform}</span>
                           </div>
                         </div>
@@ -529,11 +551,11 @@ export default function NewsModal() {
                       {/* Expositores / Presentadores */}
                       <div
                         style={{
-                          padding: '8px 12px',
+                          padding: '6px 10px',
                           background: 'rgba(234, 179, 8, 0.1)',
                           borderLeft: '4px solid #eab308',
                           borderRadius: '0 8px 8px 0',
-                          fontSize: '12px',
+                          fontSize: '11px',
                           color: '#1e293b'
                         }}
                       >
@@ -666,44 +688,48 @@ export default function NewsModal() {
                     flexShrink: 0
                   }}
                 >
-                  <div style={{ display: 'flex', gap: '6px' }}>
-                    <button
-                      onClick={handlePrev}
-                      style={{
-                        padding: '7px 12px',
-                        borderRadius: '10px',
-                        border: '1px solid #cbd5e1',
-                        background: '#ffffff',
-                        color: '#334155',
-                        fontWeight: '700',
-                        fontSize: '12px',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '4px'
-                      }}
-                    >
-                      <ChevronLeft size={15} /> Anterior
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      style={{
-                        padding: '7px 12px',
-                        borderRadius: '10px',
-                        border: '1px solid #cbd5e1',
-                        background: '#ffffff',
-                        color: '#334155',
-                        fontWeight: '700',
-                        fontSize: '12px',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '4px'
-                      }}
-                    >
-                      Siguiente <ChevronRight size={15} />
-                    </button>
-                  </div>
+                  {NEWS_DATA.length > 1 ? (
+                    <div style={{ display: 'flex', gap: '6px' }}>
+                      <button
+                        onClick={handlePrev}
+                        style={{
+                          padding: '7px 12px',
+                          borderRadius: '10px',
+                          border: '1px solid #cbd5e1',
+                          background: '#ffffff',
+                          color: '#334155',
+                          fontWeight: '700',
+                          fontSize: '12px',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '4px'
+                        }}
+                      >
+                        <ChevronLeft size={15} /> Anterior
+                      </button>
+                      <button
+                        onClick={handleNext}
+                        style={{
+                          padding: '7px 12px',
+                          borderRadius: '10px',
+                          border: '1px solid #cbd5e1',
+                          background: '#ffffff',
+                          color: '#334155',
+                          fontWeight: '700',
+                          fontSize: '12px',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '4px'
+                        }}
+                      >
+                        Siguiente <ChevronRight size={15} />
+                      </button>
+                    </div>
+                  ) : (
+                    <div />
+                  )}
 
                   <button
                     onClick={() => setIsOpen(false)}
@@ -799,10 +825,10 @@ export default function NewsModal() {
             gap: 8px !important;
           }
           .is-vertical-img {
-            max-height: 480px !important;
+            max-height: 370px !important;
           }
           .news-modal-video {
-            max-height: 420px !important;
+            max-height: 310px !important;
           }
         }
 

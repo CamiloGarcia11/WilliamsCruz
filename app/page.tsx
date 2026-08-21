@@ -548,173 +548,362 @@ export default function Home() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px', marginBottom: '48px', width: '100%' }}>
             
             {/* FILA 1: 3 VIDEOS VERTICALES (9:16) */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'stretch', gap: '24px', maxWidth: '1020px', width: '100%' }}>
+            <div className="video-cards-flex-row">
               
               {/* Video 1: Video de Presentación Institucional y Procedimiento (Vertical 9:16) */}
-              <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', maxWidth: '310px', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
-                  <span style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '6px' }}>
-                    🏢 Presentación y Procedimiento
-                  </span>
-                </div>
-                <div 
-                  style={{ 
-                    position: 'relative', 
-                    width: '100%', 
-                    aspectRatio: '9/16',
-                    background: '#000000',
-                  }}
-                >
-                  <video 
-                    src="/Video_presenta.mp4" 
-                    controls 
-                    playsInline
-                    preload="metadata"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
-                  />
-                </div>
-                {/* Números de Contacto abajo del video */}
-                <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
-                  <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                    📞 Asesórate por WhatsApp:
-                  </span>
-                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
-                    <a
-                      href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        background: '#25D366',
-                        color: '#ffffff',
-                        padding: '5px 10px',
-                        borderRadius: '20px',
-                        fontSize: '11.5px',
-                        fontWeight: '700',
-                        textDecoration: 'none',
-                        boxShadow: 'var(--shadow-sm)',
-                      }}
-                    >
-                      <Phone size={12} /> 315 503 0333
-                    </a>
-                    <a
-                      href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        background: '#25D366',
-                        color: '#ffffff',
-                        padding: '5px 10px',
-                        borderRadius: '20px',
-                        fontSize: '11.5px',
-                        fontWeight: '700',
-                        textDecoration: 'none',
-                        boxShadow: 'var(--shadow-sm)',
-                      }}
-                    >
-                      <Phone size={12} /> 316 977 3057
-                    </a>
+              <div className="video-card-vertical-wrapper">
+                <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', height: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                    <span style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '6px' }}>
+                      🏢 Presentación y Procedimiento
+                    </span>
                   </div>
-                </div>
-              </Card3D>
+                  <div 
+                    style={{ 
+                      position: 'relative', 
+                      width: '100%', 
+                      aspectRatio: '9/16',
+                      background: '#000000',
+                    }}
+                  >
+                    <video 
+                      src="/Video_presenta.mp4" 
+                      controls 
+                      playsInline
+                      preload="metadata"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
+                    />
+                  </div>
+                  {/* Números de Contacto abajo del video */}
+                  <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
+                    <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      📞 Asesórate por WhatsApp:
+                    </span>
+                    <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+                      <a
+                        href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          background: '#25D366',
+                          color: '#ffffff',
+                          padding: '5px 10px',
+                          borderRadius: '20px',
+                          fontSize: '11.5px',
+                          fontWeight: '700',
+                          textDecoration: 'none',
+                          boxShadow: 'var(--shadow-sm)',
+                        }}
+                      >
+                        <Phone size={12} /> 315 503 0333
+                      </a>
+                      <a
+                        href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          background: '#25D366',
+                          color: '#ffffff',
+                          padding: '5px 10px',
+                          borderRadius: '20px',
+                          fontSize: '11.5px',
+                          fontWeight: '700',
+                          textDecoration: 'none',
+                          boxShadow: 'var(--shadow-sm)',
+                        }}
+                      >
+                        <Phone size={12} /> 316 977 3057
+                      </a>
+                    </div>
+                  </div>
+                </Card3D>
+              </div>
 
               {/* Video 2: Local Video Opinión 1 (Vertical - Estilo Reel/Shorts) */}
-              <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', maxWidth: '310px', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
-                  <span style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--text-medium)', marginLeft: '6px' }}>
-                    📱 Opinión (Estudio Hipoteca)
-                  </span>
-                </div>
-                <div 
-                  style={{ 
-                    position: 'relative', 
-                    width: '100%', 
-                    aspectRatio: '9/16',
-                    background: '#000000',
-                  }}
-                >
-                  <video 
-                    src="/opinion.mp4" 
-                    controls 
-                    playsInline
-                    preload="metadata"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
-                  />
-                </div>
-              </Card3D>
+              <div className="video-card-vertical-wrapper">
+                <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', height: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                    <span style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--text-medium)', marginLeft: '6px' }}>
+                      📱 Opinión (Estudio Hipoteca)
+                    </span>
+                  </div>
+                  <div 
+                    style={{ 
+                      position: 'relative', 
+                      width: '100%', 
+                      aspectRatio: '9/16',
+                      background: '#000000',
+                    }}
+                  >
+                    <video 
+                      src="/opinion.mp4" 
+                      controls 
+                      playsInline
+                      preload="metadata"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
+                    />
+                  </div>
+                  {/* Números de Contacto abajo del video */}
+                  <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
+                    <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      📞 Asesórate por WhatsApp:
+                    </span>
+                    <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+                      <a
+                        href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20opini%C3%B3n%20sobre%20el%20estudio%20de%20hipoteca%20y%20deseo%20asesor%C3%ADa."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          background: '#25D366',
+                          color: '#ffffff',
+                          padding: '5px 10px',
+                          borderRadius: '20px',
+                          fontSize: '11.5px',
+                          fontWeight: '700',
+                          textDecoration: 'none',
+                          boxShadow: 'var(--shadow-sm)',
+                        }}
+                      >
+                        <Phone size={12} /> 315 503 0333
+                      </a>
+                      <a
+                        href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20opini%C3%B3n%20sobre%20el%20estudio%20de%20hipoteca%20y%20deseo%20asesor%C3%ADa."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          background: '#25D366',
+                          color: '#ffffff',
+                          padding: '5px 10px',
+                          borderRadius: '20px',
+                          fontSize: '11.5px',
+                          fontWeight: '700',
+                          textDecoration: 'none',
+                          boxShadow: 'var(--shadow-sm)',
+                        }}
+                      >
+                        <Phone size={12} /> 316 977 3057
+                      </a>
+                    </div>
+                  </div>
+                </Card3D>
+              </div>
 
               {/* Video 3: Local Video Opinión 2 (Vertical - Estilo Reel/Shorts) */}
-              <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', width: '100%', maxWidth: '310px', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
-                  <span style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--text-medium)', marginLeft: '6px' }}>
-                    📱 Opinión (Ahorro Logrado)
-                  </span>
-                </div>
-                <div 
-                  style={{ 
-                    position: 'relative', 
-                    width: '100%', 
-                    aspectRatio: '9/16',
-                    background: '#000000',
-                  }}
-                >
-                  <video 
-                    src="/opinion_2.mp4" 
-                    controls 
-                    playsInline
-                    preload="metadata"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
-                  />
-                </div>
-              </Card3D>
+              <div className="video-card-vertical-wrapper">
+                <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', width: '100%', height: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                    <span style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--text-medium)', marginLeft: '6px' }}>
+                      📱 Opinión (Ahorro Logrado)
+                    </span>
+                  </div>
+                  <div 
+                    style={{ 
+                      position: 'relative', 
+                      width: '100%', 
+                      aspectRatio: '9/16',
+                      background: '#000000',
+                    }}
+                  >
+                    <video 
+                      src="/opinion_2.mp4" 
+                      controls 
+                      playsInline
+                      preload="metadata"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
+                    />
+                  </div>
+                  {/* Números de Contacto abajo del video */}
+                  <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
+                    <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      📞 Asesórate por WhatsApp:
+                    </span>
+                    <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+                      <a
+                        href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20opini%C3%B3n%20sobre%20el%20ahorro%20logrado%20y%20deseo%20asesor%C3%ADa."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          background: '#25D366',
+                          color: '#ffffff',
+                          padding: '5px 10px',
+                          borderRadius: '20px',
+                          fontSize: '11.5px',
+                          fontWeight: '700',
+                          textDecoration: 'none',
+                          boxShadow: 'var(--shadow-sm)',
+                        }}
+                      >
+                        <Phone size={12} /> 315 503 0333
+                      </a>
+                      <a
+                        href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20opini%C3%B3n%20sobre%20el%20ahorro%20logrado%20y%20deseo%20asesor%C3%ADa."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          background: '#25D366',
+                          color: '#ffffff',
+                          padding: '5px 10px',
+                          borderRadius: '20px',
+                          fontSize: '11.5px',
+                          fontWeight: '700',
+                          textDecoration: 'none',
+                          boxShadow: 'var(--shadow-sm)',
+                        }}
+                      >
+                        <Phone size={12} /> 316 977 3057
+                      </a>
+                    </div>
+                  </div>
+                </Card3D>
+              </div>
 
             </div>
 
-            {/* FILA 2: 1 VIDEO HORIZONTAL (16:9) CENTRADO ABAJO */}
-            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-              <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', width: '100%', maxWidth: '580px', border: '1px solid var(--border-light)' }}>
-                <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
-                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
-                  <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px' }}>
-                    🎥 Video Testimonio: Experiencia de Éxito Real
-                  </span>
-                </div>
-                <div 
-                  style={{ 
-                    position: 'relative', 
-                    width: '100%', 
-                    aspectRatio: '16/9',
-                    background: '#000000',
-                  }}
-                >
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/xWrkPvQNR-k?start=3"
-                    title="Testimonio de cliente satisfecho"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    style={{ border: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                  />
-                </div>
-              </Card3D>
+            {/* FILA 2: 2 VIDEOS HORIZONTALES (16:9) */}
+            <div className="video-cards-flex-row">
+              
+              {/* Video 1: Entrevista CityTV (Local /video_whatsapp.mp4) */}
+              <div className="video-card-horizontal-wrapper">
+                <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', height: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                    <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px' }}>
+                      🎬 Entrevista CityTV: Ley de Vivienda (Carlos Puyo)
+                    </span>
+                  </div>
+                  <div 
+                    style={{ 
+                      position: 'relative', 
+                      width: '100%', 
+                      aspectRatio: '16/9',
+                      background: '#000000',
+                    }}
+                  >
+                    <video 
+                      src="/video_whatsapp.mp4" 
+                      controls 
+                      playsInline
+                      preload="metadata"
+                      style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
+                    />
+                  </div>
+                  {/* Botón WhatsApp para consultar sobre la entrevista */}
+                  <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
+                    <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      📞 Consulta sobre este video:
+                    </span>
+                    <a
+                      href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20la%20entrevista%20en%20CityTV%20con%20Carlos%20Puyo%20y%20me%20gustar%C3%ADa%20revisar%20mi%20caso%20para%20acceder%20a%20los%20beneficios%20de%20la%20Ley%20de%20Vivienda."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: '#25D366',
+                        color: '#ffffff',
+                        padding: '5px 12px',
+                        borderRadius: '20px',
+                        fontSize: '11.5px',
+                        fontWeight: '700',
+                        textDecoration: 'none',
+                        boxShadow: 'var(--shadow-sm)',
+                      }}
+                    >
+                      <Phone size={12} /> Revisar Mi Caso por WhatsApp
+                    </a>
+                  </div>
+                </Card3D>
+              </div>
+
+              {/* Video 2: Video Testimonio (YouTube) */}
+              <div className="video-card-horizontal-wrapper">
+                <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', width: '100%', height: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                    <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px' }}>
+                      🎥 Video Testimonio: Experiencia de Éxito Real
+                    </span>
+                  </div>
+                  <div 
+                    style={{ 
+                      position: 'relative', 
+                      width: '100%', 
+                      aspectRatio: '16/9',
+                      background: '#000000',
+                    }}
+                  >
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src="https://www.youtube.com/embed/xWrkPvQNR-k?start=3"
+                      title="Testimonio de cliente satisfecho"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      style={{ border: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                    />
+                  </div>
+                  {/* Botón WhatsApp para consultar sobre testimonios */}
+                  <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
+                    <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      📈 Resultados de reducción de plazo:
+                    </span>
+                    <a
+                      href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20testimonio%20y%20deseo%20asesor%C3%ADa."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: '#25D366',
+                        color: '#ffffff',
+                        padding: '5px 12px',
+                        borderRadius: '20px',
+                        fontSize: '11.5px',
+                        fontWeight: '700',
+                        textDecoration: 'none',
+                        boxShadow: 'var(--shadow-sm)',
+                      }}
+                    >
+                      <Phone size={12} /> Contactar Asesor
+                    </a>
+                  </div>
+                </Card3D>
+              </div>
+
             </div>
 
           </div>
@@ -755,10 +944,39 @@ export default function Home() {
                   </p>
                   <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '12px', marginTop: '8px' }}>
                     <div style={{ fontWeight: '700', color: 'var(--primary-dark)', fontSize: '15px' }}>{t.nombre}</div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: 'var(--text-light)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: 'var(--text-light)', marginBottom: '8px' }}>
                       <span>Banco: {t.banco}</span>
                       <span style={{ fontWeight: '600', color: 'var(--accent-blue)' }}>{t.ahorro}</span>
                     </div>
+                  </div>
+                  {/* Pie de página con botón de WhatsApp */}
+                  <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto', borderRadius: '8px', width: '100%' }}>
+                    <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      💬 Consulta caso similar:
+                    </span>
+                    <a
+                      href={`https://wa.me/573155030333?text=${encodeURIComponent(`Hola! Vi la opinión de ${t.nombre} sobre su caso con el banco ${t.banco} (Ahorro: ${t.ahorro}) y me gustaría recibir asesoría.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '4px',
+                        background: '#25D366',
+                        color: '#ffffff',
+                        padding: '6px 12px',
+                        borderRadius: '20px',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        textDecoration: 'none',
+                        boxShadow: 'var(--shadow-sm)',
+                        width: '100%',
+                        textAlign: 'center'
+                      }}
+                    >
+                      <Phone size={12} /> Preguntar por este caso
+                    </a>
                   </div>
                 </div>
               </Card3D>

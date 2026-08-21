@@ -301,3 +301,46 @@ body {
     display: none !important;
   }
 }
+
+/* Responsive Video Card Layouts */
+.video-cards-flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 24px;
+  max-width: 1020px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.video-card-vertical-wrapper {
+  flex: 1 1 310px;
+  max-width: 310px;
+  min-width: 280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-card-horizontal-wrapper {
+  flex: 1 1 480px;
+  max-width: 480px;
+  min-width: 280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .video-card-vertical-wrapper {
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+    min-width: unset !important;
+  }
+  .video-card-horizontal-wrapper {
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+    min-width: unset !important;
+  }
+}
