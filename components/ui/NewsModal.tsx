@@ -63,6 +63,7 @@ const NEWS_DATA: NewsItem[] = [
     subtitle: 'Presentación de un caso de éxito con ahorros reales',
     tabLabel: '2. Caso de Éxito',
     isVideo: true,
+    isVertical: true,
     videoUrl: '/Presentacion__1.mp4',
     date: 'Caso de Éxito',
     time: 'Disponible en Video',
@@ -80,6 +81,7 @@ const NEWS_DATA: NewsItem[] = [
     subtitle: 'Evita cometer este costoso error en tu crédito',
     tabLabel: '3. El Error Más Común',
     isVideo: true,
+    isVertical: true,
     videoUrl: '/Presentacion__2.mp4',
     date: 'Educación Financiera',
     time: 'Disponible en Video',
@@ -87,6 +89,24 @@ const NEWS_DATA: NewsItem[] = [
     hostsOrGuest: 'Williams Cruz (Asesor)',
     description: `⚠️ En este video te explico el error más común que cometen las personas al realizar abonos o pagar su crédito de vivienda sin una planeación estratégica.\n\n💡 Aprende a proteger tu dinero y a pagar tu crédito de forma inteligente y legal.`,
     whatsappMessage: 'Hola! Vi el video sobre el error más común (Presentacion 2) en la sección de noticias y me gustaría saber cómo evitarlo en mi crédito.'
+  },
+  {
+    id: 4,
+    categoryBadge: '🏆 14 AÑOS DE TRAYECTORIA',
+    badgeBg: 'rgba(16, 185, 129, 0.15)',
+    badgeColor: '#059669',
+    title: '14 Años Transformando Créditos de Vivienda',
+    subtitle: 'Nuestra trayectoria y compromiso con las familias colombianas',
+    tabLabel: '4. 14 Años de Trayectoria',
+    isVideo: true,
+    isVertical: true,
+    videoUrl: '/Presentacion_3.mp4',
+    date: 'Trayectoria & Confianza',
+    time: 'Disponible en Video',
+    platform: 'Susfinanzas SAS Oficial',
+    hostsOrGuest: 'Williams Cruz (Asesor)',
+    description: `🏆 En este video te contamos de forma resumida nuestros más de 14 años de experiencia y trayectoria ayudando a familias colombianas a optimizar sus créditos de vivienda y reducir millones en intereses.\n\n🛡️ Un proceso 100% legal bajo la Ley 546 de 1999, seguro, transparente y con total respaldo profesional.`,
+    whatsappMessage: 'Hola! Vi el video de los 14 años de trayectoria (Presentacion 3) en la sección de noticias y me gustaría recibir asesoría para mi crédito de vivienda.'
   }
 ];
 
@@ -381,28 +401,36 @@ export default function NewsModal() {
                     {/* Contenedor de Multimedia (Imagen o Video) */}
                     {currentNews.isVideo ? (
                       <div
-                        className="news-modal-video-wrapper"
+                        className={`news-modal-video-wrapper ${currentNews.isVertical ? 'is-vertical-video-wrapper' : ''}`}
                         style={{
                           position: 'relative',
                           borderRadius: '16px',
                           overflow: 'hidden',
-                          boxShadow: '0 8px 20px -4px rgba(0, 0, 0, 0.25)',
+                          boxShadow: '0 8px 25px -4px rgba(0, 0, 0, 0.3)',
                           backgroundColor: '#000000',
                           border: '1px solid #1e293b',
-                          alignSelf: 'center'
+                          alignSelf: 'center',
+                          width: '100%',
+                          maxWidth: currentNews.isVertical ? '280px' : '100%',
+                          aspectRatio: currentNews.isVertical ? '9/16' : '16/9',
+                          margin: '0 auto',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
                         }}
                       >
                         <video
                           ref={videoRef}
+                          key={currentNews.videoUrl}
                           src={currentNews.videoUrl}
                           autoPlay
                           controls
                           playsInline
                           preload="auto"
-                          className="news-modal-video"
+                          className={`news-modal-video ${currentNews.isVertical ? 'is-vertical-video' : ''}`}
                           style={{
                             width: '100%',
-                            maxHeight: '310px',
+                            height: '100%',
                             objectFit: 'contain',
                             display: 'block',
                             backgroundColor: '#000000'
@@ -813,7 +841,8 @@ export default function NewsModal() {
         /* Estilos Adaptativos para Escritorio */
         @media (min-width: 768px) {
           .news-modal-grid {
-            grid-template-columns: 1fr 1fr !important;
+            grid-template-columns: minmax(260px, 290px) 1fr !important;
+            gap: 20px !important;
             align-items: center !important;
           }
           .news-platform-col {
@@ -825,10 +854,26 @@ export default function NewsModal() {
             gap: 8px !important;
           }
           .is-vertical-img {
-            max-height: 370px !important;
+            max-height: 420px !important;
+          }
+          .is-vertical-wrapper {
+            max-width: 280px !important;
+            max-height: 420px !important;
+          }
+          .is-vertical-video-wrapper {
+            max-width: 275px !important;
+            aspect-ratio: 9/16 !important;
+            margin: 0 auto !important;
+            height: auto !important;
+          }
+          .is-vertical-video {
+            max-height: 440px !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
           }
           .news-modal-video {
-            max-height: 310px !important;
+            max-height: 440px !important;
           }
         }
 
@@ -854,16 +899,27 @@ export default function NewsModal() {
           .news-modal-img {
             max-height: 240px !important;
           }
+          .is-vertical-video-wrapper {
+            max-width: 230px !important;
+            aspect-ratio: 9/16 !important;
+            margin: 0 auto !important;
+          }
+          .is-vertical-video {
+            max-height: 350px !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+          }
           .news-modal-video {
-            max-height: 260px !important;
+            max-height: 350px !important;
           }
           .is-vertical-img {
-            max-height: 380px !important;
+            max-height: 350px !important;
             object-fit: contain !important;
             width: 100% !important;
           }
           .is-vertical-wrapper {
-            max-height: 385px !important;
+            max-height: 355px !important;
           }
           .news-title-heading {
             font-size: 16px !important;
