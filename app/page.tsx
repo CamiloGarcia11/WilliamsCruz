@@ -15,6 +15,7 @@ import FloatingNetwork3D from '../components/interactive/FloatingNetwork3D';
 import Floating3DGeometries from '../components/interactive/Floating3DGeometries';
 import SubtleGridBg from '../components/animations/SubtleGridBg';
 import NewsModal from '../components/ui/NewsModal';
+import AudioPlayerCard from '../components/ui/AudioPlayerCard';
 
 export default function Home() {
   const scrollToSection = (id: string) => {
@@ -537,10 +538,10 @@ export default function Home() {
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <AnimatedTitle style={{ fontSize: '32px', fontWeight: '900', color: 'var(--primary-dark)' }}>
-              Video de Presentación y Opiniones de Clientes
+              Videos, Audios y Opiniones de Clientes
             </AnimatedTitle>
-            <p style={{ color: 'var(--text-light)', marginTop: '8px', maxWidth: '650px', margin: '8px auto 0 auto' }}>
-              Conoce en detalle cómo trabajamos en Susfinanzas SAS, nuestro procedimiento legal bajo la Ley 546 de 1999 y las opiniones de clientes satisfechos.
+            <p style={{ color: 'var(--text-light)', marginTop: '8px', maxWidth: '680px', margin: '8px auto 0 auto' }}>
+              Conoce en detalle cómo trabajamos en Susfinanzas SAS, nuestro procedimiento legal bajo la Ley 546 de 1999, notas de voz de asesoría y las opiniones de clientes satisfechos.
             </p>
           </div>
 
@@ -904,6 +905,19 @@ export default function Home() {
                 </Card3D>
               </div>
 
+            </div>
+
+            {/* FILA 3: CANCIÓN EXPLICATIVA E INTERACTIVA DE SUSFINANZAS SAS */}
+            <div style={{ width: '100%', maxWidth: '1020px' }}>
+              <AudioPlayerCard
+                src="/audio_2.mpeg"
+                title="🎵 'El Ritmo de tu Ahorro' - Canción Oficial Susfinanzas SAS"
+                subtitle="¡Aprende cantando cómo funciona nuestra asesoría!"
+                speaker="Susfinanzas SAS & Williams Cruz"
+                description="🎧 Escucha esta canción explicativa donde aprenderás paso a paso cómo la Ley 546 de 1999 te ayuda a reducir años de tu hipoteca y ahorrar millones de pesos sin cambiar de banco."
+                whatsappMessage="Hola! Escuché la canción explicativa de Susfinanzas SAS en la página web y deseo agendar mi estudio financiero sin costo."
+                badgeText="🎶 CANCIÓN EXPLICATIVA"
+              />
             </div>
 
           </div>

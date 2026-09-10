@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Calendar, Clock, Tv, Video, MessageCircle, Sparkles, Megaphone, ExternalLink, PlayCircle, ZoomIn, Film } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Calendar, Clock, Tv, Video, MessageCircle, Sparkles, Megaphone, ExternalLink, PlayCircle, ZoomIn, Film, Headphones, Volume2, VolumeX, Play, Pause, RotateCcw, RotateCw } from 'lucide-react';
 
 interface SocialLink {
   name: string;
@@ -22,7 +22,9 @@ interface NewsItem {
   tabLabel: string;
   image?: string;
   isVideo?: boolean;
+  isAudio?: boolean;
   videoUrl?: string;
+  audioUrl?: string;
   youtubeUrl?: string;
   date: string;
   time: string;
@@ -107,8 +109,331 @@ const NEWS_DATA: NewsItem[] = [
     hostsOrGuest: 'Williams Cruz (Asesor)',
     description: `🏆 En este video te contamos de forma resumida nuestros más de 14 años de experiencia y trayectoria ayudando a familias colombianas a optimizar sus créditos de vivienda y reducir millones en intereses.\n\n🛡️ Un proceso 100% legal bajo la Ley 546 de 1999, seguro, transparente y con total respaldo profesional.`,
     whatsappMessage: 'Hola! Vi el video de los 14 años de trayectoria (Presentacion 3) en la sección de noticias y me gustaría recibir asesoría para mi crédito de vivienda.'
+  },
+  {
+    id: 5,
+    categoryBadge: '🎙️ AUDIO EXPLICATIVO',
+    badgeBg: 'rgba(147, 51, 234, 0.15)',
+    badgeColor: '#9333ea',
+    title: 'Nota de Voz: Claves para Reducir tu Crédito',
+    subtitle: 'Escucha la explicación detallada de Williams Cruz',
+    tabLabel: '5. Audio Explicativo',
+    isAudio: true,
+    isVertical: true,
+    audioUrl: '/audio_1.mpeg',
+    date: 'Asesoría en Audio',
+    time: 'Disponible para escuchar',
+    platform: 'Susfinanzas SAS Oficial',
+    hostsOrGuest: 'Williams Cruz (Asesor Financiero)',
+    description: `🎙️ Escucha esta nota de voz donde te explicamos de manera directa, clara y sencilla cómo funciona el proceso de reducción de plazo en créditos hipotecarios y leasing habitacional bajo la Ley 546 de 1999.\n\n🎧 Dale reproducir para conocer cómo proteger tu dinero, reducir años de deuda y ahorrar millones en intereses bancarios.`,
+    whatsappMessage: 'Hola! Escuché el audio explicativo (Audio 1) en la sección de novedades y me gustaría recibir asesoría para mi crédito de vivienda.'
   }
 ];
+
+// Componente de Reproductor de Audio estilizado para el modal de noticias
+function NewsAudioPlayer({ src }: { src: string }) {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isMuted, setIsMuted] = useState(false);
+  const [playbackRate, setPlaybackRate] = useState(1);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    const updateDuration = () => {
+      if (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) {
+        setDuration(audio.duration);
+      }
+    };
+    const handleEnded = () => {
+      setIsPlaying(false);
+      setCurrentTime(0);
+    };
+
+    audio.addEventListener('timeupdate', updateTime);
+    audio.addEventListener('loadedmetadata', updateDuration);
+    audio.addEventListener('durationchange', updateDuration);
+    audio.addEventListener('ended', handleEnded);
+
+    return () => {
+      audio.removeEventListener('timeupdate', updateTime);
+      audio.removeEventListener('loadedmetadata', updateDuration);
+      audio.removeEventListener('durationchange', updateDuration);
+      audio.removeEventListener('ended', handleEnded);
+    };
+  }, [src]);
+
+  const togglePlay = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      audio.play().then(() => setIsPlaying(true)).catch((err) => console.log('Audio play error:', err));
+    }
+  };
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const newTime = parseFloat(e.target.value);
+    audio.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
+
+  const skipTime = (seconds: number) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.currentTime = Math.max(0, Math.min(audio.duration || 0, audio.currentTime + seconds));
+  };
+
+  const toggleMute = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
+
+  const cyclePlaybackRate = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const rates = [1, 1.25, 1.5, 2];
+    const nextIdx = (rates.indexOf(playbackRate) + 1) % rates.length;
+    const nextRate = rates[nextIdx];
+    audio.playbackRate = nextRate;
+    setPlaybackRate(nextRate);
+  };
+
+  const formatTime = (timeInSec: number) => {
+    if (isNaN(timeInSec) || !isFinite(timeInSec)) return '0:00';
+    const mins = Math.floor(timeInSec / 60);
+    const secs = Math.floor(timeInSec % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  };
+
+  const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const barHeights = [30, 70, 45, 95, 80, 40, 85, 100, 60, 80, 50, 90, 75, 40, 85, 65, 95, 45];
+
+  return (
+    <div
+      className="news-modal-audio-wrapper is-vertical-video-wrapper"
+      style={{
+        position: 'relative',
+        borderRadius: '16px',
+        overflow: 'hidden',
+        boxShadow: '0 8px 25px -4px rgba(0, 0, 0, 0.3)',
+        background: 'linear-gradient(145deg, #0f172a 0%, #1e293b 100%)',
+        border: '1px solid #334155',
+        alignSelf: 'center',
+        width: '100%',
+        maxWidth: '280px',
+        aspectRatio: '9/16',
+        margin: '0 auto',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        padding: '20px 16px',
+        color: '#ffffff',
+        boxSizing: 'border-box'
+      }}
+    >
+      <audio ref={audioRef} src={src} preload="metadata" />
+
+      {/* Top Header */}
+      <div style={{ textAlign: 'center' }}>
+        <div
+          style={{
+            width: '56px',
+            height: '56px',
+            borderRadius: '50%',
+            background: isPlaying ? 'linear-gradient(135deg, #9333ea 0%, #7c3aed 100%)' : 'rgba(255, 255, 255, 0.1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 10px auto',
+            boxShadow: isPlaying ? '0 0 20px rgba(147, 51, 234, 0.6)' : 'none',
+            transition: 'all 0.3s ease'
+          }}
+        >
+          <Headphones size={28} color={isPlaying ? '#ffffff' : '#a855f7'} />
+        </div>
+        <span style={{ fontSize: '11px', fontWeight: '800', color: '#c084fc', textTransform: 'uppercase', letterSpacing: '0.8px', display: 'block' }}>
+          🎙️ Nota de Voz Oficial
+        </span>
+        <h4 style={{ fontSize: '13.5px', fontWeight: '800', color: '#f8fafc', margin: '4px 0 0 0', lineHeight: '1.3' }}>
+          Williams Cruz
+        </h4>
+        <span style={{ fontSize: '10.5px', color: '#94a3b8' }}>Asesor Financiero</span>
+      </div>
+
+      {/* Ecualizador Animado Ultra Fluido */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', height: '42px', padding: '4px 0' }}>
+        {barHeights.map((h, i) => {
+          const animType = (i % 6) + 1;
+          const durationSpeed = (0.35 + ((i * 5) % 5) * 0.08) / playbackRate;
+          const delay = i * 0.035;
+          return (
+            <div
+              key={i}
+              style={{
+                width: '3.5px',
+                borderRadius: '3px',
+                background: isPlaying ? 'linear-gradient(180deg, #c084fc 0%, #9333ea 100%)' : 'rgba(255, 255, 255, 0.2)',
+                height: isPlaying ? undefined : `${(h * 0.3) + 10}%`,
+                animation: isPlaying
+                  ? `newsSmoothEq${animType} ${durationSpeed}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s infinite alternate`
+                  : 'none',
+                transition: isPlaying ? 'none' : 'height 0.3s ease'
+              }}
+            />
+          );
+        })}
+      </div>
+
+      {/* Timeline y Controles */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        {/* Scrubber Bar */}
+        <div>
+          <div style={{ position: 'relative', width: '100%', height: '6px', backgroundColor: 'rgba(255, 255, 255, 0.2)', borderRadius: '3px', cursor: 'pointer', overflow: 'hidden' }}>
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                height: '100%',
+                width: `${progressPercent}%`,
+                background: 'linear-gradient(90deg, #c084fc 0%, #9333ea 100%)',
+                borderRadius: '3px'
+              }}
+            />
+            <input
+              type="range"
+              min="0"
+              max={duration || 100}
+              value={currentTime}
+              onChange={handleSeek}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                opacity: 0,
+                cursor: 'pointer',
+                margin: 0
+              }}
+            />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontWeight: '700', color: '#94a3b8', marginTop: '4px' }}>
+            <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+          <button
+            onClick={() => skipTime(-10)}
+            title="Retroceder 10s"
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: 'none',
+              color: '#ffffff',
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }}
+          >
+            <RotateCcw size={14} />
+          </button>
+
+          <button
+            onClick={togglePlay}
+            style={{
+              background: 'linear-gradient(135deg, #9333ea 0%, #7c3aed 100%)',
+              border: 'none',
+              color: '#ffffff',
+              width: '46px',
+              height: '46px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              boxShadow: '0 4px 15px rgba(147, 51, 234, 0.5)',
+              transform: isPlaying ? 'scale(1.05)' : 'scale(1)',
+              transition: 'all 0.2s ease'
+            }}
+            title={isPlaying ? 'Pausar' : 'Reproducir'}
+          >
+            {isPlaying ? <Pause size={20} /> : <Play size={20} style={{ marginLeft: '2px' }} />}
+          </button>
+
+          <button
+            onClick={() => skipTime(10)}
+            title="Adelantar 10s"
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: 'none',
+              color: '#ffffff',
+              width: '32px',
+              height: '32px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }}
+          >
+            <RotateCw size={14} />
+          </button>
+        </div>
+
+        {/* Bottom controls: Speed & Mute */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '4px', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+          <button
+            onClick={cyclePlaybackRate}
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: 'none',
+              color: '#e2e8f0',
+              padding: '3px 8px',
+              borderRadius: '8px',
+              fontSize: '10px',
+              fontWeight: '800',
+              cursor: 'pointer'
+            }}
+          >
+            {playbackRate}x
+          </button>
+          <button
+            onClick={toggleMute}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: isMuted ? '#ef4444' : '#cbd5e1',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              padding: '2px'
+            }}
+          >
+            {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function NewsModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -130,14 +455,14 @@ export default function NewsModal() {
 
   // 1. Efecto exclusivo para cambio automático de noticias en imágenes
   useEffect(() => {
-    if (!isOpen || isPaused || expandedImage !== null || currentNews.isVideo) return;
+    if (!isOpen || isPaused || expandedImage !== null || currentNews.isVideo || currentNews.isAudio) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % NEWS_DATA.length);
     }, SLIDE_DURATION);
 
     return () => clearInterval(interval);
-  }, [isOpen, isPaused, expandedImage, currentIndex, currentNews.isVideo]);
+  }, [isOpen, isPaused, expandedImage, currentIndex, currentNews.isVideo, currentNews.isAudio]);
 
   // 2. Efecto exclusivo para reproducir el video únicamente cuando se selecciona la noticia de video
   useEffect(() => {
@@ -294,7 +619,7 @@ export default function NewsModal() {
                         borderRadius: '12px'
                       }}
                     >
-                      {currentNews.isVideo ? '▶️ Reproduciendo Video' : '⏸️ Pausado'}
+                      {currentNews.isVideo ? '▶️ Reproduciendo Video' : currentNews.isAudio ? '🎧 Nota de Voz' : '⏸️ Pausado'}
                     </span>
                   )}
                   {NEWS_DATA.length > 1 && (
@@ -371,7 +696,9 @@ export default function NewsModal() {
                           whiteSpace: 'nowrap'
                         }}
                       >
-                        {item.isVideo ? (
+                        {item.isAudio ? (
+                          <Headphones size={13} color={idx === currentIndex ? '#9333ea' : '#94a3b8'} />
+                        ) : item.isVideo ? (
                           <Film size={13} color={idx === currentIndex ? '#10b981' : '#94a3b8'} />
                         ) : (
                           <Sparkles size={13} color={idx === currentIndex ? '#2563eb' : '#94a3b8'} />
@@ -398,8 +725,10 @@ export default function NewsModal() {
                       alignItems: 'center'
                     }}
                   >
-                    {/* Contenedor de Multimedia (Imagen o Video) */}
-                    {currentNews.isVideo ? (
+                    {/* Contenedor de Multimedia (Audio, Imagen o Video) */}
+                    {currentNews.isAudio ? (
+                      <NewsAudioPlayer src={currentNews.audioUrl || '/audio_1.mpeg'} />
+                    ) : currentNews.isVideo ? (
                       <div
                         className={`news-modal-video-wrapper ${currentNews.isVertical ? 'is-vertical-video-wrapper' : ''}`}
                         style={{
@@ -568,7 +897,7 @@ export default function NewsModal() {
                         </div>
 
                         <div className="news-platform-col" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#334155' }}>
-                          {currentNews.isVideo ? <Film size={14} color="#10b981" style={{ flexShrink: 0 }} /> : currentNews.id === 1 ? <Video size={14} color="#ef4444" style={{ flexShrink: 0 }} /> : <Tv size={14} color="#2563eb" style={{ flexShrink: 0 }} />}
+                          {currentNews.isAudio ? <Headphones size={14} color="#9333ea" style={{ flexShrink: 0 }} /> : currentNews.isVideo ? <Film size={14} color="#10b981" style={{ flexShrink: 0 }} /> : currentNews.id === 1 ? <Video size={14} color="#ef4444" style={{ flexShrink: 0 }} /> : <Tv size={14} color="#2563eb" style={{ flexShrink: 0 }} />}
                           <div>
                             <strong style={{ display: 'block', fontSize: '9px', color: '#64748b' }}>CANAL / MEDIO</strong>
                             <span style={{ fontWeight: '700' }}>{currentNews.platform}</span>
@@ -696,7 +1025,7 @@ export default function NewsModal() {
                         >
                           <MessageCircle size={18} />
                           <span>
-                            {currentNews.buttonText ? currentNews.buttonText : (currentNews.isVideo ? 'Revisar Mi Caso por WhatsApp' : 'Más Información')}
+                            {currentNews.buttonText ? currentNews.buttonText : (currentNews.isAudio ? 'Solicitar Asesoría por WhatsApp' : currentNews.isVideo ? 'Revisar Mi Caso por WhatsApp' : 'Más Información')}
                           </span>
                         </a>
                       </div>
@@ -945,6 +1274,37 @@ export default function NewsModal() {
           .news-modal-footer > button {
             width: 100% !important;
           }
+        }
+
+        @keyframes newsSmoothEq1 {
+          0% { height: 18%; }
+          50% { height: 92%; }
+          100% { height: 35%; }
+        }
+        @keyframes newsSmoothEq2 {
+          0% { height: 30%; }
+          50% { height: 15%; }
+          100% { height: 85%; }
+        }
+        @keyframes newsSmoothEq3 {
+          0% { height: 12%; }
+          50% { height: 100%; }
+          100% { height: 48%; }
+        }
+        @keyframes newsSmoothEq4 {
+          0% { height: 50%; }
+          50% { height: 20%; }
+          100% { height: 75%; }
+        }
+        @keyframes newsSmoothEq5 {
+          0% { height: 25%; }
+          50% { height: 80%; }
+          100% { height: 15%; }
+        }
+        @keyframes newsSmoothEq6 {
+          0% { height: 38%; }
+          50% { height: 90%; }
+          100% { height: 55%; }
         }
       `}</style>
     </>
