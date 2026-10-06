@@ -137,7 +137,7 @@ export default function EmpresaPage() {
           </motion.div>
 
           <motion.div {...fadeUp} style={{ display: 'flex', justifyContent: 'center' }}>
-            <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', border: '1px solid var(--border-light)', maxWidth: '320px', width: '100%' }}>
+            <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', border: '1px solid var(--border-light)', maxWidth: '780px', width: '100%' }}>
               <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
                 <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
                 <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
@@ -146,7 +146,7 @@ export default function EmpresaPage() {
                   🏢 Video de Presentación
                 </span>
               </div>
-              <div style={{ position: 'relative', width: '100%', aspectRatio: '9/16', background: '#000000' }}>
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#000000' }}>
                 <video 
                   src="/Presentacion1.mp4" 
                   controls 

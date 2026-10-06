@@ -548,66 +548,66 @@ export default function Home() {
           {/* Videos de Presentación y Testimonios */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px', marginBottom: '48px', width: '100%' }}>
             
-            {/* FILA 1: 3 VIDEOS VERTICALES (9:16) */}
+            {/* FILA 1: VIDEO DE PRESENTACIÓN (HORIZONTAL 16:9) */}
+            <div style={{ width: '100%', maxWidth: '820px', margin: '0 auto' }}>
+              <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                  <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '6px' }}>
+                    🏢 Video de Presentación Institucional
+                  </span>
+                </div>
+                <div 
+                  style={{ 
+                    position: 'relative', 
+                    width: '100%', 
+                    aspectRatio: '16/9',
+                    background: '#000000',
+                  }}
+                >
+                  <video 
+                    src="/Presentacion1.mp4" 
+                    controls 
+                    playsInline
+                    preload="metadata"
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
+                  />
+                </div>
+                {/* Números de Contacto abajo del video */}
+                <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
+                  <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    📞 Asesórate por WhatsApp:
+                  </span>
+                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+                    <a
+                      href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: '#25D366',
+                        color: '#ffffff',
+                        padding: '6px 16px',
+                        borderRadius: '20px',
+                        fontSize: '12px',
+                        fontWeight: '700',
+                        textDecoration: 'none',
+                        boxShadow: 'var(--shadow-sm)',
+                      }}
+                    >
+                      <Phone size={12} /> WhatsApp: 316 977 3057
+                    </a>
+                  </div>
+                </div>
+              </Card3D>
+            </div>
+
+            {/* FILA 2: 2 VIDEOS VERTICALES DE OPINIÓN (9:16) */}
             <div className="video-cards-flex-row">
-              
-              {/* Video 1: Video de Presentación Institucional y Procedimiento (Vertical 9:16) */}
-              <div className="video-card-vertical-wrapper">
-                <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', height: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
-                    <span style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '6px' }}>
-                      🏢 Video de Presentación
-                    </span>
-                  </div>
-                  <div 
-                    style={{ 
-                      position: 'relative', 
-                      width: '100%', 
-                      aspectRatio: '9/16',
-                      background: '#000000',
-                    }}
-                  >
-                    <video 
-                      src="/Presentacion1.mp4" 
-                      controls 
-                      playsInline
-                      preload="metadata"
-                      style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
-                    />
-                  </div>
-                  {/* Números de Contacto abajo del video */}
-                  <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
-                    <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      📞 Asesórate por WhatsApp:
-                    </span>
-                    <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
-                      <a
-                        href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          background: '#25D366',
-                          color: '#ffffff',
-                          padding: '6px 14px',
-                          borderRadius: '20px',
-                          fontSize: '11.5px',
-                          fontWeight: '700',
-                          textDecoration: 'none',
-                          boxShadow: 'var(--shadow-sm)',
-                        }}
-                      >
-                        <Phone size={12} /> WhatsApp: 316 977 3057
-                      </a>
-                    </div>
-                  </div>
-                </Card3D>
-              </div>
 
               {/* Video 2: Local Video Opinión 1 (Vertical - Estilo Reel/Shorts) */}
               <div className="video-card-vertical-wrapper">
