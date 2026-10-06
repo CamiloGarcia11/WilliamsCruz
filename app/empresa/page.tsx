@@ -122,28 +122,28 @@ export default function EmpresaPage() {
       </section>
 
       {/* SECCIÓN VIDEO DE PRESENTACIÓN INSTITUCIONAL */}
-      <section style={{ padding: '60px 0', backgroundColor: 'var(--bg-light)', borderBottom: '1px solid var(--border-light)' }}>
-        <div className="container" style={{ maxWidth: '840px' }}>
-          <motion.div {...fadeUp} style={{ textAlign: 'center', marginBottom: '32px' }}>
+      <section style={{ padding: '70px 0', backgroundColor: 'var(--bg-light)', borderBottom: '1px solid var(--border-light)' }}>
+        <div className="container" style={{ maxWidth: '1080px' }}>
+          <motion.div {...fadeUp} style={{ textAlign: 'center', marginBottom: '36px' }}>
             <span style={{ fontSize: '13px', fontWeight: 'bold', color: 'var(--accent-blue)', letterSpacing: '1px', textTransform: 'uppercase' }}>
               Conoce Más Sobre Nosotros
             </span>
-            <AnimatedTitle style={{ fontSize: '32px', fontWeight: '900', color: 'var(--primary-dark)', marginTop: '8px' }}>
+            <AnimatedTitle style={{ fontSize: '36px', fontWeight: '900', color: 'var(--primary-dark)', marginTop: '8px' }}>
               Video de Presentación
             </AnimatedTitle>
-            <p style={{ color: 'var(--text-medium)', marginTop: '8px', fontSize: '15px' }}>
+            <p style={{ color: 'var(--text-medium)', marginTop: '8px', fontSize: '16px', maxWidth: '680px', margin: '8px auto 0 auto' }}>
               Conoce a Susfinanzas SAS y cómo acompañamos a las familias colombianas a optimizar sus créditos de vivienda.
             </p>
           </motion.div>
 
           <motion.div {...fadeUp} style={{ display: 'flex', justifyContent: 'center' }}>
-            <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', border: '1px solid var(--border-light)', maxWidth: '780px', width: '100%' }}>
-              <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
-                <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px' }}>
-                  🏢 Video de Presentación
+            <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', border: '1px solid var(--border-light)', maxWidth: '980px', width: '100%', borderRadius: '20px', boxShadow: '0 20px 40px -15px rgba(0,0,0,0.15)' }}>
+              <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                <span style={{ fontSize: '14px', fontWeight: '800', color: 'var(--primary-dark)', marginLeft: '8px' }}>
+                  🏢 Video de Presentación Institucional
                 </span>
               </div>
               <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#000000' }}>
@@ -157,8 +157,8 @@ export default function EmpresaPage() {
               </div>
 
               {/* Botón de WhatsApp debajo del video */}
-              <div style={{ padding: '16px 12px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
-                <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+              <div style={{ padding: '18px 16px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+                <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                   📞 Asesórate Ahora por WhatsApp:
                 </span>
                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
@@ -169,18 +169,18 @@ export default function EmpresaPage() {
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      gap: '6px',
+                      gap: '8px',
                       background: '#25D366',
                       color: '#ffffff',
-                      padding: '8px 18px',
-                      borderRadius: '20px',
-                      fontSize: '13px',
-                      fontWeight: '700',
+                      padding: '10px 24px',
+                      borderRadius: '24px',
+                      fontSize: '14px',
+                      fontWeight: '800',
                       textDecoration: 'none',
                       boxShadow: 'var(--shadow-sm)',
                     }}
                   >
-                    <Phone size={14} /> WhatsApp: 316 977 3057
+                    <Phone size={15} /> WhatsApp: 316 977 3057
                   </a>
                 </div>
               </div>

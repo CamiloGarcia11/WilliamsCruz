@@ -549,7 +549,7 @@ export default function Home() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px', marginBottom: '48px', width: '100%' }}>
             
             {/* FILA 1: VIDEO DE PRESENTACIÓN (HORIZONTAL 16:9) */}
-            <div style={{ width: '100%', maxWidth: '820px', margin: '0 auto' }}>
+            <div style={{ width: '100%', maxWidth: '980px', margin: '0 auto' }}>
               <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
                   <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
