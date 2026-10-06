@@ -14,7 +14,7 @@ export default function FloatingWhatsapp() {
   const [celular, setCelular] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const whatsappNumber = '573155030333'; // Celular de Williams Cruz
+  const whatsappNumber = '573169773057'; // Celular y WhatsApp de Williams Cruz
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -34,7 +34,7 @@ export default function FloatingWhatsapp() {
       await saveLeadToFirebase({
         nombre,
         celular,
-        correo: 'williamscruzsusfinanzs@gmail.com',
+        correo: 'williamscruzsusfinanzas@gmail.com',
         tipoSociedad: 'Contacto Directo WhatsApp',
         banco: 'No especificado',
         modalidad: 'No especificado',

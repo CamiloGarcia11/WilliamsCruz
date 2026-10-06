@@ -52,7 +52,7 @@ export default function AsesoriaCredito() {
 
             <ButtonPulse
               variant="primary"
-              onClick={() => window.open('https://wa.me/573155030333?text=Hola Williams! Me interesa la asesor%C3%ADa para cr%C3%A9dito de vivienda con Banco Caja Social.', '_blank')}
+              onClick={() => window.open('https://wa.me/573169773057?text=Hola Williams! Me interesa la asesor%C3%ADa para cr%C3%A9dito de vivienda con Banco Caja Social.', '_blank')}
               style={{ marginTop: '8px' }}
             >
               Solicitar Asesoría Gratuita <MessageCircle size={18} />
@@ -236,7 +236,7 @@ export default function AsesoriaCredito() {
             <ButtonPulse
               variant="primary"
               pulse={true}
-              onClick={() => window.open('https://wa.me/573155030333?text=Hola Williams! Me interesa la asesor%C3%ADa para cr%C3%A9dito de vivienda con Banco Caja Social.', '_blank')}
+              onClick={() => window.open('https://wa.me/573169773057?text=Hola Williams! Me interesa la asesor%C3%ADa para cr%C3%A9dito de vivienda con Banco Caja Social.', '_blank')}
               style={{
                 background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                 color: '#ffffff',

@@ -129,10 +129,10 @@ export default function EmpresaPage() {
               Conoce Más Sobre Nosotros
             </span>
             <AnimatedTitle style={{ fontSize: '32px', fontWeight: '900', color: 'var(--primary-dark)', marginTop: '8px' }}>
-              Video de Presentación y Procedimiento
+              Video de Presentación
             </AnimatedTitle>
             <p style={{ color: 'var(--text-medium)', marginTop: '8px', fontSize: '15px' }}>
-              Descubre en este video cómo funciona Susfinanzas SAS y nuestro procedimiento legal amparado en la Ley 546 de 1999.
+              Conoce a Susfinanzas SAS y cómo acompañamos a las familias colombianas a optimizar sus créditos de vivienda.
             </p>
           </motion.div>
 
@@ -143,12 +143,12 @@ export default function EmpresaPage() {
                 <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
                 <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
                 <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px' }}>
-                  🏢 Presentación y Procedimiento
+                  🏢 Video de Presentación
                 </span>
               </div>
               <div style={{ position: 'relative', width: '100%', aspectRatio: '9/16', background: '#000000' }}>
                 <video 
-                  src="/Video_presenta.mp4" 
+                  src="/Presentacion1.mp4" 
                   controls 
                   playsInline
                   preload="metadata"
@@ -156,32 +156,12 @@ export default function EmpresaPage() {
                 />
               </div>
 
-              {/* Botones de Teléfono / WhatsApp debajo del video */}
+              {/* Botón de WhatsApp debajo del video */}
               <div style={{ padding: '16px 12px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
                 <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                   📞 Asesórate Ahora por WhatsApp:
                 </span>
                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
-                  <a
-                    href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      background: '#25D366',
-                      color: '#ffffff',
-                      padding: '6px 12px',
-                      borderRadius: '20px',
-                      fontSize: '12px',
-                      fontWeight: '700',
-                      textDecoration: 'none',
-                      boxShadow: 'var(--shadow-sm)',
-                    }}
-                  >
-                    <Phone size={13} /> 315 503 0333
-                  </a>
                   <a
                     href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
                     target="_blank"
@@ -192,15 +172,15 @@ export default function EmpresaPage() {
                       gap: '6px',
                       background: '#25D366',
                       color: '#ffffff',
-                      padding: '6px 12px',
+                      padding: '8px 18px',
                       borderRadius: '20px',
-                      fontSize: '12px',
+                      fontSize: '13px',
                       fontWeight: '700',
                       textDecoration: 'none',
                       boxShadow: 'var(--shadow-sm)',
                     }}
                   >
-                    <Phone size={13} /> 316 977 3057
+                    <Phone size={14} /> WhatsApp: 316 977 3057
                   </a>
                 </div>
               </div>
@@ -352,19 +332,71 @@ export default function EmpresaPage() {
         </div>
       </section>
 
-      {/* 4. LOS 2 SERVICIOS QUE PRESTA SUSFINANZAS SAS */}
+      {/* 4. LOS 2 SERVICIOS QUE PRESTA SUSFINANZAS SAS Y VIDEO EXPLICATIVO */}
       <section style={{ padding: '80px 0', backgroundColor: 'var(--bg-white)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="container">
-          <motion.div {...fadeUp} style={{ textAlign: 'center', marginBottom: '50px' }}>
+          <motion.div {...fadeUp} style={{ textAlign: 'center', marginBottom: '36px' }}>
             <span style={{ fontSize: '13px', fontWeight: 'bold', color: 'var(--accent-blue)', letterSpacing: '1px', textTransform: 'uppercase' }}>
-              Portafolio Oficial
+              Procedimiento y Servicios
             </span>
             <AnimatedTitle style={{ fontSize: '32px', fontWeight: '900', color: 'var(--primary-dark)', marginTop: '8px' }}>
-              ¿Qué hace Susfinanzas SAS? Los 2 Servicios Oficiales
+              ¿Qué es lo que hace la empresa?
             </AnimatedTitle>
             <p style={{ color: 'var(--text-light)', marginTop: '8px', maxWidth: '650px', margin: '8px auto 0 auto' }}>
-              Asesoramos a las familias sobre sus créditos de vivienda o leasing habitacionales para mejorar sustancialmente sus condiciones.
+              Descubre en este video cómo funciona Susfinanzas SAS y nuestro procedimiento legal amparado en la Ley 546 de 1999.
             </p>
+          </motion.div>
+
+          {/* Video Explicativo: Lo que mayormente hace la empresa */}
+          <motion.div {...fadeUp} style={{ display: 'flex', justifyContent: 'center', marginBottom: '48px' }}>
+            <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', border: '1px solid var(--border-light)', maxWidth: '320px', width: '100%' }}>
+              <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px' }}>
+                  🎥 Explicación: ¿Qué hace Susfinanzas?
+                </span>
+              </div>
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '9/16', background: '#000000' }}>
+                <video 
+                  src="/Video_presenta.mp4" 
+                  controls 
+                  playsInline
+                  preload="metadata"
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
+                />
+              </div>
+
+              {/* Botón de WhatsApp debajo del video */}
+              <div style={{ padding: '16px 12px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+                <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  📞 Asesórate Ahora por WhatsApp:
+                </span>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+                  <a
+                    href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20explicativo%20de%20lo%20que%20hace%20la%20empresa%20y%20deseo%20asesor%C3%ADa."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      background: '#25D366',
+                      color: '#ffffff',
+                      padding: '8px 18px',
+                      borderRadius: '20px',
+                      fontSize: '13px',
+                      fontWeight: '700',
+                      textDecoration: 'none',
+                      boxShadow: 'var(--shadow-sm)',
+                    }}
+                  >
+                    <Phone size={14} /> WhatsApp: 316 977 3057
+                  </a>
+                </div>
+              </div>
+            </Card3D>
           </motion.div>
 
           <div className="grid-2">

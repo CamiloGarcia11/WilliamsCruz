@@ -60,7 +60,7 @@ export default function Home() {
                   color: 'var(--accent-blue)',
                 }}
               >
-                <Sparkles size={16} /> Williams Cruz | Asesor Financiero
+                <Sparkles size={16} /> Williams Cruz | Asesor Financiero en Reducción Hipotecaria
               </div>
 
               <AnimatedTitle
@@ -559,7 +559,7 @@ export default function Home() {
                     <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
                     <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
                     <span style={{ fontSize: '12.5px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '6px' }}>
-                      🏢 Presentación y Procedimiento
+                      🏢 Video de Presentación
                     </span>
                   </div>
                   <div 
@@ -571,7 +571,7 @@ export default function Home() {
                     }}
                   >
                     <video 
-                      src="/Video_presenta.mp4" 
+                      src="/Presentacion1.mp4" 
                       controls 
                       playsInline
                       preload="metadata"
@@ -585,26 +585,6 @@ export default function Home() {
                     </span>
                     <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
                       <a
-                        href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          background: '#25D366',
-                          color: '#ffffff',
-                          padding: '5px 10px',
-                          borderRadius: '20px',
-                          fontSize: '11.5px',
-                          fontWeight: '700',
-                          textDecoration: 'none',
-                          boxShadow: 'var(--shadow-sm)',
-                        }}
-                      >
-                        <Phone size={12} /> 315 503 0333
-                      </a>
-                      <a
                         href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20presentaci%C3%B3n%20y%20deseo%20asesor%C3%ADa."
                         target="_blank"
                         rel="noopener noreferrer"
@@ -614,7 +594,7 @@ export default function Home() {
                           gap: '4px',
                           background: '#25D366',
                           color: '#ffffff',
-                          padding: '5px 10px',
+                          padding: '6px 14px',
                           borderRadius: '20px',
                           fontSize: '11.5px',
                           fontWeight: '700',
@@ -622,7 +602,7 @@ export default function Home() {
                           boxShadow: 'var(--shadow-sm)',
                         }}
                       >
-                        <Phone size={12} /> 316 977 3057
+                        <Phone size={12} /> WhatsApp: 316 977 3057
                       </a>
                     </div>
                   </div>
@@ -632,7 +612,7 @@ export default function Home() {
               {/* Video 2: Local Video Opinión 1 (Vertical - Estilo Reel/Shorts) */}
               <div className="video-card-vertical-wrapper">
                 <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', height: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                  <div style={{ padding: '14px 16px', borderTop: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
                     <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
                     <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
                     <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
@@ -663,26 +643,6 @@ export default function Home() {
                     </span>
                     <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
                       <a
-                        href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20opini%C3%B3n%20sobre%20el%20estudio%20de%20hipoteca%20y%20deseo%20asesor%C3%ADa."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          background: '#25D366',
-                          color: '#ffffff',
-                          padding: '5px 10px',
-                          borderRadius: '20px',
-                          fontSize: '11.5px',
-                          fontWeight: '700',
-                          textDecoration: 'none',
-                          boxShadow: 'var(--shadow-sm)',
-                        }}
-                      >
-                        <Phone size={12} /> 315 503 0333
-                      </a>
-                      <a
                         href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20opini%C3%B3n%20sobre%20el%20estudio%20de%20hipoteca%20y%20deseo%20asesor%C3%ADa."
                         target="_blank"
                         rel="noopener noreferrer"
@@ -692,7 +652,7 @@ export default function Home() {
                           gap: '4px',
                           background: '#25D366',
                           color: '#ffffff',
-                          padding: '5px 10px',
+                          padding: '6px 14px',
                           borderRadius: '20px',
                           fontSize: '11.5px',
                           fontWeight: '700',
@@ -700,7 +660,7 @@ export default function Home() {
                           boxShadow: 'var(--shadow-sm)',
                         }}
                       >
-                        <Phone size={12} /> 316 977 3057
+                        <Phone size={12} /> WhatsApp: 316 977 3057
                       </a>
                     </div>
                   </div>
@@ -741,26 +701,6 @@ export default function Home() {
                     </span>
                     <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
                       <a
-                        href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20opini%C3%B3n%20sobre%20el%20ahorro%20logrado%20y%20deseo%20asesor%C3%ADa."
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          background: '#25D366',
-                          color: '#ffffff',
-                          padding: '5px 10px',
-                          borderRadius: '20px',
-                          fontSize: '11.5px',
-                          fontWeight: '700',
-                          textDecoration: 'none',
-                          boxShadow: 'var(--shadow-sm)',
-                        }}
-                      >
-                        <Phone size={12} /> 315 503 0333
-                      </a>
-                      <a
                         href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20opini%C3%B3n%20sobre%20el%20ahorro%20logrado%20y%20deseo%20asesor%C3%ADa."
                         target="_blank"
                         rel="noopener noreferrer"
@@ -770,7 +710,7 @@ export default function Home() {
                           gap: '4px',
                           background: '#25D366',
                           color: '#ffffff',
-                          padding: '5px 10px',
+                          padding: '6px 14px',
                           borderRadius: '20px',
                           fontSize: '11.5px',
                           fontWeight: '700',
@@ -778,7 +718,7 @@ export default function Home() {
                           boxShadow: 'var(--shadow-sm)',
                         }}
                       >
-                        <Phone size={12} /> 316 977 3057
+                        <Phone size={12} /> WhatsApp: 316 977 3057
                       </a>
                     </div>
                   </div>
@@ -823,7 +763,7 @@ export default function Home() {
                       📞 Consulta sobre este video:
                     </span>
                     <a
-                      href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20la%20entrevista%20en%20CityTV%20con%20Carlos%20Puyo%20y%20me%20gustar%C3%ADa%20revisar%20mi%20caso%20para%20acceder%20a%20los%20beneficios%20de%20la%20Ley%20de%20Vivienda."
+                      href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20la%20entrevista%20en%20CityTV%20con%20Carlos%20Puyo%20y%20me%20gustar%C3%ADa%20revisar%20mi%20caso%20para%20acceder%20a%20los%20beneficios%20de%20la%20Ley%20de%20Vivienda."
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -882,7 +822,7 @@ export default function Home() {
                       📈 Resultados de reducción de plazo:
                     </span>
                     <a
-                      href="https://wa.me/573155030333?text=Hola!%20Vi%20el%20video%20de%20testimonio%20y%20deseo%20asesor%C3%ADa."
+                      href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20testimonio%20y%20deseo%20asesor%C3%ADa."
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
@@ -969,7 +909,7 @@ export default function Home() {
                       💬 Consulta caso similar:
                     </span>
                     <a
-                      href={`https://wa.me/573155030333?text=${encodeURIComponent(`Hola! Vi la opinión de ${t.nombre} sobre su caso con el banco ${t.banco} (Ahorro: ${t.ahorro}) y me gustaría recibir asesoría.`)}`}
+                      href={`https://wa.me/573169773057?text=${encodeURIComponent(`Hola! Vi la opinión de ${t.nombre} sobre su caso con el banco ${t.banco} (Ahorro: ${t.ahorro}) y me gustaría recibir asesoría.`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{

@@ -690,27 +690,6 @@ export default function AudioPlayerCard({
           </span>
           <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
             <a
-              href={`https://wa.me/573155030333?text=${encodeURIComponent(whatsappMessage)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                background: '#25D366',
-                color: '#ffffff',
-                padding: '8px 16px',
-                borderRadius: '24px',
-                fontSize: '13px',
-                fontWeight: '800',
-                textDecoration: 'none',
-                boxShadow: '0 4px 12px rgba(37, 211, 102, 0.3)',
-                transition: 'transform 0.2s ease',
-              }}
-            >
-              <Phone size={14} /> WhatsApp: 315 503 0333
-            </a>
-            <a
               href={`https://wa.me/573169773057?text=${encodeURIComponent(whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -720,7 +699,7 @@ export default function AudioPlayerCard({
                 gap: '6px',
                 background: '#25D366',
                 color: '#ffffff',
-                padding: '8px 16px',
+                padding: '8px 20px',
                 borderRadius: '24px',
                 fontSize: '13px',
                 fontWeight: '800',

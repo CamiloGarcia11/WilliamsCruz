@@ -40,12 +40,30 @@ interface NewsItem {
 const NEWS_DATA: NewsItem[] = [
   {
     id: 1,
+    categoryBadge: '🎯 PRESENTACIÓN & NOVEDAD',
+    badgeBg: 'rgba(59, 130, 246, 0.15)',
+    badgeColor: '#2563eb',
+    title: '¡Descubre Susfinanzas SAS & Williams Cruz!',
+    subtitle: 'Soluciones Inteligentes en Reducción de Créditos de Vivienda',
+    tabLabel: '1. Presentación',
+    image: '/comercial1.jpeg',
+    date: 'Presentación Oficial',
+    time: 'Novedad Destacada',
+    platform: 'Susfinanzas SAS - Williams Cruz',
+    hostsOrGuest: 'Susfinanzas SAS & Williams Cruz',
+    description: `🌟 Te damos la bienvenida a Susfinanzas SAS. Asesoramos y gestionamos ante las entidades bancarias la aplicación de la Ley de Vivienda (Ley 546 de 1999) para reducir el plazo de créditos hipotecarios o leasing habitacional.\n\n👉 Pasa a la siguiente sección para conocer nuestras convocatorias, casos de éxito y videos explicativos.`,
+    whatsappMessage: 'Hola! Vi la presentación en la sección de novedades de Susfinanzas SAS y deseo más información.',
+    buttonText: 'Más información por WhatsApp',
+    isVertical: true
+  },
+  {
+    id: 2,
     categoryBadge: '🚀 CONVOCATORIA COMERCIAL',
     badgeBg: 'rgba(245, 158, 11, 0.15)',
     badgeColor: '#d97706',
     title: '¡Únete al Equipo Comercial de Susfinanzas SAS!',
     subtitle: 'Convocatoria Abierta para Asesores Financieros',
-    tabLabel: '1. Convocatoria Comercial',
+    tabLabel: '2. Convocatoria Comercial',
     image: '/comercial.jpeg',
     date: 'Convocatoria Abierta',
     time: 'Horario Flexible / Cobertura Nacional',
@@ -57,13 +75,13 @@ const NEWS_DATA: NewsItem[] = [
     isVertical: true
   },
   {
-    id: 2,
+    id: 3,
     categoryBadge: '🎬 CASO DE ÉXITO',
     badgeBg: 'rgba(59, 130, 246, 0.12)',
     badgeColor: '#2563eb',
     title: 'Estudio de Caso: Reducción Hipotecaria Real',
     subtitle: 'Presentación de un caso de éxito con ahorros reales',
-    tabLabel: '2. Caso de Éxito',
+    tabLabel: '3. Caso de Éxito',
     isVideo: true,
     isVertical: true,
     videoUrl: '/Presentacion__1.mp4',
@@ -72,16 +90,16 @@ const NEWS_DATA: NewsItem[] = [
     platform: 'Susfinanzas SAS',
     hostsOrGuest: 'Williams Cruz (Asesor)',
     description: `🎬 Analizamos cómo logramos aplicar la Ley de Vivienda para reducir los años de deuda y ahorrar millones de intereses a una familia colombiana.\n\n🏡 Descubre cómo el proceso es transparente, legal y directo con el banco actual.`,
-    whatsappMessage: 'Hola! Vi el video del Caso de Éxito (Presentacion 1) en la sección de noticias y me gustaría recibir asesoría.'
+    whatsappMessage: 'Hola! Vi el video del Caso de Éxito en la sección de noticias y me gustaría recibir asesoría.'
   },
   {
-    id: 3,
+    id: 4,
     categoryBadge: '⚠️ ERROR COMÚN',
     badgeBg: 'rgba(239, 68, 68, 0.12)',
     badgeColor: '#ef4444',
     title: 'El Error que Cometen al Pagar una Hipoteca',
     subtitle: 'Evita cometer este costoso error en tu crédito',
-    tabLabel: '3. El Error Más Común',
+    tabLabel: '4. El Error Más Común',
     isVideo: true,
     isVertical: true,
     videoUrl: '/Presentacion__2.mp4',
@@ -90,16 +108,16 @@ const NEWS_DATA: NewsItem[] = [
     platform: 'Susfinanzas SAS',
     hostsOrGuest: 'Williams Cruz (Asesor)',
     description: `⚠️ En este video te explico el error más común que cometen las personas al realizar abonos o pagar su crédito de vivienda sin una planeación estratégica.\n\n💡 Aprende a proteger tu dinero y a pagar tu crédito de forma inteligente y legal.`,
-    whatsappMessage: 'Hola! Vi el video sobre el error más común (Presentacion 2) en la sección de noticias y me gustaría saber cómo evitarlo en mi crédito.'
+    whatsappMessage: 'Hola! Vi el video sobre el error más común en la sección de noticias y me gustaría saber cómo evitarlo en mi crédito.'
   },
   {
-    id: 4,
+    id: 5,
     categoryBadge: '🏆 14 AÑOS DE TRAYECTORIA',
     badgeBg: 'rgba(16, 185, 129, 0.15)',
     badgeColor: '#059669',
     title: '14 Años Transformando Créditos de Vivienda',
     subtitle: 'Nuestra trayectoria y compromiso con las familias colombianas',
-    tabLabel: '4. 14 Años de Trayectoria',
+    tabLabel: '5. 14 Años de Trayectoria',
     isVideo: true,
     isVertical: true,
     videoUrl: '/Presentacion_3.mp4',
@@ -108,16 +126,16 @@ const NEWS_DATA: NewsItem[] = [
     platform: 'Susfinanzas SAS Oficial',
     hostsOrGuest: 'Williams Cruz (Asesor)',
     description: `🏆 En este video te contamos de forma resumida nuestros más de 14 años de experiencia y trayectoria ayudando a familias colombianas a optimizar sus créditos de vivienda y reducir millones en intereses.\n\n🛡️ Un proceso 100% legal bajo la Ley 546 de 1999, seguro, transparente y con total respaldo profesional.`,
-    whatsappMessage: 'Hola! Vi el video de los 14 años de trayectoria (Presentacion 3) en la sección de noticias y me gustaría recibir asesoría para mi crédito de vivienda.'
+    whatsappMessage: 'Hola! Vi el video de los 14 años de trayectoria en la sección de noticias y me gustaría recibir asesoría para mi crédito de vivienda.'
   },
   {
-    id: 5,
+    id: 6,
     categoryBadge: '🎙️ AUDIO EXPLICATIVO',
     badgeBg: 'rgba(147, 51, 234, 0.15)',
     badgeColor: '#9333ea',
     title: 'Nota de Voz: Claves para Reducir tu Crédito',
     subtitle: 'Escucha la explicación detallada de Williams Cruz',
-    tabLabel: '5. Audio Explicativo',
+    tabLabel: '6. Audio Explicativo',
     isAudio: true,
     isVertical: true,
     audioUrl: '/audio_1.mpeg',
@@ -126,7 +144,7 @@ const NEWS_DATA: NewsItem[] = [
     platform: 'Susfinanzas SAS Oficial',
     hostsOrGuest: 'Williams Cruz (Asesor Financiero)',
     description: `🎙️ Escucha esta nota de voz donde te explicamos de manera directa, clara y sencilla cómo funciona el proceso de reducción de plazo en créditos hipotecarios y leasing habitacional bajo la Ley 546 de 1999.\n\n🎧 Dale reproducir para conocer cómo proteger tu dinero, reducir años de deuda y ahorrar millones en intereses bancarios.`,
-    whatsappMessage: 'Hola! Escuché el audio explicativo (Audio 1) en la sección de novedades y me gustaría recibir asesoría para mi crédito de vivienda.'
+    whatsappMessage: 'Hola! Escuché el audio explicativo en la sección de novedades y me gustaría recibir asesoría para mi crédito de vivienda.'
   }
 ];
 
@@ -1003,7 +1021,7 @@ export default function NewsModal() {
                         )}
 
                         <a
-                          href={`https://wa.me/573155030333?text=${encodeURIComponent(currentNews.whatsappMessage)}`}
+                          href={`https://wa.me/573169773057?text=${encodeURIComponent(currentNews.whatsappMessage)}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{

@@ -47,7 +47,7 @@ export default function SegurosPage() {
 
             <ButtonPulse
               variant="primary"
-              onClick={() => window.open('https://wa.me/573155030333?text=Hola Williams! Me interesa la auditor%C3%ADa de seguros de mi cr%C3%A9dito hipotecario.', '_blank')}
+              onClick={() => window.open('https://wa.me/573169773057?text=Hola Williams! Me interesa la auditor%C3%ADa de seguros de mi cr%C3%A9dito hipotecario.', '_blank')}
               style={{ marginTop: '4px' }}
             >
               Solicitar Auditoría de Seguros <Search size={18} />
@@ -250,7 +250,7 @@ export default function SegurosPage() {
             <ButtonPulse
               variant="primary"
               pulse={true}
-              onClick={() => window.open('https://wa.me/573155030333?text=Hola Williams! Me interesa la auditor%C3%ADa de seguros de mi cr%C3%A9dito hipotecario.', '_blank')}
+              onClick={() => window.open('https://wa.me/573169773057?text=Hola Williams! Me interesa la auditor%C3%ADa de seguros de mi cr%C3%A9dito hipotecario.', '_blank')}
               style={{
                 background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
                 color: '#ffffff',

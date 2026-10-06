@@ -888,7 +888,7 @@ export default function SimuladorAhorro() {
                       `Hola Williams! He realizado la simulación de mi extracto en tu web para el banco ${banco} y acabo de subir mi PDF para el análisis formal.\n\n` +
                       `Mi saldo de deuda es de ${formatCurrency(Number(saldoCapital))}. Mi nombre es ${nombre}.`
                     );
-                    window.open(`https://wa.me/573155030333?text=${message}`, '_blank');
+                    window.open(`https://wa.me/573169773057?text=${message}`, '_blank');
                   }}
                   style={{
                     width: '100%',
