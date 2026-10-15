@@ -581,7 +581,7 @@ export default function EmpresaPage() {
 
           <div style={{ textAlign: 'center', marginTop: '50px' }}>
             <ButtonPulse variant="primary" onClick={() => window.location.href = '/simulador'}>
-              Simular mi Ahorro Ahora <ArrowRight size={18} />
+              Auditar mi Extracto Gratis <ArrowRight size={18} />
             </ButtonPulse>
           </div>
         </div>

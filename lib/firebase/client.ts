@@ -14,6 +14,8 @@ export interface Lead {
   extractoBase64?: string;
   tienePdf?: boolean;
   // Campos financieros adicionales
+  abonoInteligente?: string;
+  cuotaActual?: string;
   valorDesembolso?: number;
   saldoCapital?: number;
   plazoTotalMeses?: number;

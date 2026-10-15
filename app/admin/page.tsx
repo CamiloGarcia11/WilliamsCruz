@@ -74,19 +74,28 @@ const rowStyle: React.CSSProperties = {
 };
 
 const openBase64PDF = (base64String: string, clientName: string) => {
-  const newWindow = window.open();
-  if (newWindow) {
-    newWindow.document.write(
-      `<html>
-        <head>
-          <title>Extracto - ${clientName}</title>
-          <style>body{margin:0;padding:0;background:#333;overflow:hidden;}</style>
-        </head>
-        <body>
-          <iframe src="${base64String}" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>
-        </body>
-      </html>`
-    );
+  try {
+    let mimeType = 'application/pdf';
+    if (base64String.startsWith('data:image/jpeg') || base64String.startsWith('data:image/jpg')) {
+      mimeType = 'image/jpeg';
+    } else if (base64String.startsWith('data:image/png')) {
+      mimeType = 'image/png';
+    } else if (base64String.startsWith('data:image/webp')) {
+      mimeType = 'image/webp';
+    }
+    const cleanBase64 = base64String.includes(',') ? base64String.split(',')[1] : base64String;
+    const byteCharacters = atob(cleanBase64);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: mimeType });
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, '_blank');
+  } catch (err) {
+    console.error('Error al abrir extracto:', err);
+    alert('No se pudo procesar el archivo localmente.');
   }
 };
 
@@ -462,7 +471,7 @@ export default function AdminPage() {
               Panel de Control de Asesoría
             </h1>
             <p style={{ fontSize: '13.5px', color: 'var(--text-light)', marginTop: '4px', margin: 0 }}>
-              Revisa los leads capturados en el simulador y las citas agendadas de Williams Cruz.
+              Revisa los prospectos de auditoría de extractos bancarios y las citas agendadas de Williams Cruz.
             </p>
           </div>
 
@@ -532,7 +541,7 @@ export default function AdminPage() {
           <div style={cardStyle}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
               <div>
-                <span style={{ fontSize: '12px', fontWeight: 'bold', color: 'var(--text-light)', textTransform: 'uppercase' }}>Extractos PDF subidos</span>
+                <span style={{ fontSize: '12px', fontWeight: 'bold', color: 'var(--text-light)', textTransform: 'uppercase' }}>Extractos subidos</span>
                 <h3 style={{ fontSize: '32px', fontWeight: '900', color: 'var(--primary-dark)', margin: '8px 0 0 0' }}>{leads.filter(l => l.extractoUrl || l.tienePdf || l.extractoBase64).length}</h3>
                 <p style={{ fontSize: '11px', color: 'var(--text-light)', margin: '6px 0 0 0', fontWeight: '600' }}>
                   📂 Guardados en BD / Storage
@@ -578,7 +587,7 @@ export default function AdminPage() {
                 transition: 'var(--transition-smooth)'
               }}
             >
-              Leads del Simulador ({leads.length})
+              Auditorías y Leads ({leads.length})
             </button>
             <button
               onClick={() => { setActiveTab('agendas'); setSearchTerm(''); setStatusFilter('todos'); }}
@@ -708,6 +717,7 @@ export default function AdminPage() {
                           </select>
                         </div>
 
+                        {/* Botón Ver PDF Directo */}
                         {lead.extractoUrl ? (
                           <a
                             href={lead.extractoUrl}
@@ -716,58 +726,69 @@ export default function AdminPage() {
                             style={{
                               padding: '8px 12px',
                               borderRadius: '8px',
-                              background: 'rgba(34, 197, 94, 0.08)',
+                              background: 'rgba(34, 197, 94, 0.1)',
                               color: '#16a34a',
                               fontSize: '12px',
                               fontWeight: '700',
                               textDecoration: 'none',
                               display: 'flex',
                               alignItems: 'center',
-                              gap: '4px'
+                              gap: '4px',
+                              border: '1px solid rgba(34, 197, 94, 0.25)'
                             }}
                           >
-                            <FileText size={14} /> Ver PDF <ExternalLink size={11} />
+                            <FileText size={14} /> Ver Extracto <ExternalLink size={11} />
                           </a>
                         ) : (lead.tienePdf || lead.extractoBase64) ? (
-                          <button
-                            onClick={async (e) => {
-                              const btn = e.currentTarget;
-                              const originalText = btn.innerHTML;
-                              btn.disabled = true;
-                              btn.innerHTML = '<span style="font-size:11px;font-weight:normal">Cargando...</span>';
-                              try {
-                                const pdfBase64 = lead.extractoBase64 || await getLeadPdfFromFirebase(lead.id!);
-                                if (pdfBase64) {
-                                  openBase64PDF(pdfBase64, lead.nombre);
+                          lead.id && !isNaN(Number(lead.id)) ? (
+                            <a
+                              href={`/api/leads/${lead.id}/pdf`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                padding: '8px 12px',
+                                borderRadius: '8px',
+                                background: 'rgba(34, 197, 94, 0.1)',
+                                color: '#16a34a',
+                                fontSize: '12px',
+                                fontWeight: '700',
+                                textDecoration: 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                border: '1px solid rgba(34, 197, 94, 0.25)'
+                              }}
+                            >
+                              <FileText size={14} /> Ver Extracto <ExternalLink size={11} />
+                            </a>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                if (lead.extractoBase64) {
+                                  openBase64PDF(lead.extractoBase64, lead.nombre);
                                 } else {
-                                  alert('No se pudo cargar el archivo PDF del servidor.');
+                                  alert('Extracto no disponible');
                                 }
-                              } catch (err) {
-                                console.error(err);
-                                alert('Error al recuperar el archivo PDF.');
-                              } finally {
-                                btn.disabled = false;
-                                btn.innerHTML = originalText;
-                              }
-                            }}
-                            style={{
-                              padding: '8px 12px',
-                              borderRadius: '8px',
-                              background: 'rgba(59, 130, 246, 0.08)',
-                              color: 'var(--accent-blue)',
-                              fontSize: '12px',
-                              fontWeight: '700',
-                              border: 'none',
-                              cursor: 'pointer',
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '4px'
-                            }}
-                          >
-                            <FileText size={14} /> Ver PDF <ExternalLink size={11} />
-                          </button>
+                              }}
+                              style={{
+                                padding: '8px 12px',
+                                borderRadius: '8px',
+                                background: 'rgba(34, 197, 94, 0.1)',
+                                color: '#16a34a',
+                                fontSize: '12px',
+                                fontWeight: '700',
+                                border: '1px solid rgba(34, 197, 94, 0.25)',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '4px'
+                              }}
+                            >
+                              <FileText size={14} /> Ver Extracto <ExternalLink size={11} />
+                            </button>
+                          )
                         ) : (
-                          <span style={{ fontSize: '11px', color: 'var(--text-light)', padding: '6px 10px', background: 'var(--bg-light)', borderRadius: '6px' }}>Sin PDF</span>
+                          <span style={{ fontSize: '11px', color: 'var(--text-light)', padding: '6px 10px', background: 'var(--bg-light)', borderRadius: '6px' }}>Sin Extracto</span>
                         )}
                         <button
                           onClick={() => setExpandedLead(isExpanded ? null : (lead.id || null))}
@@ -811,10 +832,15 @@ export default function AdminPage() {
                     {isExpanded && (
                       <div style={{ borderTop: '1px solid var(--border-light)', marginTop: '16px', paddingTop: '16px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
                         
-                        {/* Datos de contacto */}
+                        {/* Datos de contacto y crédito */}
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                          <h4 style={{ fontSize: '12.5px', fontWeight: '800', color: 'var(--text-light)', textTransform: 'uppercase', margin: '0 0 6px 0' }}>Información de Contacto</h4>
+                          <h4 style={{ fontSize: '12.5px', fontWeight: '800', color: 'var(--text-light)', textTransform: 'uppercase', margin: '0 0 6px 0' }}>Información de la Persona y Crédito</h4>
                           
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px' }}>
+                            <User size={15} color="var(--text-light)" />
+                            <span>Titular ante el Banco: <strong style={{ color: 'var(--primary-dark)' }}>{lead.nombre}</strong></span>
+                          </div>
+
                           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px' }}>
                             <Phone size={15} color="var(--text-light)" />
                             <a href={`https://wa.me/57${lead.celular.replace(/\s+/g, '')}`} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-blue)', fontWeight: '700', textDecoration: 'none' }}>
@@ -828,14 +854,59 @@ export default function AdminPage() {
                               {lead.correo}
                             </a>
                           </div>
-                          
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px' }}>
-                            <User size={15} color="var(--text-light)" />
-                            <span style={{ color: 'var(--text-medium)' }}>Contacto: {lead.nombre}</span>
+
+                          {/* Ficha técnica del crédito */}
+                          <div style={{ background: '#f8fafc', padding: '12px', borderRadius: '10px', border: '1px solid var(--border-light)', fontSize: '12.5px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                            <div>🏦 <strong>Banco:</strong> {lead.banco} ({lead.tipoSociedad})</div>
+                            {lead.modalidad && <div>📈 <strong>Abono Inteligente / Modalidad:</strong> {lead.modalidad}</div>}
+                            <div>💰 <strong>Deuda Reportada:</strong> {lead.montoDeuda}</div>
+                            {lead.cuotaMensualCredito && <div>💳 <strong>Cuota Mensual Actual:</strong> {formatCurrency(lead.cuotaMensualCredito)}</div>}
+                            {lead.saldoCapital && <div>💵 <strong>Saldo Capital:</strong> {formatCurrency(lead.saldoCapital)}</div>}
+                            {lead.plazoTotalMeses && <div>⏱️ <strong>Plazo Total:</strong> {Math.round(lead.plazoTotalMeses / 12)} Años ({lead.plazoTotalMeses} Meses)</div>}
                           </div>
 
+                          {/* Tarjeta de Extracto Bancario en PDF */}
+                          {(lead.tienePdf || lead.extractoUrl || lead.extractoBase64) && (
+                            <div style={{ background: 'rgba(34, 197, 94, 0.08)', border: '1px solid rgba(34, 197, 94, 0.25)', padding: '12px 14px', borderRadius: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+                              <div>
+                                <strong style={{ color: '#16a34a', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                  <FileText size={16} /> Extracto Bancario en PDF Guardado
+                                </strong>
+                                <span style={{ fontSize: '11.5px', color: 'var(--text-medium)', display: 'block', marginTop: '2px' }}>
+                                  Listo para la auditoría técnica de Williams Cruz
+                                </span>
+                              </div>
+                              <a
+                                href={lead.extractoUrl || (lead.id && !isNaN(Number(lead.id)) ? `/api/leads/${lead.id}/pdf` : '#')}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => {
+                                  if (!lead.extractoUrl && (isNaN(Number(lead.id)) || !lead.id) && lead.extractoBase64) {
+                                    e.preventDefault();
+                                    openBase64PDF(lead.extractoBase64, lead.nombre);
+                                  }
+                                }}
+                                style={{
+                                  padding: '8px 14px',
+                                  borderRadius: '8px',
+                                  background: '#16a34a',
+                                  color: '#ffffff',
+                                  fontSize: '12.5px',
+                                  fontWeight: '800',
+                                  textDecoration: 'none',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '6px',
+                                  boxShadow: '0 2px 6px rgba(22, 163, 74, 0.2)'
+                                }}
+                              >
+                                Abrir Extracto PDF <ExternalLink size={12} />
+                              </a>
+                            </div>
+                          )}
+
                           {lead.tieneFRECH && (
-                            <div style={{ background: 'rgba(34, 197, 94, 0.04)', padding: '12px', borderRadius: '8px', marginTop: '12px', fontSize: '12px', color: '#16a34a', border: '1px solid rgba(34, 197, 94, 0.15)' }}>
+                            <div style={{ background: 'rgba(34, 197, 94, 0.04)', padding: '12px', borderRadius: '8px', marginTop: '4px', fontSize: '12px', color: '#16a34a', border: '1px solid rgba(34, 197, 94, 0.15)' }}>
                               🏛️ <strong>Subsidio FRECH Registrado:</strong>
                               <div style={{ marginTop: '4px' }}>• Cuota FRECH: {formatCurrency(lead.cuotaMensualFRECH || 0)}</div>
                               <div>• Cuotas Pagadas FRECH: {lead.cuotasSubsidiadasPagas || 0}</div>

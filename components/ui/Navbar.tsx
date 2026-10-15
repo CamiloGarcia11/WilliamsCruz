@@ -82,7 +82,7 @@ export default function Navbar() {
           </Link>
 
           <Link onClick={() => setMobileMenuOpen(false)} href="/simulador" style={{ color: 'var(--text-medium)', fontWeight: '600', fontSize: '15px', transition: 'var(--transition-smooth)' }}>
-            Simulador
+            Auditoría de Extracto
           </Link>
           <Link
             onClick={() => setMobileMenuOpen(false)}

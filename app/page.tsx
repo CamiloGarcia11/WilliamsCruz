@@ -105,7 +105,7 @@ export default function Home() {
 
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginTop: '12px' }}>
                 <ButtonPulse variant="primary" onClick={() => scrollToSection('simulador-ahorro')}>
-                  Simular mi Ahorro <ArrowRight size={18} />
+                  Auditar mi Crédito con Extracto <ArrowRight size={18} />
                 </ButtonPulse>
                 <ButtonPulse variant="outline" onClick={() => scrollToSection('servicios-categorias')} pulse={false}>
                   Ver Servicios y Categorías
@@ -188,7 +188,7 @@ export default function Home() {
                 </ul>
 
                 <ButtonPulse variant="primary" onClick={() => scrollToSection('simulador-ahorro')} style={{ marginTop: '12px' }}>
-                  Simular Reducción Ahora
+                  Auditar mi Crédito con Extracto
                 </ButtonPulse>
               </div>
             </Card3D>
@@ -333,16 +333,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. CALCULADORA INTERACTIVA DE AHORRO */}
+      {/* 4. DIAGNÓSTICO Y AUDITORÍA DE REDUCCIÓN HIPOTECARIA */}
       <section id="simulador-ahorro" style={{ position: 'relative', overflow: 'hidden', padding: '80px 0' }}>
         <SubtleGridBg />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <AnimatedTitle style={{ fontSize: '32px', fontWeight: '900', color: 'var(--primary-dark)' }}>
-              Simula tu Ahorro Hipotecario en Tiempo Real
+            <span style={{ fontSize: '13px', fontWeight: 'bold', color: 'var(--accent-blue)', letterSpacing: '1px', textTransform: 'uppercase' }}>
+              Estudio Gratuito Bajo la Ley 546 de 1999
+            </span>
+            <AnimatedTitle style={{ fontSize: '34px', fontWeight: '900', color: 'var(--primary-dark)', marginTop: '8px' }}>
+              Diagnóstico y Auditoría de Reducción Hipotecaria
             </AnimatedTitle>
-            <p style={{ color: 'var(--text-light)', marginTop: '8px', maxWidth: '600px', margin: '8px auto 0 auto' }}>
-              Mueve los controles para ver cuántos millones en intereses y cuántos años de cuotas puedes restarle a tu deuda.
+            <p style={{ color: 'var(--text-light)', marginTop: '10px', maxWidth: '640px', margin: '10px auto 0 auto', fontSize: '15.5px', lineHeight: '1.5' }}>
+              Los bancos no revelan cómo pagar menos cuotas ni cobran seguros justos. Evaluamos tu extracto de forma confidencial para estructurar tu propuesta de ahorro sin ningún costo ni anticipos.
             </p>
           </div>
 
@@ -727,124 +730,63 @@ export default function Home() {
 
             </div>
 
-            {/* FILA 2: 2 VIDEOS HORIZONTALES (16:9) */}
-            <div className="video-cards-flex-row">
-              
-              {/* Video 1: Entrevista CityTV (Local /video_whatsapp.mp4) */}
-              <div className="video-card-horizontal-wrapper">
-                <Card3D variant="light" glowColor="yellow" style={{ padding: '0px', overflow: 'hidden', width: '100%', height: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
-                    <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px' }}>
-                      🎬 Entrevista CityTV: Ley de Vivienda (Carlos Puyo)
-                    </span>
-                  </div>
-                  <div 
-                    style={{ 
-                      position: 'relative', 
-                      width: '100%', 
-                      aspectRatio: '16/9',
-                      background: '#000000',
+            {/* FILA 2: VIDEO TESTIMONIO DE ÉXITO REAL (HORIZONTAL 16:9) */}
+            <div style={{ width: '100%', maxWidth: '820px', margin: '0 auto' }}>
+              <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', width: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
+                  <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                  <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px' }}>
+                    🎥 Video Testimonio: Experiencia de Éxito Real
+                  </span>
+                </div>
+                <div 
+                  style={{ 
+                    position: 'relative', 
+                    width: '100%', 
+                    aspectRatio: '16/9',
+                    background: '#000000',
+                  }}
+                >
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/xWrkPvQNR-k?start=3"
+                    title="Testimonio de cliente satisfecho"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    style={{ border: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                  />
+                </div>
+                {/* Botón WhatsApp para consultar sobre testimonios */}
+                <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
+                  <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                    📈 Resultados de reducción de plazo:
+                  </span>
+                  <a
+                    href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20testimonio%20y%20deseo%20asesor%C3%ADa."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      background: '#25D366',
+                      color: '#ffffff',
+                      padding: '7px 18px',
+                      borderRadius: '20px',
+                      fontSize: '12px',
+                      fontWeight: '700',
+                      textDecoration: 'none',
+                      boxShadow: 'var(--shadow-sm)',
                     }}
                   >
-                    <video 
-                      src="/video_whatsapp.mp4" 
-                      controls 
-                      playsInline
-                      preload="metadata"
-                      style={{ width: '100%', height: '100%', objectFit: 'contain', position: 'absolute', top: 0, left: 0 }}
-                    />
-                  </div>
-                  {/* Botón WhatsApp para consultar sobre la entrevista */}
-                  <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
-                    <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      📞 Consulta sobre este video:
-                    </span>
-                    <a
-                      href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20la%20entrevista%20en%20CityTV%20con%20Carlos%20Puyo%20y%20me%20gustar%C3%ADa%20revisar%20mi%20caso%20para%20acceder%20a%20los%20beneficios%20de%20la%20Ley%20de%20Vivienda."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        background: '#25D366',
-                        color: '#ffffff',
-                        padding: '5px 12px',
-                        borderRadius: '20px',
-                        fontSize: '11.5px',
-                        fontWeight: '700',
-                        textDecoration: 'none',
-                        boxShadow: 'var(--shadow-sm)',
-                      }}
-                    >
-                      <Phone size={12} /> Revisar Mi Caso por WhatsApp
-                    </a>
-                  </div>
-                </Card3D>
-              </div>
-
-              {/* Video 2: Video Testimonio (YouTube) */}
-              <div className="video-card-horizontal-wrapper">
-                <Card3D variant="light" glowColor="blue" style={{ padding: '0px', overflow: 'hidden', width: '100%', height: '100%', border: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column' }}>
-                  <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '8px', background: '#ffffff' }}>
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#ef4444' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#f59e0b' }} />
-                    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#10b981' }} />
-                    <span style={{ fontSize: '13px', fontWeight: '700', color: 'var(--primary-dark)', marginLeft: '8px' }}>
-                      🎥 Video Testimonio: Experiencia de Éxito Real
-                    </span>
-                  </div>
-                  <div 
-                    style={{ 
-                      position: 'relative', 
-                      width: '100%', 
-                      aspectRatio: '16/9',
-                      background: '#000000',
-                    }}
-                  >
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src="https://www.youtube.com/embed/xWrkPvQNR-k?start=3"
-                      title="Testimonio de cliente satisfecho"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      style={{ border: 'none', position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                    />
-                  </div>
-                  {/* Botón WhatsApp para consultar sobre testimonios */}
-                  <div style={{ padding: '12px 10px', backgroundColor: 'var(--bg-light)', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center', marginTop: 'auto' }}>
-                    <span style={{ fontSize: '10.5px', fontWeight: '800', color: 'var(--primary-dark)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      📈 Resultados de reducción de plazo:
-                    </span>
-                    <a
-                      href="https://wa.me/573169773057?text=Hola!%20Vi%20el%20video%20de%20testimonio%20y%20deseo%20asesor%C3%ADa."
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        background: '#25D366',
-                        color: '#ffffff',
-                        padding: '5px 12px',
-                        borderRadius: '20px',
-                        fontSize: '11.5px',
-                        fontWeight: '700',
-                        textDecoration: 'none',
-                        boxShadow: 'var(--shadow-sm)',
-                      }}
-                    >
-                      <Phone size={12} /> Contactar Asesor
-                    </a>
-                  </div>
-                </Card3D>
-              </div>
-
+                    <Phone size={13} /> Contactar Asesor por WhatsApp
+                  </a>
+                </div>
+              </Card3D>
             </div>
 
             {/* FILA 3: CANCIÓN EXPLICATIVA E INTERACTIVA DE SUSFINANZAS SAS */}

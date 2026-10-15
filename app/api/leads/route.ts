@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     const dbLead: DbLead = {
       tipo_credito: body.tipoSociedad,
       banco: body.banco,
-      modalidad: body.modalidad,
+      modalidad: body.abonoInteligente ? `Abono: ${body.abonoInteligente}` : (body.modalidad || 'Pesos'),
       monto_deuda: body.montoDeuda,
       nombre: body.nombre,
       celular: body.celular,
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       saldo_capital: body.saldoCapital,
       plazo_total_meses: body.plazoTotalMeses,
       cuotas_pagas: body.cuotasPagas,
-      cuota_mensual_credito: body.cuotaMensualCredito,
+      cuota_mensual_credito: body.cuotaMensualCredito || (body.cuotaActual ? Number(String(body.cuotaActual).replace(/[^0-9]/g, '')) || null : null),
       ingresos: body.ingresos,
       tiene_frech: body.tieneFRECH,
       cuota_mensual_frech: body.cuotaMensualFRECH,
